@@ -1,0 +1,5 @@
+include ':kalert'
+include ':app'
+include ':bottomviewex'
+include ':coremodul'
+rootProject.name = "AbsenOntime"

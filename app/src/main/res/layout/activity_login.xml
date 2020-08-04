@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".LoginActivity"
+    android:background="@drawable/bglogin"
+    android:focusableInTouchMode="true"
+    android:gravity="center"
+    android:layout_gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/_20sdp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/logoontimeputih"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerInParent="true"/>
+                </RelativeLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_42sdp"
+                    android:layout_marginTop="@dimen/_60sdp"
+                    android:background="@drawable/bg_edt_login"
+                    android:layout_gravity="center_vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/iv_username"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|center_vertical"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:background="@drawable/username" />
+                        <EditText
+                            android:id="@+id/edt_username"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:textColor="#000"
+                            android:textCursorDrawable="@drawable/color_cursor"
+                            android:background="@null"
+                            android:hint="Masukkan Username"
+                            android:gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/_4sdp"
+                            android:textSize="@dimen/_12sdp"
+                            android:inputType="text"
+                            android:maxLines="1"/>
+                    </LinearLayout>
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_42sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@drawable/bg_edt_login"
+                    android:layout_gravity="center_vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/iv_password"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|center_vertical"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:background="@drawable/password" />
+                        <EditText
+                            android:id="@+id/edt_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:textCursorDrawable="@drawable/color_cursor"
+                            android:textColor="#000"
+                            android:background="@null"
+                            android:hint="Masukkan Password"
+                            android:gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/_4sdp"
+                            android:textSize="@dimen/_12sdp"
+                            android:inputType="textPassword"
+                            android:maxLines="1"/>
+                    </LinearLayout>
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_42sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@drawable/bg_edt_login"
+                    android:layout_gravity="center_vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/iv_kode_perusahaan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|center_vertical"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:background="@drawable/kodeperusahaan" />
+                        <EditText
+                            android:id="@+id/edt_kode_perusahaan"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:textCursorDrawable="@drawable/color_cursor"
+                            android:textColor="#000"
+                            android:background="@null"
+                            android:hint="Masukkan Kode Perusahaan"
+                            android:gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/_4sdp"
+                            android:textSize="@dimen/_12sdp"
+                            android:inputType="text"
+                            android:maxLines="1"/>
+                    </LinearLayout>
+
+                </FrameLayout>
+
+                <Button
+                    android:id="@+id/btn_login"
+                    style="@style/loginButton"
+                    app:spinning_bar_width="@dimen/_4sdp"
+                    android:textSize="@dimen/_12sdp"
+                    android:gravity="center"
+                    app:spinning_bar_color="#FFF"
+                    android:text="Login"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/_26sdp"
+                    app:spinning_bar_padding="@dimen/_6sdp"
+                    app:initialCornerAngle="@dimen/_26sdp"/>
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</RelativeLayout>

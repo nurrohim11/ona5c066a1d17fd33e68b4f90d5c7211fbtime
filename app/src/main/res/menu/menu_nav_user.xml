@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/i_home"
+        android:checked="true"
+        android:icon="@drawable/homeblue"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/i_riwayat"
+        android:icon="@drawable/riwayatblue"
+        android:title="Riwayat" />
+
+    <item
+        android:id="@+id/i_pengajuan"
+        android:icon="@drawable/pengajuanblue"
+        android:title="Pengajuan" />
+
+    <item
+        android:id="@+id/i_approval"
+        android:icon="@drawable/aprovalblue"
+        android:title="Approval" />
+
+    <item
+        android:id="@+id/i_akun"
+        android:icon="@drawable/akunblue"
+        android:title="Akun" />
+</menu>
