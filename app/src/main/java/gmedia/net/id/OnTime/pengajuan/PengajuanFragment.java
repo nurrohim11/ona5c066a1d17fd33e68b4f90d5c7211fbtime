@@ -70,7 +70,7 @@ public class PengajuanFragment extends Fragment {
         customModel=new CustomModel("003","Reimburse",Utils.package_name(getContext())+".pengajuan.reimburse.ReimburseActivity", String.valueOf(R.drawable.pengajuanreimbuse), String.valueOf(R.drawable.bg_blueviolet));
         customModels.add(customModel);
 
-        customModel=new CustomModel("004","Gaji",Utils.package_name(getContext())+".pengajuan.gaji.GajiActivity", String.valueOf(R.drawable.pengajuangaji), String.valueOf(R.drawable.bg_royalblue));
+        customModel=new CustomModel("004","Lembur",Utils.package_name(getContext())+".pengajuan.lembur.LemburActivity", String.valueOf(R.drawable.jamputih), String.valueOf(R.drawable.bg_rust));
         customModels.add(customModel);
 
         adapter.notifyDataSetChanged();

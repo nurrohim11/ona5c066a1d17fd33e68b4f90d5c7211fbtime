@@ -9,13 +9,16 @@
     android:layout_gravity="center"
     android:orientation="vertical"
     android:background="?attr/alertDialogDark"
-    android:padding="10dp">
+    android:paddingTop="@dimen/_20sdp"
+    android:paddingBottom="@dimen/_20sdp"
+    android:paddingRight="@dimen/_10sdp"
+    android:paddingLeft="@dimen/_10sdp">
 
     <ImageView
         android:id="@+id/custom_image"
-        android:layout_width="53dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="5dp"
+        android:layout_width="@dimen/_54sdp"
+        android:layout_height="@dimen/_54sdp"
+        android:layout_marginTop="@dimen/_4sdp"
         android:contentDescription="@string/app_name"
         android:visibility="gone"
         android:scaleType="fitCenter" />
@@ -109,8 +112,8 @@
         android:id="@+id/title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="19sp"
-        android:layout_marginTop="10dp"
+        android:textSize="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_8sdp"
         android:singleLine="true"
         android:visibility="gone"
         android:textColor="?attr/alertDialogTextColor"
@@ -118,10 +121,10 @@
 
     <TextView
         android:id="@+id/content_text"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/_8sdp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
+        android:textSize="@dimen/_12sdp"
         android:textColor="?attr/alertDialogContentTextColor"
         android:textAlignment="center"
         android:gravity="center"
@@ -132,7 +135,7 @@
         android:id="@+id/custom_view_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/_8sdp"
         android:gravity="center"
         android:visibility="gone"
         tools:text="message \n message \n message"
@@ -147,7 +150,7 @@
     </FrameLayout>
 
     <LinearLayout
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/_16sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center">

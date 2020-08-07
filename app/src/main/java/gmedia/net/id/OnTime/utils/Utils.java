@@ -60,6 +60,12 @@ public class Utils {
         return null;
     }
 
+    public static String customFormatTimestamp(Date timestamp, String format ){
+        SimpleDateFormat sdFormat = new SimpleDateFormat(format);
+        String date = sdFormat.format(timestamp);
+        return date;
+    }
+
     public static boolean safeToTakePicture = false;
 
     public static boolean afterSnapCamera=false;

@@ -37,7 +37,6 @@ import gmedia.net.id.OnTime.utils.Utils;
 import gmedia.net.id.coremodul.ApiVolley;
 import gmedia.net.id.coremodul.AppRequestCallback;
 
-import static gmedia.net.id.coremodul.FormatItem.formatDate;
 
 
 public class IjinActivity extends AppCompatActivity {

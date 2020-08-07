@@ -71,10 +71,22 @@ public class RiwayatFragment extends Fragment {
         customModel=new CustomModel("002","Absensi",Utils.package_name(getContext())+".riwayat.absensi.RekapAbsensiActivity", String.valueOf(R.drawable.rekapabsensi), String.valueOf(R.drawable.bg_magenta));
         customModels.add(customModel);
 
+        customModel=new CustomModel("004","Cuti",Utils.package_name(getContext())+".riwayat.cuti.RiwayatCutiActivity", String.valueOf(R.drawable.cuti_ijin), String.valueOf(R.drawable.bg_royalblue));
+        customModels.add(customModel);
+
+        customModel=new CustomModel("005","Ijin",Utils.package_name(getContext())+".riwayat.ijin.RiwayatIjinActivity", String.valueOf(R.drawable.cuti_ijin), String.valueOf(R.drawable.bg_navy));
+        customModels.add(customModel);
+
         customModel=new CustomModel("003","Reimburse",Utils.package_name(getContext())+".riwayat.reimburse.RekapReimburseActivity", String.valueOf(R.drawable.reimbuse), String.valueOf(R.drawable.bg_blueviolet));
         customModels.add(customModel);
 
-        customModel=new CustomModel("004","Cuti/Ijin",Utils.package_name(getContext())+".riwayat.cutiijin.CutiijinActivity", String.valueOf(R.drawable.cuti_ijin), String.valueOf(R.drawable.bg_royalblue));
+        customModel=new CustomModel("006","Gaji",Utils.package_name(getContext())+".riwayat.gaji.RiwayatGajiActivity", String.valueOf(R.drawable.pengajuangaji), String.valueOf(R.drawable.bg_navy));
+        customModels.add(customModel);
+
+        customModel=new CustomModel("007","Jadwal Kerja",Utils.package_name(getContext())+".riwayat.jadwalkerja.JadwalKerjaActivity", String.valueOf(R.drawable.pengajuanjadwal), String.valueOf(R.drawable.bg_orange));
+        customModels.add(customModel);
+
+        customModel=new CustomModel("008","Lembur",Utils.package_name(getContext())+".riwayat.lembur.RiwayatLemburActivity", String.valueOf(R.drawable.jamputih), String.valueOf(R.drawable.bg_rust));
         customModels.add(customModel);
 
         adapter.notifyDataSetChanged();

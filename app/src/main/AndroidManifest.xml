@@ -29,13 +29,13 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        android:theme="@style/AppThemeNoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".pengajuan.gaji.GajiActivity" />
+        <activity android:name=".pengajuan.lembur.LemburActivity" />
         <activity android:name=".pengajuan.reimburse.ReimburseActivity" />
         <activity android:name=".pengajuan.ijin.IjinActivity" />
         <activity android:name=".pengajuan.cuti.CutiActivity" />
-        <activity android:name=".riwayat.cutiijin.CutiijinActivity" />
+        <activity android:name=".riwayat.cuti.RiwayatCutiActivity" />
         <activity android:name=".riwayat.reimburse.RekapReimburseActivity" />
         <activity android:name=".riwayat.absensi.RekapAbsensiActivity" />
         <activity android:name=".riwayat.scanlog.ScanlogActivity" />

@@ -10,6 +10,7 @@ public class ServerUrl {
     public static String UpdateLocation = BaseURLLocalHost + "Rest_Scan/scan_location";
     public static String Profile = BaseURLLocalHost + "Rest_Profile/";
     public static String ListJadwalKerja = BaseURLLocalHost + "Rest_Jadwal/index";
+    public static String jadwalHari = BaseURLLocalHost + "Rest_Jadwal/index";
     public static String listPengumuman = BaseURLLocalHost + "Rest_News/index";
     public static String viewPengumuman = BaseURLLocalHost+"Rest_News/view_news";
     public static String listNews = BaseURLLocalHost + "Rest_News/view_news";
@@ -22,6 +23,7 @@ public class ServerUrl {
     public static String historyIjin = BaseURLLocalHost + "Rest_Ijin/history_ijin";
     public static String viewAbsensi = BaseURLLocalHost + "Rest_Absensi/index";
     public static String viewLembur = BaseURLLocalHost + "Rest_Lembur/index";
+    public static String addLembur = BaseURLLocalHost + "Rest_Lembur/add_lembur";
 	public static String viewApprovalCuti = BaseURLLocalHost + "Rest_Cuti/view_approval";
 	public static String listApprovalCuti = BaseURLLocalHost+"Rest_Cuti/list_approval";
     public static String viewApprovalIjin = BaseURLLocalHost + "Rest_Ijin/view_approval";

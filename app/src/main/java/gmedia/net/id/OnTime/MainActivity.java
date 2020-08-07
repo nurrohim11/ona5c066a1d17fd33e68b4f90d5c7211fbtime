@@ -12,18 +12,27 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.text.InputType;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -75,6 +84,14 @@ public class MainActivity extends RuntimePermissionsActivity {
     SessionManager sessionManager;
     Button btnLogout;
     RelativeLayout rlNotif, rlSettings;
+    EditText passLama;
+    EditText passBaru;
+    EditText rePassBaru;
+    private Boolean klikToVisiblePassLama = true;
+    private boolean klikToVisiblePassBaru = true;
+    private boolean klikToVisiblePassRe = true;
+
+    Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,7 +120,6 @@ public class MainActivity extends RuntimePermissionsActivity {
             Log.d("token", e.getMessage());
         }
 
-//        initData();
         initView();
         initEvent();
         initPermission();
@@ -130,18 +146,155 @@ public class MainActivity extends RuntimePermissionsActivity {
         rlNotif = findViewById(R.id.rl_notif);
         rlSettings = findViewById(R.id.rl_settings);
 
-        rlNotif.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
-
         if(!sessionManager.getKeyApprovalCuti().equals("1") || !sessionManager.getKeyApprovalIjin().equals("1") || !sessionManager.getKeyApprovalReimburs().equals("1")){
             bvNavigation.getMenu().removeItem(R.id.i_approval);
         }
         bvNavigation.enableItemShiftingMode(false);
         bvNavigation.enableShiftingMode(false);
         bvNavigation.enableAnimation(false);
+
+        rlNotif.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+
+        rlSettings.setOnClickListener(view ->{
+
+            dialog = new Dialog(MainActivity.this);
+            dialog.setContentView(R.layout.popup_ganti_password);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            final ImageView visiblePassLama = dialog.findViewById(R.id.visiblePassLama);
+            final ImageView visiblePassBaru = dialog.findViewById(R.id.visiblePassBaru);
+            final ImageView visibleRePassBaru = dialog.findViewById(R.id.visibleRePassBaru);
+            passLama = dialog.findViewById(R.id.passLama);
+            passBaru = dialog.findViewById(R.id.passBaru);
+            rePassBaru = dialog.findViewById(R.id.reTypePassBaru);
+            visiblePassLama.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (klikToVisiblePassLama) {
+                        visiblePassLama.setImageDrawable(getResources().getDrawable(R.drawable.visible));
+                        passLama.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        klikToVisiblePassLama = false;
+                    } else {
+                        visiblePassLama.setImageDrawable(getResources().getDrawable(R.drawable.invisible));
+                        passLama.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        klikToVisiblePassLama = true;
+                    }
+                }
+            });
+
+            visiblePassBaru.setOnClickListener(v->{
+                if (klikToVisiblePassBaru) {
+                    visiblePassBaru.setImageDrawable(getResources().getDrawable(R.drawable.visible));
+                    passBaru.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    klikToVisiblePassBaru = false;
+                } else {
+                    visiblePassBaru.setImageDrawable(getResources().getDrawable(R.drawable.invisible));
+                    passBaru.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    klikToVisiblePassBaru = true;
+                }
+            });
+
+            visibleRePassBaru.setOnClickListener(v->{
+                if (klikToVisiblePassRe) {
+                    visibleRePassBaru.setImageDrawable(getResources().getDrawable(R.drawable.visible));
+                    rePassBaru.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    klikToVisiblePassBaru = false;
+                } else {
+                    visibleRePassBaru.setImageDrawable(getResources().getDrawable(R.drawable.invisible));
+                    rePassBaru.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    klikToVisiblePassRe = true;
+                }
+            });
+
+            RelativeLayout OK = dialog.findViewById(R.id.tombolOKgantiPassword);
+            OK.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    // validasi
+                    if (passLama.getText().toString().isEmpty()) {
+                        passLama.setError("Password lama harap diisi");
+                        passLama.requestFocus();
+                        return;
+                    } else {
+                        passLama.setError(null);
+                    }
+
+                    if (passBaru.getText().toString().isEmpty()) {
+                        passBaru.setError("Password baru harap diisi");
+                        passBaru.requestFocus();
+                        return;
+                    } else {
+                        passBaru.setError(null);
+                    }
+
+                    if (rePassBaru.getText().toString().isEmpty()) {
+                        rePassBaru.setError("Password baru ulang harap diisi");
+                        rePassBaru.requestFocus();
+                        return;
+                    } else {
+                        rePassBaru.setError(null);
+                    }
+                    if (!rePassBaru.getText().toString().equals(passBaru.getText().toString())) {
+                        rePassBaru.setError("Password ulang tidak sama");
+                        rePassBaru.requestFocus();
+                        return;
+                    } else {
+                        rePassBaru.setError(null);
+                    }
+                    doChangePassword();
+                }
+            });
+            RelativeLayout cancel = dialog.findViewById(R.id.tombolcancelGantiPassword);
+            cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.show();
+        });
+
+    }
+
+    private void doChangePassword(){
+        JSONObject jBody = new JSONObject();
+        try {
+            jBody.put("password_lama",passLama.getText().toString());
+            jBody.put("password_baru",passBaru.getText().toString());
+            jBody.put("re_password",rePassBaru.getText().toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        new ApiVolley(MainActivity.this,jBody, "POST",ServerUrl.gantiPassword,
+                new AppRequestCallback(new AppRequestCallback.ResponseListener() {
+                    @Override
+                    public void onSuccess(String response, String message) {
+                        Toasty.success(MainActivity.this,message,Toast.LENGTH_SHORT).show();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                dialog.dismiss();
+                            }
+                        },500);
+                    }
+
+                    @Override
+                    public void onEmpty(String message) {
+                        Toasty.error(MainActivity.this,message,Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFail(String message) {
+                        Toasty.error(MainActivity.this,message,Toast.LENGTH_SHORT).show();
+                    }
+                })
+        );
     }
 
     private void initProfil(){
