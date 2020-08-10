@@ -59,7 +59,10 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/_16sdp"
+                        android:paddingRight="@dimen/_16sdp"
+                        android:paddingLeft="@dimen/_16sdp"
+                        android:paddingTop="@dimen/_8sdp"
+                        android:paddingBottom="@dimen/_8sdp"
                         tools:ignore="MissingConstraints" >
 
                         <LinearLayout
@@ -74,19 +77,28 @@
                                 android:id="@+id/tv_tgl_jadwal"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="10/10/2020"
+                                android:text="-"
                                 android:textColor="@color/colorBlack"
                                 android:textSize="@dimen/_12sdp"
                                 android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_jam_jadwal"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:text="-"
+                                android:textColor="@color/colorBlackGray"
+                                android:textSize="@dimen/_11sdp"/>
 
                             <TextView
                                 android:id="@+id/tv_ket_jadwal"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/_2sdp"
-                                android:text="Kerja di kantor"
+                                android:text="-"
                                 android:textColor="@color/colorBlackGray"
-                                android:textSize="@dimen/_12sdp" />
+                                android:textSize="@dimen/_11sdp" />
                         </LinearLayout>
 
                         <Button

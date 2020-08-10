@@ -1,5 +1,6 @@
 package gmedia.net.id.OnTime.home;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -14,13 +15,18 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+
+import com.bumptech.glide.util.Util;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.Format;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
@@ -31,11 +37,13 @@ import gmedia.net.id.OnTime.home.menu.model.MenuHomeModel;
 import gmedia.net.id.OnTime.home.news.NewsActivity;
 import gmedia.net.id.OnTime.home.news.adapter.NewsAdapter;
 import gmedia.net.id.OnTime.home.news.model.NewsModel;
+import gmedia.net.id.OnTime.riwayat.jadwal.JadwalActivity;
 import gmedia.net.id.OnTime.utils.GridSpacingItemDecoration;
 import gmedia.net.id.OnTime.utils.ServerUrl;
 import gmedia.net.id.OnTime.utils.Utils;
 import gmedia.net.id.coremodul.ApiVolley;
 import gmedia.net.id.coremodul.AppRequestCallback;
+import gmedia.net.id.coremodul.FormatItem;
 
 import static gmedia.net.id.OnTime.utils.Utils.formatTgl;
 
@@ -51,6 +59,14 @@ public class HomeFragment extends Fragment {
     RecyclerView rvMenuHome, rvNews;
     @BindView(R.id.tv_see_news)
     TextView tvSeeNews;
+    @BindView(R.id.tv_tgl_jadwal)
+    TextView tvTglJadwal;
+    @BindView(R.id.tv_jam_jadwal)
+    TextView tvJamJadwal;
+    @BindView(R.id.tv_ket_jadwal)
+    TextView tvKetJadwal;
+    @BindView(R.id.btn_lihat_jadwal)
+    Button btnLihatJadwal;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -171,6 +187,60 @@ public class HomeFragment extends Fragment {
 
             }
         }));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        btnLihatJadwal.setOnClickListener(v->{
+            startActivity(new Intent(getContext(), JadwalActivity.class));
+        });
+        getJadwalHari();
+    }
+
+    private void getJadwalHari(){
+        JSONObject jBody = new JSONObject();
+        Calendar calendar = Calendar.getInstance();
+        String tgl = Utils.customFormatTimestamp(calendar.getTime(), FormatItem.formatDate);
+        String tgl_display = Utils.customFormatTimestamp(calendar.getTime(), FormatItem.formatDateDisplay);
+        try {
+            jBody.put("tgl",tgl);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        new ApiVolley(getContext(),jBody,"POST",ServerUrl.jadwalHari,
+                new AppRequestCallback(new AppRequestCallback.ResponseListener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onSuccess(String response, String message) {
+                        try {
+                            Log.d(">>>>",response);
+                            JSONObject res = new JSONObject(response);
+                            if(res.getString("tgl").equals("")){
+                                tvTglJadwal.setText(Utils.customFormatTimestamp(calendar.getTime(),FormatItem.formatDateDisplay));
+                            }else{
+                                tvTglJadwal.setText(Utils.formatDate(FormatItem.formatDate,FormatItem.formatDateDisplay,res.getString("tgl")));
+                            }
+                            tvJamJadwal.setText(res.getString("jam_masuk")+" s.d "+res.getString("jam_pulang"));
+                            tvKetJadwal.setText(res.getString("keterangan"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onEmpty(String message) {
+                        tvJamJadwal.setText(tgl_display);
+                        tvJamJadwal.setText("-");
+                        tvKetJadwal.setText("Anda tidak punya jadwal");
+                    }
+
+                    @Override
+                    public void onFail(String message) {
+                    }
+                })
+        );
     }
 
     private int dpToPx(int dp) {

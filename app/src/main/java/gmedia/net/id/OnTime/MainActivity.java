@@ -146,9 +146,12 @@ public class MainActivity extends RuntimePermissionsActivity {
         rlNotif = findViewById(R.id.rl_notif);
         rlSettings = findViewById(R.id.rl_settings);
 
-        if(!sessionManager.getKeyApprovalCuti().equals("1") || !sessionManager.getKeyApprovalIjin().equals("1") || !sessionManager.getKeyApprovalReimburs().equals("1")){
+
+
+        if(sessionManager.getKeyApprovalCuti().equals("0") && !sessionManager.getKeyApprovalIjin().equals("0") && !sessionManager.getKeyApprovalReimburs().equals("1")){
             bvNavigation.getMenu().removeItem(R.id.i_approval);
         }
+
         bvNavigation.enableItemShiftingMode(false);
         bvNavigation.enableShiftingMode(false);
         bvNavigation.enableAnimation(false);

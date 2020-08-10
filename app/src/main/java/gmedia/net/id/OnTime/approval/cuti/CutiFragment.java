@@ -11,6 +11,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alkhattabi.kalert.KAlertDialog;
 
@@ -26,23 +29,24 @@ import butterknife.ButterKnife;
 import gmedia.net.id.OnTime.R;
 import gmedia.net.id.OnTime.approval.cuti.adapter.CutiAdapter;
 import gmedia.net.id.OnTime.approval.cuti.model.CutiModel;
-import gmedia.net.id.OnTime.riwayat.absensi.RekapAbsensiActivity;
-import gmedia.net.id.OnTime.riwayat.absensi.adapter.AbsensiAdapter;
-import gmedia.net.id.OnTime.riwayat.absensi.model.AbsensiModel;
 import gmedia.net.id.OnTime.utils.ServerUrl;
 import gmedia.net.id.coremodul.ApiVolley;
 import gmedia.net.id.coremodul.AppRequestCallback;
-
-import static gmedia.net.id.OnTime.utils.Utils.formatDate;
+import gmedia.net.id.coremodul.SessionManager;
 
 public class CutiFragment extends Fragment {
 
     View view;
     @BindView(R.id.rv_cuti)
     RecyclerView rvCuti;
+    @BindView(R.id.ll_warning)
+    LinearLayout llWarning;
+    @BindView(R.id.tv_warning)
+    TextView tvWarning;
+    SessionManager sessionManager;
 
     private int start =0,count =10;
-    KAlertDialog pDialog;
+//    KAlertDialog pDialog;
 
     List<CutiModel> cutiModels = new ArrayList<>();
     CutiAdapter adapter;
@@ -58,18 +62,25 @@ public class CutiFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_cuti, container, false);
+        sessionManager = new SessionManager(getContext());
         ButterKnife.bind(this,view);
         start=0;
         count=10;
 
-        pDialog = new KAlertDialog(getContext(),KAlertDialog.PROGRESS_TYPE);
-        pDialog.getProgressHelper().setBarColor(Color.parseColor("#18C3F3"));
-        pDialog.setCancelable(false);
-        pDialog.show();
+//        pDialog = new KAlertDialog(getContext(),KAlertDialog.PROGRESS_TYPE);
+//        pDialog.getProgressHelper().setBarColor(Color.parseColor("#18C3F3"));
+//        pDialog.setCancelable(false);
+//        pDialog.show();
 
-        linearLayoutManager = new LinearLayoutManager(getContext());
-        setupListCuti();
-        setupListScrollListenerCuti();
+        if(sessionManager.getKeyApprovalCuti().equals("1")){
+            rvCuti.setVisibility(View.VISIBLE);
+            linearLayoutManager = new LinearLayoutManager(getContext());
+            setupListCuti();
+            setupListScrollListenerCuti();
+        }else{
+            llWarning.setVisibility(View.VISIBLE);
+            tvWarning.setText("Anda tidak mempunyai akses untuk approval cuti");
+        }
         return view;
     }
 
@@ -85,7 +96,7 @@ public class CutiFragment extends Fragment {
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 if (! recyclerView.canScrollVertically(1)){
-                    pDialog.show();
+//                    pDialog.show();
                     start += count;
                     loadCuti();
                 }
@@ -94,7 +105,7 @@ public class CutiFragment extends Fragment {
     }
 
     private void loadCuti(){
-        pDialog.dismiss();
+//        pDialog.dismiss();
         if(start == 0){
             cutiModels.clear();
         }
@@ -140,6 +151,9 @@ public class CutiFragment extends Fragment {
                     @Override
                     public void onEmpty(String message) {
                         Log.d("cutifragment",message);
+//                        rvCuti.setVisibility(View.GONE);
+//                        llWarning.setVisibility(View.VISIBLE);
+//                        tvWarning.setText("Data cuti tidak ada");
                     }
 
                     @Override
@@ -155,7 +169,13 @@ public class CutiFragment extends Fragment {
         super.onResume();
         start =0;
         count=10;
-        loadCuti();
-        adapter.notifyDataSetChanged();
+        if(sessionManager.getKeyApprovalCuti().equals("1")){
+            rvCuti.setVisibility(View.VISIBLE);
+            loadCuti();
+            adapter.notifyDataSetChanged();
+        }else{
+            llWarning.setVisibility(View.VISIBLE);
+            tvWarning.setText("Anda tidak mempunyai akses untuk approval cuti");
+        }
     }
 }

@@ -163,7 +163,7 @@ public class Scan {
 						pDialogSuccess.setTitleText("SUKSES!..");
 						pDialogSuccess.setContentText(message);
 						pDialogSuccess.setConfirmText("OK");
-						pDialogProcess.setCancelable(false);
+						pDialogSuccess.setCancelable(false);
 						pDialogSuccess.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
 							@Override
 							public void onClick(KAlertDialog sDialog) {

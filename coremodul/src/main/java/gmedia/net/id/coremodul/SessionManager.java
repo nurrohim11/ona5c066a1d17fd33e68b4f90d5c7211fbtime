@@ -36,8 +36,8 @@ public class SessionManager {
     public static final String KEY_ID_COMPANY = "id_company";
     public static final String KEY_ID_USER = "id_user";
     public static final String KEY_ID_PERUSAHAAN = "id_perusahaan";
-    public static final String KEY_APPROVAL_CUTI = "approval";
-    public static final String KEY_APPROVAL_IJIN = "approval";
+    public static final String KEY_APPROVAL_CUTI = "apv_cuti";
+    public static final String KEY_APPROVAL_IJIN = "apv_ijin";
     public static final String KEY_APPROVAL_REIMBURS = "apv_reimburs";
 
     // Constructor

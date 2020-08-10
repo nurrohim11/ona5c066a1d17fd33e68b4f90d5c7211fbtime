@@ -31,13 +31,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBar"
         android:usesCleartextTraffic="true">
+        <activity android:name=".riwayat.ijin.RiwayatIjinActivity"></activity>
+        <activity android:name=".riwayat.lembur.RiwayatLemburActivity" />
+        <activity android:name=".riwayat.gaji.GajiActivity" />
+        <activity android:name=".riwayat.jadwal.JadwalActivity" />
         <activity android:name=".pengajuan.lembur.LemburActivity" />
         <activity android:name=".pengajuan.reimburse.ReimburseActivity" />
         <activity android:name=".pengajuan.ijin.IjinActivity" />
         <activity android:name=".pengajuan.cuti.CutiActivity" />
         <activity android:name=".riwayat.cuti.RiwayatCutiActivity" />
-        <activity android:name=".riwayat.reimburse.RekapReimburseActivity" />
-        <activity android:name=".riwayat.absensi.RekapAbsensiActivity" />
+        <activity android:name=".riwayat.reimburse.RiwayatReimburseActivity" />
+        <activity android:name=".riwayat.absensi.RiwayatAbsensiActivity" />
         <activity android:name=".riwayat.scanlog.ScanlogActivity" />
         <activity android:name=".home.news.NewsActivity" />
         <activity android:name=".home.menu.LockInActivity" />
@@ -57,13 +61,15 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".MainActivity">
+            android:windowSoftInputMode="stateAlwaysHidden" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity">
         </activity>
 
         <provider

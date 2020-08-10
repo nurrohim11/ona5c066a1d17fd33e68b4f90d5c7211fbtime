@@ -7,12 +7,21 @@
     tools:context=".approval.ApprovalFragment"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Approval"
+        android:textStyle="bold"
+        android:textSize="@dimen/_12sdp"
+        android:id="@+id/tv_title_riwayat"/>
+
     <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
         android:id="@+id/tab_layout"
         app:tabIndicatorHeight="0dp"
+        android:layout_marginTop="@dimen/_4sdp"
         app:tabBackground="@android:color/transparent"
         app:tabRippleColor="@null"
         app:tabMode="fixed"/>
