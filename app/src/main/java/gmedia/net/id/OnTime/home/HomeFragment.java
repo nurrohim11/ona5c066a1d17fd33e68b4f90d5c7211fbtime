@@ -168,7 +168,9 @@ public class HomeFragment extends Fragment {
                         newsModels.add(new NewsModel(
                                 isi.getString("id"),
                                 formatTgl(isi.getString("tgl")),
-                                isi.getString("judul")
+                                isi.getString("judul"),
+                                isi.getString("teks"),
+                                isi.getString("gambar")
                         ));
                     }
                     newsAdapter.notifyDataSetChanged();

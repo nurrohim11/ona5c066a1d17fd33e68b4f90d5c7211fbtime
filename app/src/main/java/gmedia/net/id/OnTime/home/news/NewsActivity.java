@@ -6,9 +6,13 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.alkhattabi.kalert.KAlertDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,6 +23,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import es.dmoral.toasty.Toasty;
+import gmedia.net.id.OnTime.LoginActivity;
 import gmedia.net.id.OnTime.R;
 import gmedia.net.id.OnTime.home.news.adapter.NewsAdapter;
 import gmedia.net.id.OnTime.home.news.model.NewsModel;
@@ -40,6 +46,7 @@ public class NewsActivity extends AppCompatActivity {
 
     List<NewsModel> newsModels = new ArrayList<>();
     NewsAdapter newsAdapter;
+    KAlertDialog pDialogProcess;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +55,12 @@ public class NewsActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        pDialogProcess = new KAlertDialog(NewsActivity.this, KAlertDialog.PROGRESS_TYPE);
+        pDialogProcess.getProgressHelper().setBarColor(Color.parseColor("#18C3F3"));
+        pDialogProcess.setCancelable(false);
+        pDialogProcess.show();
 
         // news
         newsAdapter = new NewsAdapter(NewsActivity.this, newsModels);
@@ -72,6 +85,7 @@ public class NewsActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        newsModels.clear();
         prepareNews();
     }
 
@@ -81,6 +95,7 @@ public class NewsActivity extends AppCompatActivity {
             @Override
             public void onSuccess(String response, String message) {
                 Log.d(">>>>",response);
+                pDialogProcess.dismiss();
                 try {
                     JSONArray arr = new JSONArray(response);
                     for (int i = 0; i < arr.length(); i++) {
@@ -88,7 +103,9 @@ public class NewsActivity extends AppCompatActivity {
                         newsModels.add(new NewsModel(
                                 isi.getString("id"),
                                 formatTgl(isi.getString("tgl")),
-                                isi.getString("judul")
+                                isi.getString("judul"),
+                                isi.getString("teks"),
+                                isi.getString("gambar")
                         ));
                     }
                     newsAdapter.notifyDataSetChanged();
@@ -99,12 +116,13 @@ public class NewsActivity extends AppCompatActivity {
 
             @Override
             public void onEmpty(String message) {
-
+                pDialogProcess.dismiss();
             }
 
             @Override
             public void onFail(String message) {
-
+                pDialogProcess.dismiss();
+                Toasty.error(NewsActivity.this,message, Toast.LENGTH_SHORT).show();
             }
         }));
     }

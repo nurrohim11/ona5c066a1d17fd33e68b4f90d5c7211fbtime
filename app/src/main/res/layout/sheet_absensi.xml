@@ -61,11 +61,16 @@
                 android:id="@+id/tv_tgl_detail_akhir"/>
         </RelativeLayout>
     </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/rv_absensi"
-        android:layout_marginTop="@dimen/_12sdp"/>
+        android:layout_height="wrap_content">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rv_absensi"
+            android:layout_marginTop="@dimen/_12sdp"/>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </LinearLayout>

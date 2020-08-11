@@ -72,6 +72,8 @@ public class MainActivity extends RuntimePermissionsActivity {
     private boolean dialogActive = false;
 
     private String device_token ="";
+    private static final int TIME_INTERVAL = 2000;
+    private long mBackPressed;
 
     BottomNavViewEx bvNavigation;
     private TextView tvProfileName, tvProfileNik;
@@ -83,7 +85,8 @@ public class MainActivity extends RuntimePermissionsActivity {
     private final int PERMIOSSION_REQUEST_CODE = 1240;
     SessionManager sessionManager;
     Button btnLogout;
-    RelativeLayout rlNotif, rlSettings;
+    //    RelativeLayout rlNotif, rlSettings;
+    RelativeLayout rlSettings;
     EditText passLama;
     EditText passBaru;
     EditText rePassBaru;
@@ -143,7 +146,7 @@ public class MainActivity extends RuntimePermissionsActivity {
         tvProfileNik = findViewById(R.id.tv_profile_nik);
         btnLogout = findViewById(R.id.btn_logout);
 
-        rlNotif = findViewById(R.id.rl_notif);
+//        rlNotif = findViewById(R.id.rl_notif);
         rlSettings = findViewById(R.id.rl_settings);
 
 
@@ -156,11 +159,11 @@ public class MainActivity extends RuntimePermissionsActivity {
         bvNavigation.enableShiftingMode(false);
         bvNavigation.enableAnimation(false);
 
-        rlNotif.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
+//        rlNotif.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//            }
+//        });
 
         rlSettings.setOnClickListener(view ->{
 
@@ -533,5 +536,29 @@ public class MainActivity extends RuntimePermissionsActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+//        exit();
     }
+
+    private void exit(){
+        KAlertDialog pDialogWarning = new KAlertDialog(MainActivity.this, KAlertDialog.WARNING_TYPE);
+        pDialogWarning.setTitleText("Are you sure ?");
+        pDialogWarning.setContentText("Apakah anda yakin untuk keluar ?");
+        pDialogWarning.setCancelable(true);
+        pDialogWarning.setConfirmText("Ya"); //Do not call this if you don't want to show confirm button
+        pDialogWarning.setCancelText("Tidak");//Do not call this if you don't want to show cancel button
+        pDialogWarning.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+            @Override
+            public void onClick(KAlertDialog kAlertDialog) {
+                finish();
+            }
+        });
+        pDialogWarning.setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+            @Override
+            public void onClick(KAlertDialog kAlertDialog) {
+                pDialogWarning.dismiss();
+            }
+        });
+        pDialogWarning.show();
+    }
+
 }

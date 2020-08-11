@@ -109,18 +109,18 @@
                         android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="parent">
 
-                        <RelativeLayout
-                            android:layout_width="@dimen/_26sdp"
-                            android:layout_height="@dimen/_26sdp"
-                            android:clickable="true"
-                            android:padding="@dimen/_2sdp"
-                            android:id="@+id/rl_notif"
-                            android:focusable="true">
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/notif" />
-                        </RelativeLayout>
+<!--                        <RelativeLayout-->
+<!--                            android:layout_width="@dimen/_26sdp"-->
+<!--                            android:layout_height="@dimen/_26sdp"-->
+<!--                            android:clickable="true"-->
+<!--                            android:padding="@dimen/_2sdp"-->
+<!--                            android:id="@+id/rl_notif"-->
+<!--                            android:focusable="true">-->
+<!--                            <ImageView-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="match_parent"-->
+<!--                                android:src="@drawable/notif" />-->
+<!--                        </RelativeLayout>-->
 
                         <RelativeLayout
                             android:layout_width="@dimen/_26sdp"

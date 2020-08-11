@@ -2,13 +2,14 @@ package gmedia.net.id.OnTime.home.news.model;
 
 public class NewsModel {
     private Boolean baru;
-    private String id, tanggal, judul, deskripsi;
+    private String id, tanggal, judul, deskripsi,gambar;
 
-    public NewsModel(String id, String tgl, String judul, String deskripsi) {
+    public NewsModel(String id, String tgl, String judul, String deskripsi,String gambar) {
         this.id = id;
         this.tanggal = tgl;
         this.judul = judul;
         this.deskripsi = deskripsi;
+        this.gambar = gambar;
     }
 
     public NewsModel(String id, String tgl, String judul) {
@@ -55,5 +56,13 @@ public class NewsModel {
 
     public void setDeskripsi(String deskripsi) {
         this.deskripsi = deskripsi;
+    }
+
+    public String getGambar() {
+        return gambar;
+    }
+
+    public void setGambar(String gambar) {
+        this.gambar = gambar;
     }
 }

@@ -1,6 +1,7 @@
 package gmedia.net.id.OnTime.home.news.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +11,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
+
 import java.util.List;
 
 import gmedia.net.id.OnTime.R;
+import gmedia.net.id.OnTime.home.news.DetailNewsActivity;
 import gmedia.net.id.OnTime.home.news.model.NewsModel;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
@@ -41,7 +45,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, item.getJudul(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(holder.itemView.getContext(), DetailNewsActivity.class);
+                intent.putExtra(DetailNewsActivity.DETAIL_NEWS_ACTIVITY, new Gson().toJson(item));
+                context.startActivity(intent);
             }
         });
     }
