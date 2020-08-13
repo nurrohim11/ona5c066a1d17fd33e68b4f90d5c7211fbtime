@@ -64,4 +64,5 @@ dependencies {
     implementation 'com.jakewharton:butterknife:10.2.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
     implementation 'gun0912.ted:tedbottompicker:2.0.1'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }

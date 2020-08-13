@@ -157,7 +157,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onError(String result) {
                 pDialog.dismiss();
-                Toasty.error(LoginActivity.this, "Terjadi kesalahan saat mengambil data", Toast.LENGTH_SHORT, true).show();
+                Toasty.error(LoginActivity.this, result, Toast.LENGTH_SHORT, true).show();
             }
         });
     }

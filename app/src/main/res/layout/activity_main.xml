@@ -62,9 +62,9 @@
                     android:background="@drawable/bg_biodata"
                     tools:ignore="MissingConstraints">
 
-                    <ImageView
+                    <de.hdodenhof.circleimageview.CircleImageView
                         android:layout_width="@dimen/_46sdp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:src="@drawable/computer_user"
                         android:id="@+id/img_profil" />
 

@@ -39,6 +39,7 @@ import android.widget.Toast;
 
 import com.alkhattabi.bottomviewex.BottomNavViewEx;
 import com.alkhattabi.kalert.KAlertDialog;
+import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -50,6 +51,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import es.dmoral.toasty.Toasty;
 import gmedia.net.id.OnTime.akun.AkunFragment;
 import gmedia.net.id.OnTime.approval.ApprovalFragment;
@@ -90,6 +92,7 @@ public class MainActivity extends RuntimePermissionsActivity {
     EditText passLama;
     EditText passBaru;
     EditText rePassBaru;
+    CircleImageView ivProfile;
     private Boolean klikToVisiblePassLama = true;
     private boolean klikToVisiblePassBaru = true;
     private boolean klikToVisiblePassRe = true;
@@ -145,6 +148,7 @@ public class MainActivity extends RuntimePermissionsActivity {
         tvProfileName = findViewById(R.id.tv_profile_name);
         tvProfileNik = findViewById(R.id.tv_profile_nik);
         btnLogout = findViewById(R.id.btn_logout);
+        ivProfile = findViewById(R.id.img_profil);
 
 //        rlNotif = findViewById(R.id.rl_notif);
         rlSettings = findViewById(R.id.rl_settings);
@@ -312,6 +316,10 @@ public class MainActivity extends RuntimePermissionsActivity {
                         try {
                             JSONObject res = new JSONObject(response);
                             Log.d(TAG,String.valueOf(res));
+                            Glide.with(MainActivity.this)
+                                    .load(res.getString("foto"))
+                                    .placeholder(R.drawable.computer_user)
+                                    .into(ivProfile);
                             tvProfileName.setText(res.getString("nama"));
                             tvProfileNik.setText(res.getString("nik"));
                         } catch (JSONException e) {
