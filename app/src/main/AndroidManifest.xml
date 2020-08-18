@@ -31,7 +31,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".home.news.DetailNewsActivity"></activity>
+        <activity android:name=".approval.reimburse.detail.DetailApprovalReimburseActivity"></activity>
+        <activity android:name=".riwayat.reimburse.detail.DetailReimburseActivity" />
+        <activity android:name=".home.news.DetailNewsActivity" />
         <activity android:name=".riwayat.ijin.RiwayatIjinActivity" />
         <activity android:name=".riwayat.lembur.RiwayatLemburActivity" />
         <activity android:name=".riwayat.gaji.GajiActivity" />
@@ -69,7 +71,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

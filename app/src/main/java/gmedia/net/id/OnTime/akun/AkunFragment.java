@@ -22,6 +22,7 @@ import es.dmoral.toasty.Toasty;
 import gmedia.net.id.OnTime.MainActivity;
 import gmedia.net.id.OnTime.R;
 import gmedia.net.id.OnTime.utils.ServerUrl;
+import gmedia.net.id.OnTime.utils.Utils;
 import gmedia.net.id.coremodul.ApiVolley;
 import gmedia.net.id.coremodul.AppRequestCallback;
 import gmedia.net.id.coremodul.SessionManager;
@@ -32,7 +33,7 @@ import static gmedia.net.id.OnTime.utils.Utils.loginActivity;
 public class AkunFragment extends Fragment {
     View view;
     TextView tvNik, tvDivisi, tvJabatan, tvPosisi, tvTglMasuk, tvNoEktp, tvNama, tvNoTelepon, tvEmail, tvAlamat, tvTempatLahir;
-    TextView tvTglLahir, tvJenisKelamin, tvAgama, tvStatusNikah, tvGolonganDarah, tvPendidikanTerakhir;
+    TextView tvTglLahir, tvJenisKelamin, tvAgama, tvStatusNikah, tvGolonganDarah, tvPendidikanTerakhir, tvUsername;
     SessionManager sessionManager;
 
     public AkunFragment() {
@@ -61,6 +62,7 @@ public class AkunFragment extends Fragment {
         tvJabatan = view.findViewById(R.id.tv_jabatan);
         tvPosisi = view.findViewById(R.id.tv_posisi);
         tvTglMasuk = view.findViewById(R.id.tv_tgl_masuk);
+        tvUsername = view.findViewById(R.id.tv_username);
 
         // data biodata diri
         tvNoEktp = view.findViewById(R.id.tv_no_ektp);
@@ -101,6 +103,7 @@ public class AkunFragment extends Fragment {
                             tvJabatan.setText(res.getString("jabatan"));
                             tvPosisi.setText(res.getString("posisi"));
                             tvTglMasuk.setText(formatTgl(res.getString("tgl_masuk")));
+                            tvUsername.setText(res.getString("username"));
 
                             tvNoEktp.setText(res.getString("ktp"));
                             tvNama.setText(res.getString("nama"));
@@ -126,10 +129,14 @@ public class AkunFragment extends Fragment {
                     }
                     @Override
                     public void onFail(String message) {
-                        try {
-                            sessionManager.logoutUser(loginActivity(getContext()));
-                        } catch (ClassNotFoundException e) {
-                            e.printStackTrace();
+                        if(message.equals("Unauthorized")){
+                            try {
+                                sessionManager.logoutUser(Utils.loginActivity(getContext()));
+                            } catch (ClassNotFoundException e) {
+                                e.printStackTrace();
+                            }
+                        }else{
+                            Toasty.error(getContext(),"Terjadi kesalahan data",Toast.LENGTH_SHORT).show();
                         }
                     }
                 })

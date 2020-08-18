@@ -96,7 +96,7 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="10.5"
+                android:layout_weight="9.5"
                 android:orientation="vertical">
 
                 <TextView
@@ -134,6 +134,18 @@
                     android:id="@+id/tv_status"
                     android:textSize="@dimen/_10sdp" />
 
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:layout_weight="1">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/iv_detail"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

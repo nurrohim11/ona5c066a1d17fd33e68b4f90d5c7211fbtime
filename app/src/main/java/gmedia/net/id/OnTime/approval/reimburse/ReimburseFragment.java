@@ -28,6 +28,7 @@ import gmedia.net.id.OnTime.approval.cuti.model.CutiModel;
 import gmedia.net.id.OnTime.approval.reimburse.adapter.ReimburseAdapter;
 import gmedia.net.id.OnTime.approval.reimburse.model.ReimburseModel;
 import gmedia.net.id.OnTime.utils.ServerUrl;
+import gmedia.net.id.OnTime.utils.Utils;
 import gmedia.net.id.coremodul.ApiVolley;
 import gmedia.net.id.coremodul.AppRequestCallback;
 import gmedia.net.id.coremodul.SessionManager;
@@ -122,6 +123,7 @@ public class ReimburseFragment extends Fragment {
                                 JSONObject isi = arr.getJSONObject(i);
                                 reimburseModels.add(new ReimburseModel(
                                         isi.getString("id"),
+                                        isi.getString("nik"),
                                         isi.getString("nama"),
                                         isi.getString("tgl_pembayaran"),
                                         isi.getString("foto_pembayaran"),
@@ -145,7 +147,14 @@ public class ReimburseFragment extends Fragment {
 
                     @Override
                     public void onFail(String message) {
-
+                        if(message.equals("Unauthorized")){
+                            try {
+                                SessionManager session = new SessionManager(getContext());
+                                session.logoutUser(Utils.loginActivity(getContext()));
+                            } catch (ClassNotFoundException e) {
+                                e.printStackTrace();
+                            }
+                        }
                     }
                 })
         );

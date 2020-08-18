@@ -55,6 +55,7 @@ public class CutiAdapter extends RecyclerView.Adapter<CutiAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull CutiAdapter.ViewHolder holder, int position) {
         CutiModel item = cutiModels.get(position);
+        holder.tvNik.setText(item.getNik());
         holder.tvDari.setText(item.getNama());
         holder.tvKeterangan.setText(item.getAlasan());
         holder.tvTglMulai.setText(Utils.formatDate(formatDate,formatDateDisplay,item.getAwal()));
@@ -66,6 +67,7 @@ public class CutiAdapter extends RecyclerView.Adapter<CutiAdapter.ViewHolder> {
             pDialogApprove.setContentText("Apakah anda yakin untuk menyutujui pengajuan ini ?");
             pDialogApprove.setCustomImage(R.drawable.gambaraproval);
             pDialogApprove.setCancelable(true);
+            pDialogApprove.setCloseDialog(true);
             pDialogApprove.setConfirmText("Setujui"); //Do not call this if you don't want to show confirm button
             pDialogApprove.setCancelText("Tolak");//Do not call this if you don't want to show cancel button
             pDialogApprove.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
@@ -106,9 +108,10 @@ public class CutiAdapter extends RecyclerView.Adapter<CutiAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvInsert, tvDari, tvKeterangan, tvTglMulai, tvTglSelesai;
+        private TextView tvInsert, tvDari, tvKeterangan, tvTglMulai, tvTglSelesai, tvNik;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            tvNik = itemView.findViewById(R.id.tv_nik);
             tvInsert = itemView.findViewById(R.id.tv_insert_at);
             tvDari = itemView.findViewById(R.id.tv_dari);
             tvKeterangan = itemView.findViewById(R.id.tv_keterangan);

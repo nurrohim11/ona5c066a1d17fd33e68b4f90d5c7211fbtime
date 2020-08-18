@@ -56,6 +56,7 @@ public class IjinAdapter extends RecyclerView.Adapter<IjinAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull IjinAdapter.ViewHolder holder, int position) {
         IjinModel item = ijinModels.get(position);
+        holder.tvNik.setText(item.getNik());
         holder.tvNama.setText(item.getNama());
         holder.tvKeterangan.setText(item.getAlasan());
         holder.tvTgl.setText(Utils.formatDate(formatDate,formatDateDisplay,item.getTgl()));
@@ -66,6 +67,7 @@ public class IjinAdapter extends RecyclerView.Adapter<IjinAdapter.ViewHolder> {
             pDialogApprove.setContentText("Apakah anda yakin untuk menyutujui pengajuan ini ?");
             pDialogApprove.setCustomImage(R.drawable.gambaraproval);
             pDialogApprove.setCancelable(true);
+            pDialogApprove.setCloseDialog(true);
             pDialogApprove.setConfirmText("Setujui"); //Do not call this if you don't want to show confirm button
             pDialogApprove.setCancelText("Tolak");//Do not call this if you don't want to show cancel button
             pDialogApprove.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
@@ -106,9 +108,10 @@ public class IjinAdapter extends RecyclerView.Adapter<IjinAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvInsertAt, tvTgl, tvKeterangan, tvNama;
+        private TextView tvInsertAt, tvTgl, tvKeterangan, tvNama, tvNik;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            tvNik = itemView.findViewById(R.id.tv_nik);
             tvInsertAt = itemView.findViewById(R.id.tv_insert_at);
             tvTgl = itemView.findViewById(R.id.tv_tgl);
             tvKeterangan = itemView.findViewById(R.id.tv_keterangan);

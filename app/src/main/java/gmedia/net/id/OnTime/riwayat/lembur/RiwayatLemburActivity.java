@@ -34,14 +34,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
 import gmedia.net.id.OnTime.R;
+import gmedia.net.id.OnTime.riwayat.gaji.GajiActivity;
 import gmedia.net.id.OnTime.riwayat.jadwal.JadwalActivity;
 import gmedia.net.id.OnTime.riwayat.jadwal.adapter.JadwalAdapter;
 import gmedia.net.id.OnTime.riwayat.jadwal.model.JadwalModel;
 import gmedia.net.id.OnTime.riwayat.lembur.adapter.LemburAdapter;
 import gmedia.net.id.OnTime.riwayat.lembur.model.LemburModel;
 import gmedia.net.id.OnTime.utils.ServerUrl;
+import gmedia.net.id.OnTime.utils.Utils;
 import gmedia.net.id.coremodul.ApiVolley;
 import gmedia.net.id.coremodul.AppRequestCallback;
+import gmedia.net.id.coremodul.SessionManager;
 
 public class RiwayatLemburActivity extends AppCompatActivity {
 
@@ -204,7 +207,16 @@ public class RiwayatLemburActivity extends AppCompatActivity {
                     @Override
                     public void onFail(String message) {
                         pDialogProses.dismiss();
-                        Toasty.error(RiwayatLemburActivity.this,message, Toast.LENGTH_SHORT).show();
+                        if(message.equals("Unauthorized")){
+                            try {
+                                SessionManager session = new SessionManager(RiwayatLemburActivity.this);
+                                session.logoutUser(Utils.loginActivity(RiwayatLemburActivity.this));
+                            } catch (ClassNotFoundException e) {
+                                e.printStackTrace();
+                            }
+                        }else{
+                            Toasty.error(RiwayatLemburActivity.this,message, Toast.LENGTH_SHORT).show();
+                        }
                     }
                 })
         );

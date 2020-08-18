@@ -201,6 +201,7 @@ public class RiwayatReimburseActivity extends AppCompatActivity {
                                 JSONObject isi = arr.getJSONObject(i);
                                 reimburseModelList.add(new ReimburseModel(
                                         isi.getString("id"),
+                                        isi.getString("nik"),
                                         isi.getString("nama"),
                                         isi.getString("tgl_pembayaran"),
                                         isi.getString("foto_pembayaran"),
@@ -241,6 +242,7 @@ public class RiwayatReimburseActivity extends AppCompatActivity {
         reimburseModelList.clear();
         start =0;
         count =10;
+//        loadRiwayatReimburse("");
     }
 
 }

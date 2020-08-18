@@ -6,11 +6,14 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.alkhattabi.kalert.KAlertDialog;
@@ -22,6 +25,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import butterknife.BindView;
 import es.dmoral.toasty.Toasty;
 import gmedia.net.id.OnTime.utils.ServerUrl;
 import gmedia.net.id.coremodul.ApiVolley;
@@ -32,8 +36,10 @@ public class LoginActivity extends AppCompatActivity {
     Button btnLogin;
     SessionManager sessionManager;
     EditText edtUsername, edtPassword, edtKodePerusahaan;
+    ImageView imgVisiblePass;
     KAlertDialog pDialog, pSuccess, pError;
     ItemValidation iv = new ItemValidation();
+    private boolean klikToVisiblePass = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +63,18 @@ public class LoginActivity extends AppCompatActivity {
         edtUsername = findViewById(R.id.edt_username);
         edtPassword = findViewById(R.id.edt_password);
         edtKodePerusahaan = findViewById(R.id.edt_kode_perusahaan);
+        imgVisiblePass = findViewById(R.id.visiblePass);
+        imgVisiblePass.setOnClickListener(v->{
+            if(klikToVisiblePass){
+                imgVisiblePass.setImageDrawable(getResources().getDrawable(R.drawable.visible));;
+                edtPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                klikToVisiblePass = false;
+            }else{
+                imgVisiblePass.setImageDrawable(getResources().getDrawable(R.drawable.invisible));
+                edtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                klikToVisiblePass = true;
+            }
+        });
 
         btnLogin = findViewById(R.id.btn_login);
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -132,8 +150,8 @@ public class LoginActivity extends AppCompatActivity {
                                 jo.getString("reimburs")
                         );
                         pSuccess = new KAlertDialog(LoginActivity.this, KAlertDialog.SUCCESS_TYPE);
-                        pSuccess.setTitleText("Good job!");
-                        pSuccess.setContentText(message);
+                        pSuccess.setTitleText(message);
+                        pSuccess.setContentText("Please wait!.......");
                         pSuccess.setCancelable(false);
                         pSuccess.show();
                         new Handler().postDelayed(new Runnable() {
@@ -144,7 +162,7 @@ public class LoginActivity extends AppCompatActivity {
                                         .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
                                 finish();
                             }
-                        }, 500);
+                        }, 1200);
                     }else{
                         Toasty.error(LoginActivity.this, message, Toast.LENGTH_SHORT, true).show();
                     }

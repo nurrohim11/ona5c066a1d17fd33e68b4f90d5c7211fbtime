@@ -38,11 +38,13 @@ import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
 import gmedia.net.id.OnTime.R;
 import gmedia.net.id.OnTime.pengajuan.ijin.IjinActivity;
+import gmedia.net.id.OnTime.riwayat.gaji.GajiActivity;
 import gmedia.net.id.OnTime.utils.ServerUrl;
 import gmedia.net.id.OnTime.utils.Utils;
 import gmedia.net.id.coremodul.ApiVolley;
 import gmedia.net.id.coremodul.AppRequestCallback;
 import gmedia.net.id.coremodul.FormatItem;
+import gmedia.net.id.coremodul.SessionManager;
 
 public class LemburActivity extends AppCompatActivity {
 
@@ -204,7 +206,16 @@ public class LemburActivity extends AppCompatActivity {
                     @Override
                     public void onFail(String message) {
                         pDialogProses.dismiss();
-                        Toasty.error(LemburActivity.this,message, Toast.LENGTH_SHORT).show();
+                        if(message.equals("Unauthorized")){
+                            try {
+                                SessionManager session = new SessionManager(LemburActivity.this);
+                                session.logoutUser(Utils.loginActivity(LemburActivity.this));
+                            } catch (ClassNotFoundException e) {
+                                e.printStackTrace();
+                            }
+                        }else{
+                            Toasty.error(LemburActivity.this,message, Toast.LENGTH_SHORT).show();
+                        }
                     }
                 })
         );

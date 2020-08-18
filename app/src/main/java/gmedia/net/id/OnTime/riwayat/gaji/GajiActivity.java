@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -44,6 +45,7 @@ import gmedia.net.id.OnTime.utils.ServerUrl;
 import gmedia.net.id.OnTime.utils.Utils;
 import gmedia.net.id.coremodul.ApiVolley;
 import gmedia.net.id.coremodul.AppRequestCallback;
+import gmedia.net.id.coremodul.SessionManager;
 
 import static gmedia.net.id.OnTime.utils.Utils.formatDate;
 
@@ -139,6 +141,7 @@ public class GajiActivity extends AppCompatActivity {
         };
         spinnerAdapterBulan.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spBulan.setAdapter(spinnerAdapterBulan);
+        spBulan.setSelection(Integer.parseInt(Utils.customFormatTimestamp(calendar.getTime(),"MM")));
         spBulan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -243,7 +246,16 @@ public class GajiActivity extends AppCompatActivity {
                     @Override
                     public void onFail(String message) {
                         pDialogProcess.dismiss();
-                        Toasty.error(GajiActivity.this,message,Toast.LENGTH_SHORT).show();
+                        if(message.equals("Unauthorized")){
+                            try {
+                                SessionManager session = new SessionManager(GajiActivity.this);
+                                session.logoutUser(Utils.loginActivity(GajiActivity.this));
+                            } catch (ClassNotFoundException e) {
+                                e.printStackTrace();
+                            }
+                        }else{
+                            Toasty.error(GajiActivity.this,message,Toast.LENGTH_SHORT).show();
+                        }
                     }
                 })
         );

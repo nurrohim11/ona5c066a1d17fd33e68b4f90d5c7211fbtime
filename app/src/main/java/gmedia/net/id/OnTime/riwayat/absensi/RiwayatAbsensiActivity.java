@@ -36,9 +36,12 @@ import es.dmoral.toasty.Toasty;
 import gmedia.net.id.OnTime.R;
 import gmedia.net.id.OnTime.riwayat.absensi.adapter.AbsensiAdapter;
 import gmedia.net.id.OnTime.riwayat.absensi.model.AbsensiModel;
+import gmedia.net.id.OnTime.riwayat.gaji.GajiActivity;
 import gmedia.net.id.OnTime.utils.ServerUrl;
+import gmedia.net.id.OnTime.utils.Utils;
 import gmedia.net.id.coremodul.ApiVolley;
 import gmedia.net.id.coremodul.AppRequestCallback;
+import gmedia.net.id.coremodul.SessionManager;
 
 import static gmedia.net.id.OnTime.utils.Utils.formatDate;
 
@@ -226,7 +229,16 @@ public class RiwayatAbsensiActivity extends AppCompatActivity {
 
                     @Override
                     public void onFail(String message) {
-                        Toasty.error(RiwayatAbsensiActivity.this,"Terjadi kesalahan saat memuat data",Toast.LENGTH_SHORT).show();
+                        if(message.equals("Unauthorized")){
+                            try {
+                                SessionManager session = new SessionManager(RiwayatAbsensiActivity.this);
+                                session.logoutUser(Utils.loginActivity(RiwayatAbsensiActivity.this));
+                            } catch (ClassNotFoundException e) {
+                                e.printStackTrace();
+                            }
+                        }else{
+                            Toasty.error(RiwayatAbsensiActivity.this,"Terjadi kesalahan saat memuat data",Toast.LENGTH_SHORT).show();
+                        }
                         rvAbsensi.setAdapter(null);
                     }
                 })

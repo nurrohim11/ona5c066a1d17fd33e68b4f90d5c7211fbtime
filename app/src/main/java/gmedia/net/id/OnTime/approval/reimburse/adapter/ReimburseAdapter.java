@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alkhattabi.kalert.KAlertDialog;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,7 +28,9 @@ import java.util.List;
 
 import es.dmoral.toasty.Toasty;
 import gmedia.net.id.OnTime.R;
+import gmedia.net.id.OnTime.approval.reimburse.detail.DetailApprovalReimburseActivity;
 import gmedia.net.id.OnTime.approval.reimburse.model.ReimburseModel;
+import gmedia.net.id.OnTime.riwayat.reimburse.detail.DetailReimburseActivity;
 import gmedia.net.id.OnTime.utils.ServerUrl;
 import gmedia.net.id.OnTime.utils.Utils;
 import gmedia.net.id.coremodul.ApiVolley;
@@ -56,19 +61,21 @@ public class ReimburseAdapter extends RecyclerView.Adapter<ReimburseAdapter.View
     @Override
     public void onBindViewHolder(@NonNull final ReimburseAdapter.ViewHolder holder, int position) {
         final ReimburseModel model = reimburseModels.get(position);
+        holder.tvNik.setText(model.getNik());
         holder.tvInsertAt.setText(Utils.formatDate(FormatItem.formatDateTime, FormatItem.formatDateDisplay,model.getInsert_at()));
         holder.tvNama.setText(model.getNama());
         holder.tvKeterangan.setText(model.getKet());
-        holder.tvTanggal.setText(Utils.formatDate(FormatItem.formatDateTime, FormatItem.formatDateDisplay,model.getInsert_at()));
+        holder.tvTanggal.setText(Utils.formatDate(FormatItem.formatDateTime, FormatItem.formatDateDisplay,model.getTgl_pembayaran()));
 
         Integer nominal = Integer.parseInt(model.getNominal());
         holder.tvNominal.setText(String.format("Rp %,d", nominal));
-        holder.itemView.setOnClickListener(v->{
+        holder.llItem.setOnClickListener(v->{
             pDialogApprove = new KAlertDialog(context, KAlertDialog.CUSTOM_IMAGE_TYPE);
             pDialogApprove.setTitleText("Are you sure ?");
             pDialogApprove.setContentText("Apakah anda yakin untuk menyutujui pengajuan ini ?");
             pDialogApprove.setCustomImage(R.drawable.gambaraproval);
             pDialogApprove.setCancelable(true);
+            pDialogApprove.setCloseDialog(true);
             pDialogApprove.setConfirmText("Setujui"); //Do not call this if you don't want to show confirm button
             pDialogApprove.setCancelText("Tolak");//Do not call this if you don't want to show cancel button
             pDialogApprove.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
@@ -94,6 +101,12 @@ public class ReimburseAdapter extends RecyclerView.Adapter<ReimburseAdapter.View
             pDialogApprove.show();
         });
 
+        holder.ivDetail.setOnClickListener(v->{
+            Intent intent = new Intent(holder.itemView.getContext(), DetailApprovalReimburseActivity.class);
+            intent.putExtra(DetailApprovalReimburseActivity.REIMBURSE_ITEM, new Gson().toJson(model));
+            context.startActivity(intent);
+        });
+
     }
 
     @Override
@@ -113,10 +126,15 @@ public class ReimburseAdapter extends RecyclerView.Adapter<ReimburseAdapter.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvInsertAt, tvNama, tvTanggal, tvNominal, tvKeterangan;
+        private TextView tvInsertAt, tvNama, tvTanggal, tvNominal, tvKeterangan, tvNik;
+        ImageView ivDetail;
+        private LinearLayout llItem;
         private RelativeLayout rlStatus;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            llItem = itemView.findViewById(R.id.ll_item);
+            tvNik = itemView.findViewById(R.id.tv_nik);
+            ivDetail = itemView.findViewById(R.id.iv_detail);
             tvInsertAt = itemView.findViewById(R.id.tv_insert_at);
             tvNama = itemView.findViewById(R.id.tv_dari);
             tvTanggal = itemView.findViewById(R.id.tv_tgl);

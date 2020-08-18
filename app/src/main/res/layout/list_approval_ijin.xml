@@ -34,7 +34,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Dari"
+                    android:text="NIK"
+                    android:textColor="@color/colorBlackGray"
+                    android:textSize="@dimen/_10sdp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:text="Nama"
                     android:textColor="@color/colorBlackGray"
                     android:textSize="@dimen/_10sdp" />
                 <TextView
@@ -74,6 +81,13 @@
                     android:layout_marginTop="@dimen/_4sdp"
                     android:textColor="@color/colorBlackGray"
                     android:textSize="@dimen/_10sdp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=":"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:textColor="@color/colorBlackGray"
+                    android:textSize="@dimen/_10sdp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -95,7 +109,16 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textColor="@color/colorBlackGray"
+                    android:id="@+id/tv_nik"
+                    android:textSize="@dimen/_10sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:text=""
                     android:id="@+id/tv_dari"
+                    android:textColor="@color/colorBlackGray"
                     android:textSize="@dimen/_10sdp" />
 
                 <TextView

@@ -27,11 +27,14 @@ import gmedia.net.id.OnTime.R;
 import gmedia.net.id.OnTime.riwayat.cuti.RiwayatCutiActivity;
 import gmedia.net.id.OnTime.riwayat.cuti.adapter.CutiAdapter;
 import gmedia.net.id.OnTime.riwayat.cuti.model.RiwayatCutiModel;
+import gmedia.net.id.OnTime.riwayat.gaji.GajiActivity;
 import gmedia.net.id.OnTime.riwayat.ijin.adapter.IjinAdapter;
 import gmedia.net.id.OnTime.riwayat.ijin.model.RiwayatIjinModel;
 import gmedia.net.id.OnTime.utils.ServerUrl;
+import gmedia.net.id.OnTime.utils.Utils;
 import gmedia.net.id.coremodul.ApiVolley;
 import gmedia.net.id.coremodul.AppRequestCallback;
+import gmedia.net.id.coremodul.SessionManager;
 
 public class RiwayatIjinActivity extends AppCompatActivity {
 
@@ -143,7 +146,16 @@ public class RiwayatIjinActivity extends AppCompatActivity {
                     @Override
                     public void onFail(String message) {
                         pDialogPrcess.dismiss();
-                        Toasty.error(RiwayatIjinActivity.this,message, Toast.LENGTH_SHORT).show();
+                        if(message.equals("Unauthorized")){
+                            try {
+                                SessionManager session = new SessionManager(RiwayatIjinActivity.this);
+                                session.logoutUser(Utils.loginActivity(RiwayatIjinActivity.this));
+                            } catch (ClassNotFoundException e) {
+                                e.printStackTrace();
+                            }
+                        }else{
+                            Toasty.error(RiwayatIjinActivity.this,message, Toast.LENGTH_SHORT).show();
+                        }
                     }
                 })
         );

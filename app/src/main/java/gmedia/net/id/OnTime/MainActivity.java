@@ -60,6 +60,7 @@ import gmedia.net.id.OnTime.pengajuan.PengajuanFragment;
 import gmedia.net.id.OnTime.riwayat.RiwayatFragment;
 import gmedia.net.id.OnTime.utils.RuntimePermissionsActivity;
 import gmedia.net.id.OnTime.utils.ServerUrl;
+import gmedia.net.id.OnTime.utils.Utils;
 import gmedia.net.id.coremodul.ApiVolley;
 import gmedia.net.id.coremodul.AppRequestCallback;
 import gmedia.net.id.coremodul.SessionManager;
@@ -153,9 +154,7 @@ public class MainActivity extends RuntimePermissionsActivity {
 //        rlNotif = findViewById(R.id.rl_notif);
         rlSettings = findViewById(R.id.rl_settings);
 
-
-
-        if(sessionManager.getKeyApprovalCuti().equals("0") && !sessionManager.getKeyApprovalIjin().equals("0") && !sessionManager.getKeyApprovalReimburs().equals("1")){
+        if(!sessionManager.getKeyApprovalCuti().equals("1") && !sessionManager.getKeyApprovalIjin().equals("1") && !sessionManager.getKeyApprovalReimburs().equals("1")){
             bvNavigation.getMenu().removeItem(R.id.i_approval);
         }
 
@@ -211,7 +210,7 @@ public class MainActivity extends RuntimePermissionsActivity {
                 if (klikToVisiblePassRe) {
                     visibleRePassBaru.setImageDrawable(getResources().getDrawable(R.drawable.visible));
                     rePassBaru.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    klikToVisiblePassBaru = false;
+                    klikToVisiblePassRe = false;
                 } else {
                     visibleRePassBaru.setImageDrawable(getResources().getDrawable(R.drawable.invisible));
                     rePassBaru.setTransformationMethod(PasswordTransformationMethod.getInstance());
@@ -332,10 +331,13 @@ public class MainActivity extends RuntimePermissionsActivity {
                     }
                     @Override
                     public void onFail(String message) {
-                        try {
-                            sessionManager.logoutUser(loginActivity(getApplicationContext()));
-                        } catch (ClassNotFoundException e) {
-                            e.printStackTrace();
+                        if(message.equals("Unauthorized")){
+                            try {
+                                SessionManager session = new SessionManager(MainActivity.this);
+                                session.logoutUser(Utils.loginActivity(MainActivity.this));
+                            } catch (ClassNotFoundException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
                 })

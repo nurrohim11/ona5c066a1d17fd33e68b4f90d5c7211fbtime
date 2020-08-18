@@ -38,12 +38,14 @@ dimen alert_width
 dimen common_circle_width
 dimen progress_circle_radius
 drawable button_background
+drawable close_dialog
 drawable dialog_background
 drawable dialogdark
 drawable dialoglight
 drawable error_center_x
 drawable error_circle
 drawable gray_button_background
+drawable ic_close
 drawable ic_success_tick
 drawable red_button_background
 drawable success_bow
@@ -58,6 +60,8 @@ id custom_view_container
 id edit_text
 id error_frame
 id error_x
+id iv_close
+id ll_close_dialog
 id loading
 id progressWheel
 id progress_dialog

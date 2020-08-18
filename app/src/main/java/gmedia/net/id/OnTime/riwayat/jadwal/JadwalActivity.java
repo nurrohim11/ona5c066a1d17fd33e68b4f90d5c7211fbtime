@@ -40,8 +40,10 @@ import gmedia.net.id.OnTime.riwayat.reimburse.RiwayatReimburseActivity;
 import gmedia.net.id.OnTime.riwayat.reimburse.adapter.ReimburseAdapter;
 import gmedia.net.id.OnTime.riwayat.reimburse.model.ReimburseModel;
 import gmedia.net.id.OnTime.utils.ServerUrl;
+import gmedia.net.id.OnTime.utils.Utils;
 import gmedia.net.id.coremodul.ApiVolley;
 import gmedia.net.id.coremodul.AppRequestCallback;
+import gmedia.net.id.coremodul.SessionManager;
 
 public class JadwalActivity extends AppCompatActivity {
 
@@ -227,7 +229,16 @@ public class JadwalActivity extends AppCompatActivity {
                     @Override
                     public void onFail(String message) {
                         pDialogProses.dismiss();
-                        Toasty.error(JadwalActivity.this,message, Toast.LENGTH_SHORT).show();
+                        if(message.equals("Unauthorized")){
+                            try {
+                                SessionManager session = new SessionManager(JadwalActivity.this);
+                                session.logoutUser(Utils.loginActivity(JadwalActivity.this));
+                            } catch (ClassNotFoundException e) {
+                                e.printStackTrace();
+                            }
+                        }else{
+                            Toasty.error(JadwalActivity.this,message, Toast.LENGTH_SHORT).show();
+                        }
                     }
                 })
         );

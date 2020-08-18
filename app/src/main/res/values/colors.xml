@@ -20,6 +20,8 @@
     <color name="secondaryTextColor">#ff6666</color>
     <color name="transparentColor">#00000000</color>
     <color name="darkTextColor">#020000</color>
+    <color name="status_bar_blue">#41C8FF</color>
+    <color name="status_bar_red">#E75351</color>
 
     <color name="colorPrimaryPix">#075e54</color>
     <color name="colorPrimaryLightPix">#80075e54</color>

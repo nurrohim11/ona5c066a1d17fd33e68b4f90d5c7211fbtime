@@ -44,6 +44,7 @@ import gmedia.net.id.OnTime.utils.Utils;
 import gmedia.net.id.coremodul.ApiVolley;
 import gmedia.net.id.coremodul.AppRequestCallback;
 import gmedia.net.id.coremodul.FormatItem;
+import gmedia.net.id.coremodul.SessionManager;
 
 import static gmedia.net.id.OnTime.utils.Utils.formatTgl;
 
@@ -186,7 +187,6 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onFail(String message) {
-
             }
         }));
     }
@@ -210,6 +210,7 @@ public class HomeFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        Log.d("HomeFragment","params jadwal "+jBody);
 
         new ApiVolley(getContext(),jBody,"POST",ServerUrl.jadwalHari,
                 new AppRequestCallback(new AppRequestCallback.ResponseListener() {
@@ -217,7 +218,7 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onSuccess(String response, String message) {
                         try {
-                            Log.d(">>>>",response);
+                            Log.d("Homeframgnet","jadwal "+response);
                             JSONObject res = new JSONObject(response);
                             if(res.getString("tgl").equals("")){
                                 tvTglJadwal.setText(Utils.customFormatTimestamp(calendar.getTime(),FormatItem.formatDateDisplay));
@@ -240,6 +241,14 @@ public class HomeFragment extends Fragment {
 
                     @Override
                     public void onFail(String message) {
+                        if(message.equals("Unauthorized")){
+                            try {
+                                SessionManager session = new SessionManager(getContext());
+                                session.logoutUser(Utils.loginActivity(getContext()));
+                            } catch (ClassNotFoundException e) {
+                                e.printStackTrace();
+                            }
+                        }
                     }
                 })
         );

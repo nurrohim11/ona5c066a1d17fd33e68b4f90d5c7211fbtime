@@ -2,11 +2,13 @@ package gmedia.net.id.OnTime.riwayat.reimburse.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alkhattabi.kalert.KAlertDialog;
+import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
@@ -22,6 +25,7 @@ import java.util.List;
 
 import es.dmoral.toasty.Toasty;
 import gmedia.net.id.OnTime.R;
+import gmedia.net.id.OnTime.riwayat.reimburse.detail.DetailReimburseActivity;
 import gmedia.net.id.OnTime.riwayat.reimburse.model.ReimburseModel;
 import gmedia.net.id.OnTime.utils.ServerUrl;
 import gmedia.net.id.OnTime.utils.Utils;
@@ -66,6 +70,12 @@ public class ReimburseAdapter extends RecyclerView.Adapter<ReimburseAdapter.View
 
         Integer nominal = Integer.parseInt(model.getNominal());
         holder.tvNominal.setText(String.format("Rp %,d", nominal));
+
+        holder.ivDetail.setOnClickListener(v->{
+            Intent intent = new Intent(holder.itemView.getContext(), DetailReimburseActivity.class);
+            intent.putExtra(DetailReimburseActivity.REIMBURSE_ITEM, new Gson().toJson(model));
+            context.startActivity(intent);
+        });
     }
 
     @Override
@@ -87,8 +97,10 @@ public class ReimburseAdapter extends RecyclerView.Adapter<ReimburseAdapter.View
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView tvStatus, tvTanggal, tvNominal, tvKeterangan;
         private RelativeLayout rlStatus;
+        private ImageView ivDetail;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            ivDetail = itemView.findViewById(R.id.iv_detail);
             tvStatus = itemView.findViewById(R.id.tv_status);
             tvTanggal = itemView.findViewById(R.id.tv_tgl);
             tvNominal = itemView.findViewById(R.id.tv_nominal);

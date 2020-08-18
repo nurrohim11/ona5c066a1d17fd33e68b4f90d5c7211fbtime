@@ -1306,12 +1306,14 @@ int drawable btn_radio_off_to_on_mtrl_animation 0x0
 int drawable btn_radio_on_mtrl 0x0
 int drawable btn_radio_on_to_off_mtrl_animation 0x0
 int drawable button_background 0x0
+int drawable close_dialog 0x0
 int drawable dialog_background 0x0
 int drawable dialogdark 0x0
 int drawable dialoglight 0x0
 int drawable error_center_x 0x0
 int drawable error_circle 0x0
 int drawable gray_button_background 0x0
+int drawable ic_close 0x0
 int drawable ic_success_tick 0x0
 int drawable notification_action_background 0x0
 int drawable notification_bg 0x0
@@ -1422,10 +1424,12 @@ int id icon_group 0x0
 int id image 0x0
 int id info 0x0
 int id italic 0x0
+int id iv_close 0x0
 int id line1 0x0
 int id line3 0x0
 int id listMode 0x0
 int id list_item 0x0
+int id ll_close_dialog 0x0
 int id loading 0x0
 int id message 0x0
 int id multiply 0x0

@@ -10,7 +10,7 @@ public class ServerUrl {
     public static String UpdateLocation = BaseURLLocalHost + "Rest_Scan/scan_location";
     public static String Profile = BaseURLLocalHost + "Rest_Profile/";
     public static String ListJadwalKerja = BaseURLLocalHost + "Rest_Jadwal/index";
-    public static String jadwalHari = BaseURLLocalHost + "Rest_Jadwal/index";
+    public static String jadwalHari = BaseURLLocalHost + "Rest_Jadwal/jadwal_today";
     public static String listPengumuman = BaseURLLocalHost + "Rest_News/index";
     public static String viewPengumuman = BaseURLLocalHost+"Rest_News/view_news";
     public static String listNews = BaseURLLocalHost + "Rest_News/view_news";

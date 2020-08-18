@@ -37,8 +37,9 @@ public class AppRequestCallback implements ApiVolley.VolleyCallback {
             }
             else if(status == 404 || status == 400){
                 listener.onEmpty(message);
-            }
-            else{
+            }else if(status == 401){
+                listener.onFail("Unauthorized");
+            }else{
                 listener.onFail(message);
             }
         }

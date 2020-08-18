@@ -53,6 +53,15 @@
                                 android:text="No NIK"
                                 android:textColor="@color/colorBlackGray"
                                 android:textSize="@dimen/_10sdp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_6sdp"
+                                android:text="Username"
+                                android:textColor="@color/colorBlackGray"
+                                android:textSize="@dimen/_10sdp" />
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -113,6 +122,14 @@
                                 android:layout_marginTop="@dimen/_6sdp"
                                 android:textColor="@color/colorBlackGray"
                                 android:textSize="@dimen/_10sdp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=":"
+                                android:layout_marginTop="@dimen/_6sdp"
+                                android:textColor="@color/colorBlackGray"
+                                android:textSize="@dimen/_10sdp" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -142,6 +159,15 @@
                                 android:text=""
                                 android:textColor="@color/colorBlackGray"
                                 android:id="@+id/tv_nik"
+                                android:textSize="@dimen/_10sdp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_6sdp"
+                                android:text=""
+                                android:id="@+id/tv_username"
+                                android:textColor="@color/colorBlackGray"
                                 android:textSize="@dimen/_10sdp" />
 
                             <TextView

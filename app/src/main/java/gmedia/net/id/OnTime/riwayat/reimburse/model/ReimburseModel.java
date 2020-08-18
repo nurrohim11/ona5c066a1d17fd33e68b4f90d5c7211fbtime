@@ -1,10 +1,11 @@
 package gmedia.net.id.OnTime.riwayat.reimburse.model;
 
 public class ReimburseModel {
-    String id, nama, tgl_pembayaran, foto, nominal, ket, approval, insert_at, status;
+    String id, nama, tgl_pembayaran, foto, nominal, ket, approval, insert_at, status, nik;
 
-    public ReimburseModel(String id, String nama, String tgl_pembayaran, String foto, String nominal, String ket, String approval, String insert_at, String status){
+    public ReimburseModel(String id, String nik, String nama, String tgl_pembayaran, String foto, String nominal, String ket, String approval, String insert_at, String status){
         this.id = id;
+        this.nik =nik;
         this.nama =nama;
         this.tgl_pembayaran = tgl_pembayaran;
         this.foto = foto;
@@ -85,5 +86,13 @@ public class ReimburseModel {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getNik() {
+        return nik;
+    }
+
+    public void setNik(String nik) {
+        this.nik = nik;
     }
 }

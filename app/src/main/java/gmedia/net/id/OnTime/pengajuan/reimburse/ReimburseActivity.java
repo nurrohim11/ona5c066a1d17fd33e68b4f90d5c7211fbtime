@@ -41,11 +41,14 @@ import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
 import gmedia.net.id.OnTime.R;
 import gmedia.net.id.OnTime.pengajuan.cuti.CutiActivity;
+import gmedia.net.id.OnTime.riwayat.gaji.GajiActivity;
 import gmedia.net.id.OnTime.utils.Converter;
 import gmedia.net.id.OnTime.utils.ServerUrl;
+import gmedia.net.id.OnTime.utils.Utils;
 import gmedia.net.id.coremodul.ApiVolley;
 import gmedia.net.id.coremodul.AppRequestCallback;
 import gmedia.net.id.coremodul.ImageUtils;
+import gmedia.net.id.coremodul.SessionManager;
 import gun0912.tedbottompicker.TedBottomPicker;
 
 public class ReimburseActivity extends AppCompatActivity {
@@ -247,7 +250,16 @@ public class ReimburseActivity extends AppCompatActivity {
                     @Override
                     public void onFail(String message) {
                         pDialogProses.dismiss();
-                        Toasty.error(ReimburseActivity.this,"Terjadi kesalahan saat memuat data",Toast.LENGTH_SHORT).show();
+                        if(message.equals("Unauthorized")){
+                            try {
+                                SessionManager session = new SessionManager(ReimburseActivity.this);
+                                session.logoutUser(Utils.loginActivity(ReimburseActivity.this));
+                            } catch (ClassNotFoundException e) {
+                                e.printStackTrace();
+                            }
+                        }else{
+                            Toasty.error(ReimburseActivity.this,"Terjadi kesalahan saat memuat data",Toast.LENGTH_SHORT).show();
+                        }
                     }
                 })
         );
