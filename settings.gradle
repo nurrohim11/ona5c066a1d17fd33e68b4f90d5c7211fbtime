@@ -1,5 +1,5 @@
+include ':sweetbottomnavbar'
 include ':sweetdialog'
 include ':app'
-include ':sweetbottomnavbar'
 include ':coremodul'
 rootProject.name = "AbsenOntime"

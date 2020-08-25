@@ -30,7 +30,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alkhattabi.sweetbottomnavbar.SweetSweetBottomNavbar;
+import com.alkhattabi.sweetbottomnavbar.SweetBottomNavbar;
 import com.alkhattabi.sweetdialog.SweetDialog;
 import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -70,7 +70,7 @@ public class MainActivity extends RuntimePermissionsActivity {
     private static final int TIME_INTERVAL = 2000;
     private long mBackPressed;
 
-    SweetSweetBottomNavbar bvNavigation;
+    SweetBottomNavbar bvNavigation;
     private TextView tvProfileName, tvProfileNik;
 
     private String[] appPermission =  {

@@ -11,17 +11,17 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class SweetSweetBottomNavbar extends SweetBottomNavbarInner {
+public class SweetBottomNavbar extends SweetBottomNavbarInner {
 
-    public SweetSweetBottomNavbar(Context context) {
+    public SweetBottomNavbar(Context context) {
         super(context);
     }
 
-    public SweetSweetBottomNavbar(Context context, AttributeSet attrs) {
+    public SweetBottomNavbar(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public SweetSweetBottomNavbar(Context context, AttributeSet attrs, int defStyleAttr) {
+    public SweetBottomNavbar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
