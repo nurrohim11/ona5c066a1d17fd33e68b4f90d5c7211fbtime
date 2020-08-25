@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.app.DatePickerDialog;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,7 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alkhattabi.kalert.KAlertDialog;
+import com.alkhattabi.sweetdialog.SweetDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,14 +28,15 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
+import gmedia.net.id.OnTime.MainActivity;
 import gmedia.net.id.OnTime.R;
-import gmedia.net.id.OnTime.riwayat.gaji.GajiActivity;
-import gmedia.net.id.OnTime.riwayat.scanlog.ScanlogActivity;
 import gmedia.net.id.OnTime.utils.ServerUrl;
 import gmedia.net.id.OnTime.utils.Utils;
 import gmedia.net.id.coremodul.ApiVolley;
 import gmedia.net.id.coremodul.AppRequestCallback;
 import gmedia.net.id.coremodul.SessionManager;
+
+import static gmedia.net.id.OnTime.utils.Utils.loginActivity;
 
 public class CutiActivity extends AppCompatActivity {
 
@@ -60,7 +60,8 @@ public class CutiActivity extends AppCompatActivity {
     String tgl_awal;
     String tgl_akhir;
 
-    KAlertDialog pDialogProses;
+    SweetDialog pDialogProses;
+    SweetDialog pSweetDialogWarning;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +70,7 @@ public class CutiActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        pDialogProses = new KAlertDialog(this, KAlertDialog.PROGRESS_TYPE);
+        pDialogProses = new SweetDialog(this, SweetDialog.PROGRESS_TYPE);
         pDialogProses.getProgressHelper().setBarColor(R.color.colorProcess);
         pDialogProses.setTitleText("Sedang memproses..");
         pDialogProses.setCancelable(false);
@@ -123,7 +124,25 @@ public class CutiActivity extends AppCompatActivity {
         btnProses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                prosesCuti();
+                pSweetDialogWarning = new SweetDialog(CutiActivity.this, SweetDialog.WARNING_TYPE);
+                pSweetDialogWarning.setTitleText("Are you sure?");
+                pSweetDialogWarning.setContentText("Apakah anda yakin akan mengajukan cuti");
+                pSweetDialogWarning.setConfirmText("Ya");
+                pSweetDialogWarning.setCancelText("Tidak");
+                pSweetDialogWarning.setConfirmClickListener(new SweetDialog.KAlertClickListener() {
+                        @Override
+                        public void onClick(SweetDialog sDialog) {
+                            pSweetDialogWarning.dismiss();
+                            prosesCuti();
+                        }
+                    });
+                pSweetDialogWarning.setCancelClickListener(new SweetDialog.KAlertClickListener() {
+                        @Override
+                        public void onClick(SweetDialog sDialog) {
+                            pSweetDialogWarning.dismiss();
+                        }
+                    });
+                pSweetDialogWarning.show();
             }
         });
     }

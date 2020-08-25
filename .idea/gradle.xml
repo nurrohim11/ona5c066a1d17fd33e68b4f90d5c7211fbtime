@@ -11,10 +11,10 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/SweetBottomNavbar" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/bottomviewex" />
             <option value="$PROJECT_DIR$/coremodul" />
-            <option value="$PROJECT_DIR$/kalert" />
+            <option value="$PROJECT_DIR$/sweetdialog" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

@@ -4,35 +4,19 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.app.Dialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.alkhattabi.kalert.KAlertDialog;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 
-import org.json.JSONObject;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import es.dmoral.toasty.Toasty;
 import gmedia.net.id.OnTime.R;
 import gmedia.net.id.OnTime.riwayat.reimburse.model.ReimburseModel;
-import gmedia.net.id.OnTime.home.news.DetailNewsActivity;
-import gmedia.net.id.OnTime.utils.ServerUrl;
 import gmedia.net.id.OnTime.utils.Utils;
-import gmedia.net.id.coremodul.ApiVolley;
-import gmedia.net.id.coremodul.AppRequestCallback;
 import gmedia.net.id.coremodul.SessionManager;
 
 public class DetailReimburseActivity extends AppCompatActivity {

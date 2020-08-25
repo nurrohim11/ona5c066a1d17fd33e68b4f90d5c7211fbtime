@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.alkhattabi.kalert.KAlertDialog;
+import com.alkhattabi.sweetdialog.SweetDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,8 +21,6 @@ import java.util.List;
 
 import es.dmoral.toasty.Toasty;
 import gmedia.net.id.OnTime.R;
-import gmedia.net.id.OnTime.approval.cuti.adapter.CutiAdapter;
-import gmedia.net.id.OnTime.approval.cuti.model.CutiModel;
 import gmedia.net.id.OnTime.approval.ijin.model.IjinModel;
 import gmedia.net.id.OnTime.utils.ServerUrl;
 import gmedia.net.id.OnTime.utils.Utils;
@@ -37,8 +35,8 @@ public class IjinAdapter extends RecyclerView.Adapter<IjinAdapter.ViewHolder> {
     Context context;
     List<IjinModel> ijinModels;
     private String status = "0";
-    KAlertDialog pDialog;
-    KAlertDialog pDialogApprove;
+    SweetDialog pDialog;
+    SweetDialog pDialogApprove;
 
     public IjinAdapter(Context context, List<IjinModel> ijinModels){
         this.ijinModels = ijinModels;
@@ -62,7 +60,7 @@ public class IjinAdapter extends RecyclerView.Adapter<IjinAdapter.ViewHolder> {
         holder.tvTgl.setText(Utils.formatDate(formatDate,formatDateDisplay,item.getTgl()));
         holder.tvInsertAt.setText(Utils.formatDate(formatTimestamp,formatDateDisplay,item.getInsert_at()));
         holder.itemView.setOnClickListener(v->{
-            pDialogApprove = new KAlertDialog(context, KAlertDialog.CUSTOM_IMAGE_TYPE);
+            pDialogApprove = new SweetDialog(context, SweetDialog.CUSTOM_IMAGE_TYPE);
             pDialogApprove.setTitleText("Are you sure ?");
             pDialogApprove.setContentText("Apakah anda yakin untuk menyutujui pengajuan ini ?");
             pDialogApprove.setCustomImage(R.drawable.gambaraproval);
@@ -70,10 +68,10 @@ public class IjinAdapter extends RecyclerView.Adapter<IjinAdapter.ViewHolder> {
             pDialogApprove.setCloseDialog(true);
             pDialogApprove.setConfirmText("Setujui"); //Do not call this if you don't want to show confirm button
             pDialogApprove.setCancelText("Tolak");//Do not call this if you don't want to show cancel button
-            pDialogApprove.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+            pDialogApprove.setConfirmClickListener(new SweetDialog.KAlertClickListener() {
                 @Override
-                public void onClick(KAlertDialog kAlertDialog) {
-                    pDialog = new KAlertDialog(context,KAlertDialog.PROGRESS_TYPE);
+                public void onClick(SweetDialog sweetDialog) {
+                    pDialog = new SweetDialog(context, SweetDialog.PROGRESS_TYPE);
                     pDialog.getProgressHelper().setBarColor(Color.parseColor("#18C3F3"));
                     pDialog.setCancelable(false);
                     pDialog.show();
@@ -84,10 +82,10 @@ public class IjinAdapter extends RecyclerView.Adapter<IjinAdapter.ViewHolder> {
                     }
                 }
             });
-            pDialogApprove.setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+            pDialogApprove.setCancelClickListener(new SweetDialog.KAlertClickListener() {
                 @Override
-                public void onClick(KAlertDialog kAlertDialog) {
-                    pDialog = new KAlertDialog(context,KAlertDialog.PROGRESS_TYPE);
+                public void onClick(SweetDialog sweetDialog) {
+                    pDialog = new SweetDialog(context, SweetDialog.PROGRESS_TYPE);
                     pDialog.getProgressHelper().setBarColor(Color.parseColor("#18C3F3"));
                     pDialog.setCancelable(false);
                     pDialog.show();

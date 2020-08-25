@@ -17,7 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alkhattabi.kalert.KAlertDialog;
+import com.alkhattabi.sweetdialog.SweetDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,10 +34,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
 import gmedia.net.id.OnTime.R;
-import gmedia.net.id.OnTime.riwayat.gaji.GajiActivity;
-import gmedia.net.id.OnTime.riwayat.jadwal.JadwalActivity;
-import gmedia.net.id.OnTime.riwayat.jadwal.adapter.JadwalAdapter;
-import gmedia.net.id.OnTime.riwayat.jadwal.model.JadwalModel;
 import gmedia.net.id.OnTime.riwayat.lembur.adapter.LemburAdapter;
 import gmedia.net.id.OnTime.riwayat.lembur.model.LemburModel;
 import gmedia.net.id.OnTime.utils.ServerUrl;
@@ -68,7 +64,7 @@ public class RiwayatLemburActivity extends AppCompatActivity {
     List<LemburModel> lemburModels = new ArrayList<>();
     LemburAdapter adapter;
     Calendar calendar = Calendar.getInstance();
-    KAlertDialog pDialogProses;
+    SweetDialog pDialogProses;
     LinearLayoutManager linearLayoutManager;
 
     @Override
@@ -79,7 +75,7 @@ public class RiwayatLemburActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        pDialogProses = new KAlertDialog(RiwayatLemburActivity.this,KAlertDialog.PROGRESS_TYPE);
+        pDialogProses = new SweetDialog(RiwayatLemburActivity.this, SweetDialog.PROGRESS_TYPE);
         pDialogProses.setCancelable(false);
         pDialogProses.getProgressHelper().setBarColor(R.color.colorProcess);
 

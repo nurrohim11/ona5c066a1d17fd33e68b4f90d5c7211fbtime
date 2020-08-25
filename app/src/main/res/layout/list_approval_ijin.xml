@@ -15,6 +15,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/tv_insert_at"
             android:textColor="@color/colorGray"
+            android:textSize="@dimen/_10sdp"
             android:text="2 agustus 2020"
             android:gravity="right"/>
 

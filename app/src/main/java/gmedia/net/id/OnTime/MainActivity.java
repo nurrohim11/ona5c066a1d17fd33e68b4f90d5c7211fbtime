@@ -5,13 +5,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager.widget.ViewPager;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -23,12 +18,10 @@ import android.graphics.drawable.ColorDrawable;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.InputType;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,11 +30,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alkhattabi.bottomviewex.BottomNavViewEx;
-import com.alkhattabi.kalert.KAlertDialog;
+import com.alkhattabi.sweetbottomnavbar.SweetSweetBottomNavbar;
+import com.alkhattabi.sweetdialog.SweetDialog;
 import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
 
@@ -78,7 +70,7 @@ public class MainActivity extends RuntimePermissionsActivity {
     private static final int TIME_INTERVAL = 2000;
     private long mBackPressed;
 
-    BottomNavViewEx bvNavigation;
+    SweetSweetBottomNavbar bvNavigation;
     private TextView tvProfileName, tvProfileNik;
 
     private String[] appPermission =  {
@@ -423,14 +415,14 @@ public class MainActivity extends RuntimePermissionsActivity {
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new KAlertDialog(MainActivity.this, KAlertDialog.WARNING_TYPE)
+                new SweetDialog(MainActivity.this, SweetDialog.WARNING_TYPE)
                         .setTitleText("Are you sure?")
                         .setContentText("Apakah anda yakin ingin logout")
-                        .setConfirmText("Yes")
+                        .setConfirmText("Ya")
                         .setCancelText("Tidak")
-                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                        .setConfirmClickListener(new SweetDialog.KAlertClickListener() {
                             @Override
-                            public void onClick(KAlertDialog sDialog) {
+                            public void onClick(SweetDialog sDialog) {
                                 sDialog.dismiss();
                                 try {
                                     sessionManager.logoutUser(loginActivity(getApplicationContext()));
@@ -439,9 +431,9 @@ public class MainActivity extends RuntimePermissionsActivity {
                                 }
                             }
                         })
-                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                        .setCancelClickListener(new SweetDialog.KAlertClickListener() {
                             @Override
-                            public void onClick(KAlertDialog sDialog) {
+                            public void onClick(SweetDialog sDialog) {
                                 sDialog.cancel();
                             }
                         })
@@ -550,21 +542,21 @@ public class MainActivity extends RuntimePermissionsActivity {
     }
 
     private void exit(){
-        KAlertDialog pDialogWarning = new KAlertDialog(MainActivity.this, KAlertDialog.WARNING_TYPE);
+        SweetDialog pDialogWarning = new SweetDialog(MainActivity.this, SweetDialog.WARNING_TYPE);
         pDialogWarning.setTitleText("Are you sure ?");
         pDialogWarning.setContentText("Apakah anda yakin untuk keluar ?");
         pDialogWarning.setCancelable(true);
         pDialogWarning.setConfirmText("Ya"); //Do not call this if you don't want to show confirm button
         pDialogWarning.setCancelText("Tidak");//Do not call this if you don't want to show cancel button
-        pDialogWarning.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+        pDialogWarning.setConfirmClickListener(new SweetDialog.KAlertClickListener() {
             @Override
-            public void onClick(KAlertDialog kAlertDialog) {
+            public void onClick(SweetDialog sweetDialog) {
                 finish();
             }
         });
-        pDialogWarning.setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+        pDialogWarning.setCancelClickListener(new SweetDialog.KAlertClickListener() {
             @Override
-            public void onClick(KAlertDialog kAlertDialog) {
+            public void onClick(SweetDialog sweetDialog) {
                 pDialogWarning.dismiss();
             }
         });

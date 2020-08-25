@@ -1,6 +1,5 @@
 package gmedia.net.id.OnTime.approval.cuti;
 
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,9 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.alkhattabi.kalert.KAlertDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;

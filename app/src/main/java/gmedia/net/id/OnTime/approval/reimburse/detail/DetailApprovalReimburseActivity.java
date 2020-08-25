@@ -15,7 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alkhattabi.kalert.KAlertDialog;
+import com.alkhattabi.sweetdialog.SweetDialog;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 
@@ -26,7 +26,6 @@ import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
 import gmedia.net.id.OnTime.R;
 import gmedia.net.id.OnTime.approval.reimburse.model.ReimburseModel;
-import gmedia.net.id.OnTime.riwayat.reimburse.detail.DetailReimburseActivity;
 import gmedia.net.id.OnTime.utils.ServerUrl;
 import gmedia.net.id.OnTime.utils.Utils;
 import gmedia.net.id.coremodul.ApiVolley;
@@ -59,8 +58,8 @@ public class DetailApprovalReimburseActivity extends AppCompatActivity {
     @BindView(R.id.rl_button)
     RelativeLayout rlButton;
     SessionManager sessionManager;
-    KAlertDialog pDialog;
-    KAlertDialog pDialogApprove;
+    SweetDialog pDialog;
+    SweetDialog pDialogApprove;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,7 +97,7 @@ public class DetailApprovalReimburseActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
-                        pDialogApprove = new KAlertDialog(DetailApprovalReimburseActivity.this, KAlertDialog.CUSTOM_IMAGE_TYPE);
+                        pDialogApprove = new SweetDialog(DetailApprovalReimburseActivity.this, SweetDialog.CUSTOM_IMAGE_TYPE);
                         pDialogApprove.setTitleText("Are you sure ?");
                         pDialogApprove.setContentText("Apakah anda yakin untuk menyutujui pengajuan ini ?");
                         pDialogApprove.setCustomImage(R.drawable.gambaraproval);
@@ -106,19 +105,19 @@ public class DetailApprovalReimburseActivity extends AppCompatActivity {
                         pDialogApprove.setCloseDialog(true);
                         pDialogApprove.setConfirmText("Setujui"); //Do not call this if you don't want to show confirm button
                         pDialogApprove.setCancelText("Batal");//Do not call this if you don't want to show cancel button
-                        pDialogApprove.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                        pDialogApprove.setConfirmClickListener(new SweetDialog.KAlertClickListener() {
                             @Override
-                            public void onClick(KAlertDialog kAlertDialog) {
-                                pDialog = new KAlertDialog(DetailApprovalReimburseActivity.this,KAlertDialog.PROGRESS_TYPE);
+                            public void onClick(SweetDialog sweetDialog) {
+                                pDialog = new SweetDialog(DetailApprovalReimburseActivity.this, SweetDialog.PROGRESS_TYPE);
                                 pDialog.getProgressHelper().setBarColor(Color.parseColor("#18C3F3"));
                                 pDialog.setCancelable(false);
                                 pDialog.show();
                                 approveReimburse(item.getId(),"1");
                             }
                         });
-                        pDialogApprove.setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                        pDialogApprove.setCancelClickListener(new SweetDialog.KAlertClickListener() {
                             @Override
-                            public void onClick(KAlertDialog kAlertDialog) {
+                            public void onClick(SweetDialog sweetDialog) {
                                 pDialogApprove.dismiss();
                             }
                         });
@@ -128,7 +127,7 @@ public class DetailApprovalReimburseActivity extends AppCompatActivity {
                 btnTolak.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        pDialogApprove = new KAlertDialog(DetailApprovalReimburseActivity.this, KAlertDialog.CUSTOM_IMAGE_TYPE);
+                        pDialogApprove = new SweetDialog(DetailApprovalReimburseActivity.this, SweetDialog.CUSTOM_IMAGE_TYPE);
                         pDialogApprove.setTitleText("Are you sure ?");
                         pDialogApprove.setContentText("Apakah anda yakin untuk menolak pengajuan ini ?");
                         pDialogApprove.setCustomImage(R.drawable.gambaraproval);
@@ -136,19 +135,19 @@ public class DetailApprovalReimburseActivity extends AppCompatActivity {
                         pDialogApprove.setCloseDialog(true);
                         pDialogApprove.setConfirmText("Tolak"); //Do not call this if you don't want to show confirm button
                         pDialogApprove.setCancelText("Batal");//Do not call this if you don't want to show cancel button
-                        pDialogApprove.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                        pDialogApprove.setConfirmClickListener(new SweetDialog.KAlertClickListener() {
                             @Override
-                            public void onClick(KAlertDialog kAlertDialog) {
-                                pDialog = new KAlertDialog(DetailApprovalReimburseActivity.this,KAlertDialog.PROGRESS_TYPE);
+                            public void onClick(SweetDialog sweetDialog) {
+                                pDialog = new SweetDialog(DetailApprovalReimburseActivity.this, SweetDialog.PROGRESS_TYPE);
                                 pDialog.getProgressHelper().setBarColor(Color.parseColor("#18C3F3"));
                                 pDialog.setCancelable(false);
                                 pDialog.show();
                                 approveReimburse(item.getId(),"2");
                             }
                         });
-                        pDialogApprove.setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                        pDialogApprove.setCancelClickListener(new SweetDialog.KAlertClickListener() {
                             @Override
-                            public void onClick(KAlertDialog kAlertDialog) {
+                            public void onClick(SweetDialog sweetDialog) {
                                 pDialogApprove.dismiss();
                             }
                         });

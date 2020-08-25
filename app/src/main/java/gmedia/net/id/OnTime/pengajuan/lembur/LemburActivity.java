@@ -7,8 +7,6 @@ import androidx.appcompat.widget.Toolbar;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -21,24 +19,19 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.alkhattabi.kalert.KAlertDialog;
-import com.bumptech.glide.util.Util;
+import com.alkhattabi.sweetdialog.SweetDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
 import gmedia.net.id.OnTime.R;
 import gmedia.net.id.OnTime.pengajuan.ijin.IjinActivity;
-import gmedia.net.id.OnTime.riwayat.gaji.GajiActivity;
 import gmedia.net.id.OnTime.utils.ServerUrl;
 import gmedia.net.id.OnTime.utils.Utils;
 import gmedia.net.id.coremodul.ApiVolley;
@@ -67,7 +60,7 @@ public class LemburActivity extends AppCompatActivity {
     String time_mulai_lembur = "";
     String tgl_selesai_lembur ="";
     String time_selesai_lembur ="";
-    private KAlertDialog pDialogProses;
+    private SweetDialog pDialogProses;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +70,7 @@ public class LemburActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        pDialogProses = new KAlertDialog(this, KAlertDialog.PROGRESS_TYPE);
+        pDialogProses = new SweetDialog(this, SweetDialog.PROGRESS_TYPE);
         pDialogProses.getProgressHelper().setBarColor(R.color.colorProcess);
         pDialogProses.setTitleText("Sedang memproses..");
         pDialogProses.setCancelable(false);
@@ -156,7 +149,26 @@ public class LemburActivity extends AppCompatActivity {
         });
 
         btnProses.setOnClickListener(v->{
-            submitLembur();
+
+            new SweetDialog(LemburActivity.this, SweetDialog.WARNING_TYPE)
+                    .setTitleText("Are you sure?")
+                    .setContentText("Apakah anda yakin ingin mengajukan lembur")
+                    .setConfirmText("Ya")
+                    .setCancelText("Tidak")
+                    .setConfirmClickListener(new SweetDialog.KAlertClickListener() {
+                        @Override
+                        public void onClick(SweetDialog sDialog) {
+                            sDialog.dismiss();
+                            submitLembur();
+                        }
+                    })
+                    .setCancelClickListener(new SweetDialog.KAlertClickListener() {
+                        @Override
+                        public void onClick(SweetDialog sDialog) {
+                            sDialog.cancel();
+                        }
+                    })
+                    .show();
         });
     }
 

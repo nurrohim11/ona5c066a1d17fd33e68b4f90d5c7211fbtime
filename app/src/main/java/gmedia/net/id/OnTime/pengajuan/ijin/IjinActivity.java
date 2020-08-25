@@ -18,7 +18,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.alkhattabi.kalert.KAlertDialog;
+import com.alkhattabi.sweetdialog.SweetDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,14 +30,15 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
+import gmedia.net.id.OnTime.MainActivity;
 import gmedia.net.id.OnTime.R;
-import gmedia.net.id.OnTime.pengajuan.cuti.CutiActivity;
-import gmedia.net.id.OnTime.riwayat.gaji.GajiActivity;
 import gmedia.net.id.OnTime.utils.ServerUrl;
 import gmedia.net.id.OnTime.utils.Utils;
 import gmedia.net.id.coremodul.ApiVolley;
 import gmedia.net.id.coremodul.AppRequestCallback;
 import gmedia.net.id.coremodul.SessionManager;
+
+import static gmedia.net.id.OnTime.utils.Utils.loginActivity;
 
 
 public class IjinActivity extends AppCompatActivity {
@@ -59,7 +60,7 @@ public class IjinActivity extends AppCompatActivity {
     String tgl="";
     String jam="";
 
-    KAlertDialog pDialogProses;
+    SweetDialog pDialogProses;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +71,7 @@ public class IjinActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        pDialogProses = new KAlertDialog(this, KAlertDialog.PROGRESS_TYPE);
+        pDialogProses = new SweetDialog(this, SweetDialog.PROGRESS_TYPE);
         pDialogProses.getProgressHelper().setBarColor(R.color.colorProcess);
         pDialogProses.setTitleText("Sedang memproses..");
         pDialogProses.setCancelable(false);
@@ -135,7 +136,25 @@ public class IjinActivity extends AppCompatActivity {
         btnProses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                doIjin();
+                new SweetDialog(IjinActivity.this, SweetDialog.WARNING_TYPE)
+                        .setTitleText("Are you sure?")
+                        .setContentText("Apakah anda yakin ingin mengajukan ijin")
+                        .setConfirmText("Ya")
+                        .setCancelText("Tidak")
+                        .setConfirmClickListener(new SweetDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(SweetDialog sDialog) {
+                                sDialog.dismiss();
+                                doIjin();
+                            }
+                        })
+                        .setCancelClickListener(new SweetDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(SweetDialog sDialog) {
+                                sDialog.cancel();
+                            }
+                        })
+                        .show();
             }
         });
     }

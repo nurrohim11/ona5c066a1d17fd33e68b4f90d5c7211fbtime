@@ -2,29 +2,24 @@ package gmedia.net.id.OnTime.utils;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
-import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
-import android.view.View;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 
-import com.alkhattabi.kalert.KAlertDialog;
+import com.alkhattabi.sweetdialog.SweetDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,23 +29,17 @@ import org.jsoup.Jsoup;
 import java.util.Arrays;
 
 import es.dmoral.toasty.Toasty;
-import gmedia.net.id.OnTime.LoginActivity;
-import gmedia.net.id.OnTime.MainActivity;
-import gmedia.net.id.OnTime.R;
-import gmedia.net.id.OnTime.home.menu.LockOutActivity;
 import gmedia.net.id.coremodul.ApiVolley;
-import gmedia.net.id.coremodul.AppRequestCallback;
 
 import static android.content.Context.WIFI_SERVICE;
-import static gmedia.net.id.OnTime.utils.Utils.loginActivity;
 
 public class Scan {
 	private Context context;
 	private String infoSSID = "", infoBSSID = "", infoIpPublic = "", tipe_scan, imei;
 	private WifiManager manager;
-	private KAlertDialog pDialogProcess;
-	private KAlertDialog pDialogFailed;
-	private KAlertDialog pDialogSuccess;
+	private SweetDialog pDialogProcess;
+	private SweetDialog pDialogFailed;
+	private SweetDialog pDialogSuccess;
 	private  LocationManager locationManager;
 	private static final int REQUEST_LOCATION = 1;
 	String latitude, longitude;
@@ -59,7 +48,7 @@ public class Scan {
 
 		this.context = context;
 		this.tipe_scan = tipe_scan;
-		pDialogProcess = new KAlertDialog(context, KAlertDialog.PROGRESS_TYPE);
+		pDialogProcess = new SweetDialog(context, SweetDialog.PROGRESS_TYPE);
 		pDialogProcess.getProgressHelper().setBarColor(Color.parseColor("#18C3F3"));
 		pDialogProcess.setCancelable(false);
 		pDialogProcess.setTitleText("Processing...");
@@ -159,14 +148,14 @@ public class Scan {
 					String status = object.getJSONObject("metadata").getString("status");
 					String message = object.getJSONObject("metadata").getString("message");
 					if (status.equals("200")) {
-						pDialogSuccess = new KAlertDialog(context, KAlertDialog.SUCCESS_TYPE);
+						pDialogSuccess = new SweetDialog(context, SweetDialog.SUCCESS_TYPE);
 						pDialogSuccess.setTitleText("SUKSES!..");
 						pDialogSuccess.setContentText(message);
 						pDialogSuccess.setConfirmText("OK");
 						pDialogSuccess.setCancelable(false);
-						pDialogSuccess.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+						pDialogSuccess.setConfirmClickListener(new SweetDialog.KAlertClickListener() {
 							@Override
-							public void onClick(KAlertDialog sDialog) {
+							public void onClick(SweetDialog sDialog) {
 								sDialog.dismiss();
 								((Activity) context).finish();
 								((Activity) context).overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
@@ -175,14 +164,14 @@ public class Scan {
 						pDialogSuccess.show();
 
 					} else {
-						pDialogFailed = new KAlertDialog(context, KAlertDialog.ERROR_TYPE);
+						pDialogFailed = new SweetDialog(context, SweetDialog.ERROR_TYPE);
 						pDialogFailed.setTitleText("GAGAL!..");
 						pDialogFailed.setContentText(message);
 						pDialogFailed.setCancelText("OK");
 						pDialogFailed.setCancelable(false);
-						pDialogFailed.setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+						pDialogFailed.setCancelClickListener(new SweetDialog.KAlertClickListener() {
 							@Override
-							public void onClick(KAlertDialog sDialog) {
+							public void onClick(SweetDialog sDialog) {
 								sDialog.dismiss();
 							}
 						});

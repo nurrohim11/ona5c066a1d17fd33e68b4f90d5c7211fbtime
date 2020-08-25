@@ -11,7 +11,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.alkhattabi.kalert.KAlertDialog;
+import com.alkhattabi.sweetdialog.SweetDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,10 +24,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
 import gmedia.net.id.OnTime.R;
-import gmedia.net.id.OnTime.riwayat.cuti.RiwayatCutiActivity;
-import gmedia.net.id.OnTime.riwayat.cuti.adapter.CutiAdapter;
-import gmedia.net.id.OnTime.riwayat.cuti.model.RiwayatCutiModel;
-import gmedia.net.id.OnTime.riwayat.gaji.GajiActivity;
 import gmedia.net.id.OnTime.riwayat.ijin.adapter.IjinAdapter;
 import gmedia.net.id.OnTime.riwayat.ijin.model.RiwayatIjinModel;
 import gmedia.net.id.OnTime.utils.ServerUrl;
@@ -47,7 +43,7 @@ public class RiwayatIjinActivity extends AppCompatActivity {
     List<RiwayatIjinModel> ijinModels = new ArrayList<>();
     int start =0, count =20;
     LinearLayoutManager linearLayoutManager;
-    KAlertDialog pDialogPrcess;
+    SweetDialog pDialogPrcess;
 
 
     @Override
@@ -63,7 +59,7 @@ public class RiwayatIjinActivity extends AppCompatActivity {
         setupListRiwayatIjin();
         setupListScrollListenerRiwayatIjin();
 
-        pDialogPrcess = new KAlertDialog(this,KAlertDialog.PROGRESS_TYPE);
+        pDialogPrcess = new SweetDialog(this, SweetDialog.PROGRESS_TYPE);
         pDialogPrcess.setCancelable(false);
         pDialogPrcess.getProgressHelper().setBarColor(R.color.colorProcess);
         pDialogPrcess.show();

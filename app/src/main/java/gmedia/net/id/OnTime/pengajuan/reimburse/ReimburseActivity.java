@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.Manifest;
 import android.app.DatePickerDialog;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -14,7 +13,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -23,7 +21,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alkhattabi.kalert.KAlertDialog;
+import com.alkhattabi.sweetdialog.SweetDialog;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 
@@ -31,7 +29,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -40,8 +37,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
 import gmedia.net.id.OnTime.R;
-import gmedia.net.id.OnTime.pengajuan.cuti.CutiActivity;
-import gmedia.net.id.OnTime.riwayat.gaji.GajiActivity;
+import gmedia.net.id.OnTime.pengajuan.lembur.LemburActivity;
 import gmedia.net.id.OnTime.utils.Converter;
 import gmedia.net.id.OnTime.utils.ServerUrl;
 import gmedia.net.id.OnTime.utils.Utils;
@@ -71,7 +67,7 @@ public class ReimburseActivity extends AppCompatActivity {
     EditText edtKeterangan;
     @BindView(R.id.btn_proses)
     Button btnProses;
-    KAlertDialog pDialogProses;
+    SweetDialog pDialogProses;
 
     String tgl_bayar= "";
     private Uri selectedUri;
@@ -86,7 +82,7 @@ public class ReimburseActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        pDialogProses = new KAlertDialog(this, KAlertDialog.PROGRESS_TYPE);
+        pDialogProses = new SweetDialog(this, SweetDialog.PROGRESS_TYPE);
         pDialogProses.getProgressHelper().setBarColor(R.color.colorProcess);
         pDialogProses.setTitleText("Sedang memproses..");
         pDialogProses.setCancelable(false);
@@ -179,8 +175,25 @@ public class ReimburseActivity extends AppCompatActivity {
 
         btnProses.setOnClickListener(view ->{
             if(validasiFormReimburse()){
-                pDialogProses.show();
-                doAddReimburse();
+                new SweetDialog(ReimburseActivity.this, SweetDialog.WARNING_TYPE)
+                        .setTitleText("Are you sure?")
+                        .setContentText("Apakah anda yakin ingin mengajukan lembur")
+                        .setConfirmText("Ya")
+                        .setCancelText("Tidak")
+                        .setConfirmClickListener(new SweetDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(SweetDialog sDialog) {
+                                sDialog.dismiss();
+                                doAddReimburse();
+                            }
+                        })
+                        .setCancelClickListener(new SweetDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(SweetDialog sDialog) {
+                                sDialog.cancel();
+                            }
+                        })
+                        .show();
             }
         });
     }
@@ -211,7 +224,7 @@ public class ReimburseActivity extends AppCompatActivity {
     }
 
     private void doAddReimburse(){
-
+        pDialogProses.show();
         Bitmap b = convertBitmap(ivBukti);
         String image= "";
         if(ivBukti.getDrawable() == null){

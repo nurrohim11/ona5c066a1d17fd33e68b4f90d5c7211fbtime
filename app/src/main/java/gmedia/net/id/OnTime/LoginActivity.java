@@ -16,16 +16,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.alkhattabi.kalert.KAlertDialog;
+import com.alkhattabi.sweetdialog.SweetDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import butterknife.BindView;
 import es.dmoral.toasty.Toasty;
 import gmedia.net.id.OnTime.utils.ServerUrl;
 import gmedia.net.id.coremodul.ApiVolley;
@@ -37,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     SessionManager sessionManager;
     EditText edtUsername, edtPassword, edtKodePerusahaan;
     ImageView imgVisiblePass;
-    KAlertDialog pDialog, pSuccess, pError;
+    SweetDialog pDialog, pSuccess, pError;
     ItemValidation iv = new ItemValidation();
     private boolean klikToVisiblePass = true;
 
@@ -52,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
 
-        pDialog = new KAlertDialog(LoginActivity.this, KAlertDialog.PROGRESS_TYPE);
+        pDialog = new SweetDialog(LoginActivity.this, SweetDialog.PROGRESS_TYPE);
         pDialog.getProgressHelper().setBarColor(Color.parseColor("#18C3F3"));
         pDialog.setCancelable(false);
         
@@ -149,7 +144,7 @@ public class LoginActivity extends AppCompatActivity {
                                 jo.getString("ijin"),
                                 jo.getString("reimburs")
                         );
-                        pSuccess = new KAlertDialog(LoginActivity.this, KAlertDialog.SUCCESS_TYPE);
+                        pSuccess = new SweetDialog(LoginActivity.this, SweetDialog.SUCCESS_TYPE);
                         pSuccess.setTitleText(message);
                         pSuccess.setContentText("Please wait!.......");
                         pSuccess.setCancelable(false);

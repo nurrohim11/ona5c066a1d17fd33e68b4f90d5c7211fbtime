@@ -3,34 +3,25 @@ package gmedia.net.id.OnTime.riwayat.reimburse.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.alkhattabi.kalert.KAlertDialog;
+import com.alkhattabi.sweetdialog.SweetDialog;
 import com.google.gson.Gson;
-
-import org.json.JSONObject;
 
 import java.util.List;
 
-import es.dmoral.toasty.Toasty;
 import gmedia.net.id.OnTime.R;
 import gmedia.net.id.OnTime.riwayat.reimburse.detail.DetailReimburseActivity;
 import gmedia.net.id.OnTime.riwayat.reimburse.model.ReimburseModel;
-import gmedia.net.id.OnTime.utils.ServerUrl;
 import gmedia.net.id.OnTime.utils.Utils;
-import gmedia.net.id.coremodul.ApiVolley;
-import gmedia.net.id.coremodul.AppRequestCallback;
 import gmedia.net.id.coremodul.FormatItem;
 
 public class ReimburseAdapter extends RecyclerView.Adapter<ReimburseAdapter.ViewHolder>   {
@@ -38,8 +29,8 @@ public class ReimburseAdapter extends RecyclerView.Adapter<ReimburseAdapter.View
     private List<ReimburseModel> reimburseModels;
     private Context context;
     private String status = "0";
-    KAlertDialog pDialog;
-    KAlertDialog pDialogApprove;
+    SweetDialog pDialog;
+    SweetDialog pDialogApprove;
 
     public ReimburseAdapter(Context context, List<ReimburseModel> models){
         this.context =context;

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +17,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.alkhattabi.kalert.KAlertDialog;
+import com.alkhattabi.sweetdialog.SweetDialog;
 import com.google.gson.Gson;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
@@ -30,7 +28,6 @@ import es.dmoral.toasty.Toasty;
 import gmedia.net.id.OnTime.R;
 import gmedia.net.id.OnTime.approval.reimburse.detail.DetailApprovalReimburseActivity;
 import gmedia.net.id.OnTime.approval.reimburse.model.ReimburseModel;
-import gmedia.net.id.OnTime.riwayat.reimburse.detail.DetailReimburseActivity;
 import gmedia.net.id.OnTime.utils.ServerUrl;
 import gmedia.net.id.OnTime.utils.Utils;
 import gmedia.net.id.coremodul.ApiVolley;
@@ -42,8 +39,8 @@ public class ReimburseAdapter extends RecyclerView.Adapter<ReimburseAdapter.View
     private List<ReimburseModel> reimburseModels;
     private Context context;
     private String status = "0";
-    KAlertDialog pDialog;
-    KAlertDialog pDialogApprove;
+    SweetDialog pDialog;
+    SweetDialog pDialogApprove;
 
     public ReimburseAdapter(Context context, List<ReimburseModel> models){
         this.context =context;
@@ -70,42 +67,42 @@ public class ReimburseAdapter extends RecyclerView.Adapter<ReimburseAdapter.View
         Integer nominal = Integer.parseInt(model.getNominal());
         holder.tvNominal.setText(String.format("Rp %,d", nominal));
         holder.llItem.setOnClickListener(v->{
-            pDialogApprove = new KAlertDialog(context, KAlertDialog.CUSTOM_IMAGE_TYPE);
-            pDialogApprove.setTitleText("Are you sure ?");
-            pDialogApprove.setContentText("Apakah anda yakin untuk menyutujui pengajuan ini ?");
-            pDialogApprove.setCustomImage(R.drawable.gambaraproval);
-            pDialogApprove.setCancelable(true);
-            pDialogApprove.setCloseDialog(true);
-            pDialogApprove.setConfirmText("Setujui"); //Do not call this if you don't want to show confirm button
-            pDialogApprove.setCancelText("Tolak");//Do not call this if you don't want to show cancel button
-            pDialogApprove.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                @Override
-                public void onClick(KAlertDialog kAlertDialog) {
-                    pDialog = new KAlertDialog(context,KAlertDialog.PROGRESS_TYPE);
-                    pDialog.getProgressHelper().setBarColor(Color.parseColor("#18C3F3"));
-                    pDialog.setCancelable(false);
-                    pDialog.show();
-                    approveReimburse(model.getId(),"1",position);
-                }
-            });
-            pDialogApprove.setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                @Override
-                public void onClick(KAlertDialog kAlertDialog) {
-                    pDialog = new KAlertDialog(context,KAlertDialog.PROGRESS_TYPE);
-                    pDialog.getProgressHelper().setBarColor(Color.parseColor("#18C3F3"));
-                    pDialog.setCancelable(false);
-                    pDialog.show();
-                    approveReimburse(model.getId(),"2",position);
-                }
-            });
-            pDialogApprove.show();
-        });
-
-        holder.ivDetail.setOnClickListener(v->{
             Intent intent = new Intent(holder.itemView.getContext(), DetailApprovalReimburseActivity.class);
             intent.putExtra(DetailApprovalReimburseActivity.REIMBURSE_ITEM, new Gson().toJson(model));
             context.startActivity(intent);
+//            pDialogApprove = new SweetDialog(context, SweetDialog.CUSTOM_IMAGE_TYPE);
+//            pDialogApprove.setTitleText("Are you sure ?");
+//            pDialogApprove.setContentText("Apakah anda yakin untuk menyutujui pengajuan ini ?");
+//            pDialogApprove.setCustomImage(R.drawable.gambaraproval);
+//            pDialogApprove.setCancelable(true);
+//            pDialogApprove.setCloseDialog(true);
+//            pDialogApprove.setConfirmText("Setujui"); //Do not call this if you don't want to show confirm button
+//            pDialogApprove.setCancelText("Tolak");//Do not call this if you don't want to show cancel button
+//            pDialogApprove.setConfirmClickListener(new SweetDialog.KAlertClickListener() {
+//                @Override
+//                public void onClick(SweetDialog sweetDialog) {
+//                    pDialog = new SweetDialog(context, SweetDialog.PROGRESS_TYPE);
+//                    pDialog.getProgressHelper().setBarColor(Color.parseColor("#18C3F3"));
+//                    pDialog.setCancelable(false);
+//                    pDialog.show();
+//                    approveReimburse(model.getId(),"1",position);
+//                }
+//            });
+//            pDialogApprove.setCancelClickListener(new SweetDialog.KAlertClickListener() {
+//                @Override
+//                public void onClick(SweetDialog sweetDialog) {
+//                    pDialog = new SweetDialog(context, SweetDialog.PROGRESS_TYPE);
+//                    pDialog.getProgressHelper().setBarColor(Color.parseColor("#18C3F3"));
+//                    pDialog.setCancelable(false);
+//                    pDialog.show();
+//                    approveReimburse(model.getId(),"2",position);
+//                }
+//            });
+//            pDialogApprove.show();
         });
+
+//        holder.ivDetail.setOnClickListener(v->{
+//        });
 
     }
 
@@ -127,14 +124,14 @@ public class ReimburseAdapter extends RecyclerView.Adapter<ReimburseAdapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView tvInsertAt, tvNama, tvTanggal, tvNominal, tvKeterangan, tvNik;
-        ImageView ivDetail;
+//        ImageView ivDetail;
         private LinearLayout llItem;
         private RelativeLayout rlStatus;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             llItem = itemView.findViewById(R.id.ll_item);
             tvNik = itemView.findViewById(R.id.tv_nik);
-            ivDetail = itemView.findViewById(R.id.iv_detail);
+//            ivDetail = itemView.findViewById(R.id.iv_detail);
             tvInsertAt = itemView.findViewById(R.id.tv_insert_at);
             tvNama = itemView.findViewById(R.id.tv_dari);
             tvTanggal = itemView.findViewById(R.id.tv_tgl);

@@ -17,7 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alkhattabi.kalert.KAlertDialog;
+import com.alkhattabi.sweetdialog.SweetDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,7 +34,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
 import gmedia.net.id.OnTime.R;
-import gmedia.net.id.OnTime.riwayat.absensi.RiwayatAbsensiActivity;
 import gmedia.net.id.OnTime.riwayat.reimburse.adapter.ReimburseAdapter;
 import gmedia.net.id.OnTime.riwayat.reimburse.model.ReimburseModel;
 import gmedia.net.id.OnTime.utils.ServerUrl;
@@ -63,7 +62,7 @@ public class RiwayatReimburseActivity extends AppCompatActivity {
     List<ReimburseModel> reimburseModelList = new ArrayList<>();
     ReimburseAdapter reimburseAdapter;
     Calendar calendar = Calendar.getInstance();
-    KAlertDialog pDialogProses;
+    SweetDialog pDialogProses;
     LinearLayoutManager linearLayoutManager;
 
     @Override
@@ -73,7 +72,7 @@ public class RiwayatReimburseActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        pDialogProses = new KAlertDialog(RiwayatReimburseActivity.this,KAlertDialog.PROGRESS_TYPE);
+        pDialogProses = new SweetDialog(RiwayatReimburseActivity.this, SweetDialog.PROGRESS_TYPE);
         pDialogProses.setCancelable(false);
         pDialogProses.getProgressHelper().setBarColor(R.color.colorProcess);
 

@@ -51,6 +51,7 @@
                 android:id="@+id/rl_profile"
                 android:paddingRight="@dimen/_12sdp"
                 android:paddingLeft="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_4sdp"
                 android:layout_alignParentBottom="true"
                 android:gravity="center">
 
@@ -103,32 +104,33 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/_26sdp"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="parent">
 
-<!--                        <RelativeLayout-->
-<!--                            android:layout_width="@dimen/_26sdp"-->
-<!--                            android:layout_height="@dimen/_26sdp"-->
-<!--                            android:clickable="true"-->
-<!--                            android:padding="@dimen/_2sdp"-->
-<!--                            android:id="@+id/rl_notif"-->
-<!--                            android:focusable="true">-->
-<!--                            <ImageView-->
-<!--                                android:layout_width="match_parent"-->
-<!--                                android:layout_height="match_parent"-->
-<!--                                android:src="@drawable/notif" />-->
-<!--                        </RelativeLayout>-->
+                        <!--                        <RelativeLayout-->
+                        <!--                            android:layout_width="@dimen/_26sdp"-->
+                        <!--                            android:layout_height="@dimen/_26sdp"-->
+                        <!--                            android:clickable="true"-->
+                        <!--                            android:padding="@dimen/_2sdp"-->
+                        <!--                            android:id="@+id/rl_notif"-->
+                        <!--                            android:focusable="true">-->
+                        <!--                            <ImageView-->
+                        <!--                                android:layout_width="match_parent"-->
+                        <!--                                android:layout_height="match_parent"-->
+                        <!--                                android:src="@drawable/notif" />-->
+                        <!--                        </RelativeLayout>-->
 
                         <RelativeLayout
+                            android:id="@+id/rl_settings"
                             android:layout_width="@dimen/_26sdp"
                             android:layout_height="@dimen/_26sdp"
                             android:clickable="true"
-                            android:padding="@dimen/_2sdp"
-                            android:id="@+id/rl_settings"
-                            android:focusable="true">
+                            android:focusable="true"
+                            android:padding="@dimen/_2sdp">
+
                             <ImageView
                                 android:id="@+id/iv_settings"
                                 android:layout_width="match_parent"
@@ -150,7 +152,7 @@
             android:layout_height="match_parent"/>
     </LinearLayout>
 
-    <com.alkhattabi.bottomviewex.BottomNavViewEx
+    <com.alkhattabi.sweetbottomnavbar.SweetSweetBottomNavbar
         android:id="@+id/bv_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -1,6 +1,5 @@
 package gmedia.net.id.OnTime.approval.ijin;
 
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,9 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.alkhattabi.kalert.KAlertDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,8 +23,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import gmedia.net.id.OnTime.R;
-import gmedia.net.id.OnTime.approval.cuti.adapter.CutiAdapter;
-import gmedia.net.id.OnTime.approval.cuti.model.CutiModel;
 import gmedia.net.id.OnTime.approval.ijin.adapter.IjinAdapter;
 import gmedia.net.id.OnTime.approval.ijin.model.IjinModel;
 import gmedia.net.id.OnTime.utils.ServerUrl;

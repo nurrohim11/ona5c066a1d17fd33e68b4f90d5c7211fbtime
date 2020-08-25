@@ -6,40 +6,26 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alkhattabi.kalert.KAlertDialog;
+import com.alkhattabi.sweetdialog.SweetDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
 import gmedia.net.id.OnTime.R;
-import gmedia.net.id.OnTime.riwayat.MenuRiwayatAdapter;
-import gmedia.net.id.OnTime.riwayat.absensi.RiwayatAbsensiActivity;
 import gmedia.net.id.OnTime.riwayat.cuti.adapter.CutiAdapter;
 import gmedia.net.id.OnTime.riwayat.cuti.model.RiwayatCutiModel;
-import gmedia.net.id.OnTime.riwayat.gaji.GajiActivity;
 import gmedia.net.id.OnTime.utils.ServerUrl;
 import gmedia.net.id.OnTime.utils.Utils;
 import gmedia.net.id.coremodul.ApiVolley;
@@ -59,7 +45,7 @@ public class RiwayatCutiActivity extends AppCompatActivity {
     String tgl_akhir ="";
     int start =0, count =20;
     LinearLayoutManager linearLayoutManager;
-    KAlertDialog pDialogPrcess;
+    SweetDialog pDialogPrcess;
 
     // flag 1 = scroll
 
@@ -77,7 +63,7 @@ public class RiwayatCutiActivity extends AppCompatActivity {
         setupListRiwayatCuti();
         setupListScrollListenerRiwayatCuti();
 
-        pDialogPrcess = new KAlertDialog(this,KAlertDialog.PROGRESS_TYPE);
+        pDialogPrcess = new SweetDialog(this, SweetDialog.PROGRESS_TYPE);
         pDialogPrcess.setCancelable(false);
         pDialogPrcess.getProgressHelper().setBarColor(R.color.colorProcess);
         pDialogPrcess.show();

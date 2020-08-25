@@ -53,7 +53,6 @@
                     android:textColor="@color/colorBlackGray"
                     android:textSize="@dimen/_10sdp" />
 
-
             </LinearLayout>
 
             <LinearLayout
@@ -105,7 +104,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Rabo"
+                        android:text=""
                         android:id="@+id/tv_hari"
                         android:textColor="@color/colorBlackGray"
                         android:textSize="@dimen/_10sdp"/>
@@ -121,7 +120,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="10/10/2020"
+                        android:text=""
                         android:layout_marginLeft="@dimen/_4sdp"
                         android:id="@+id/tv_tgl"
                         android:layout_toRightOf="@+id/tv_sd"
@@ -138,15 +137,15 @@
                     android:textColor="@color/colorBlackGray"
                     android:textSize="@dimen/_10sdp" />
 
-
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Rabo"
+                        android:text=""
                         android:id="@+id/tv_jam_mulai"
                         android:textColor="@color/colorBlackGray"
                         android:textSize="@dimen/_10sdp"/>
@@ -162,7 +161,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="10/10/2020"
+                        android:text=""
                         android:layout_marginLeft="@dimen/_4sdp"
                         android:id="@+id/tv_jam_selesai"
                         android:layout_toRightOf="@+id/tv_"

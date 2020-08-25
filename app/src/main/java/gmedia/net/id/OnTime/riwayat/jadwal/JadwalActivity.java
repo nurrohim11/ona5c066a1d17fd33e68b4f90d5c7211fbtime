@@ -17,7 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alkhattabi.kalert.KAlertDialog;
+import com.alkhattabi.sweetdialog.SweetDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,9 +36,6 @@ import es.dmoral.toasty.Toasty;
 import gmedia.net.id.OnTime.R;
 import gmedia.net.id.OnTime.riwayat.jadwal.adapter.JadwalAdapter;
 import gmedia.net.id.OnTime.riwayat.jadwal.model.JadwalModel;
-import gmedia.net.id.OnTime.riwayat.reimburse.RiwayatReimburseActivity;
-import gmedia.net.id.OnTime.riwayat.reimburse.adapter.ReimburseAdapter;
-import gmedia.net.id.OnTime.riwayat.reimburse.model.ReimburseModel;
 import gmedia.net.id.OnTime.utils.ServerUrl;
 import gmedia.net.id.OnTime.utils.Utils;
 import gmedia.net.id.coremodul.ApiVolley;
@@ -67,7 +64,7 @@ public class JadwalActivity extends AppCompatActivity {
     List<JadwalModel> jadwalModels = new ArrayList<>();
     JadwalAdapter adapter;
     Calendar calendar = Calendar.getInstance();
-    KAlertDialog pDialogProses;
+    SweetDialog pDialogProses;
     LinearLayoutManager linearLayoutManager;
 
     @Override
@@ -78,7 +75,7 @@ public class JadwalActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        pDialogProses = new KAlertDialog(JadwalActivity.this,KAlertDialog.PROGRESS_TYPE);
+        pDialogProses = new SweetDialog(JadwalActivity.this, SweetDialog.PROGRESS_TYPE);
         pDialogProses.setCancelable(false);
         pDialogProses.getProgressHelper().setBarColor(R.color.colorProcess);
 

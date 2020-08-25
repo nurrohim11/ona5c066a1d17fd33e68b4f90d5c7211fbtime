@@ -1,7 +1,6 @@
 package gmedia.net.id.OnTime.utils;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -10,19 +9,14 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.drawable.ColorDrawable;
 import android.hardware.Camera;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.View;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alkhattabi.kalert.KAlertDialog;
+import com.alkhattabi.sweetdialog.SweetDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,13 +33,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import es.dmoral.toasty.Toasty;
-import gmedia.net.id.OnTime.R;
 import gmedia.net.id.OnTime.home.menu.LockInActivity;
 import gmedia.net.id.OnTime.home.menu.LockOutActivity;
 import gmedia.net.id.coremodul.ApiVolley;
 import gmedia.net.id.coremodul.AppRequestCallback;
-
-import static gmedia.net.id.OnTime.utils.Utils.afterSnapCamera;
 
 
 public class FrontCamera {
@@ -182,18 +173,18 @@ public class FrontCamera {
 
 	public static void Absen() {
 
-		KAlertDialog pDialog = new KAlertDialog(context, KAlertDialog.PROGRESS_TYPE);
+		SweetDialog pDialog = new SweetDialog(context, SweetDialog.PROGRESS_TYPE);
 		pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
 		pDialog.setTitleText("Processing...");
 		pDialog.setCancelable(false);
 		pDialog.show();
 
-		KAlertDialog pDialogSuccess = new KAlertDialog(context, KAlertDialog.SUCCESS_TYPE);
+		SweetDialog pDialogSuccess = new SweetDialog(context, SweetDialog.SUCCESS_TYPE);
 		pDialogSuccess.setTitleText("SUKSES!..");
 		pDialogSuccess.setConfirmText("OK");
 		pDialogSuccess.setCancelable(false);
 
-		KAlertDialog pDialogFailed = new KAlertDialog(context, KAlertDialog.ERROR_TYPE);
+		SweetDialog pDialogFailed = new SweetDialog(context, SweetDialog.ERROR_TYPE);
 		pDialogFailed.setTitleText("GAGAL!..");
 		pDialogFailed.setCancelText("OK");
 		pDialogFailed.setCancelable(false);
@@ -230,9 +221,9 @@ public class FrontCamera {
 			public void onSuccess(String response, String message) {
 				pDialog.dismiss();
 				pDialogSuccess.setContentText(message);
-				pDialogSuccess.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+				pDialogSuccess.setConfirmClickListener(new SweetDialog.KAlertClickListener() {
 					@Override
-					public void onClick(KAlertDialog sDialog) {
+					public void onClick(SweetDialog sDialog) {
 						sDialog.dismiss();
 						((Activity) context).finish();
 						((Activity) context).overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
@@ -245,9 +236,9 @@ public class FrontCamera {
 			public void onEmpty(String message) {
 				pDialog.dismiss();
 				pDialogFailed.setContentText(message);
-				pDialogFailed.setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+				pDialogFailed.setCancelClickListener(new SweetDialog.KAlertClickListener() {
 					@Override
-					public void onClick(KAlertDialog sDialog) {
+					public void onClick(SweetDialog sDialog) {
 						sDialog.dismiss();
 					}
 				});

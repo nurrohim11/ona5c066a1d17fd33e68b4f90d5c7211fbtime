@@ -3,10 +3,7 @@ package gmedia.net.id.OnTime.riwayat.gaji;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -23,31 +20,23 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alkhattabi.kalert.KAlertDialog;
-import com.bumptech.glide.util.Util;
+import com.alkhattabi.sweetdialog.SweetDialog;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
 import gmedia.net.id.OnTime.R;
-import gmedia.net.id.OnTime.riwayat.absensi.RiwayatAbsensiActivity;
-import gmedia.net.id.OnTime.riwayat.absensi.adapter.AbsensiAdapter;
-import gmedia.net.id.OnTime.riwayat.absensi.model.AbsensiModel;
 import gmedia.net.id.OnTime.utils.ServerUrl;
 import gmedia.net.id.OnTime.utils.Utils;
 import gmedia.net.id.coremodul.ApiVolley;
 import gmedia.net.id.coremodul.AppRequestCallback;
 import gmedia.net.id.coremodul.SessionManager;
-
-import static gmedia.net.id.OnTime.utils.Utils.formatDate;
 
 public class GajiActivity extends AppCompatActivity {
 
@@ -91,7 +80,7 @@ public class GajiActivity extends AppCompatActivity {
     LinearLayout layoutBottomSheet;
 
     BottomSheetBehavior behavior;
-    KAlertDialog pDialogProcess;
+    SweetDialog pDialogProcess;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,7 +92,7 @@ public class GajiActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        pDialogProcess = new KAlertDialog(GajiActivity.this,KAlertDialog.PROGRESS_TYPE);
+        pDialogProcess = new SweetDialog(GajiActivity.this, SweetDialog.PROGRESS_TYPE);
         pDialogProcess.getProgressHelper().setBarColor(R.color.colorProcess);
         pDialogProcess.setCancelable(false);
         initView();

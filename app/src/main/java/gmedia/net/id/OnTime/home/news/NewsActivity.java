@@ -12,7 +12,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.alkhattabi.kalert.KAlertDialog;
+import com.alkhattabi.sweetdialog.SweetDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,7 +24,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
-import gmedia.net.id.OnTime.LoginActivity;
 import gmedia.net.id.OnTime.R;
 import gmedia.net.id.OnTime.home.news.adapter.NewsAdapter;
 import gmedia.net.id.OnTime.home.news.model.NewsModel;
@@ -46,7 +45,7 @@ public class NewsActivity extends AppCompatActivity {
 
     List<NewsModel> newsModels = new ArrayList<>();
     NewsAdapter newsAdapter;
-    KAlertDialog pDialogProcess;
+    SweetDialog pDialogProcess;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +56,7 @@ public class NewsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        pDialogProcess = new KAlertDialog(NewsActivity.this, KAlertDialog.PROGRESS_TYPE);
+        pDialogProcess = new SweetDialog(NewsActivity.this, SweetDialog.PROGRESS_TYPE);
         pDialogProcess.getProgressHelper().setBarColor(Color.parseColor("#18C3F3"));
         pDialogProcess.setCancelable(false);
         pDialogProcess.show();
