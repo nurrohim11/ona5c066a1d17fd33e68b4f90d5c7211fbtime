@@ -24,7 +24,6 @@
                 android:layout_weight="4"
                 android:orientation="vertical">
 
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -85,7 +84,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_4sdp"
                     android:text=""
                     android:id="@+id/tv_mulai"
                     android:textColor="@color/colorBlackGray"

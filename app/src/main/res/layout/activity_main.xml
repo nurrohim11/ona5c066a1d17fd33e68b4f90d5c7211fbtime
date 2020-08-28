@@ -14,11 +14,12 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_140sdp"
+            android:layout_height="@dimen/_120sdp"
+            android:background="@color/transparentColor"
             android:id="@+id/rl_top">
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_120sdp"
+                android:layout_height="@dimen/_100sdp"
                 android:src="@drawable/bghome"
                 android:id="@+id/img_bg"
                 android:scaleType="centerCrop"/>
@@ -30,11 +31,19 @@
                 android:paddingRight="@dimen/_12sdp"
                 android:paddingLeft="@dimen/_12sdp"
                 android:layout_above="@+id/rl_profile">
+
+                <ImageView
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/logoontimeputih" />
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_height="@dimen/_24sdp"
                     android:text="Logout"
+                    android:layout_centerVertical="true"
                     android:id="@+id/btn_logout"
                     android:textSize="@dimen/_8sdp"
                     android:paddingRight="@dimen/_4sdp"
@@ -51,15 +60,14 @@
                 android:id="@+id/rl_profile"
                 android:paddingRight="@dimen/_12sdp"
                 android:paddingLeft="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_4sdp"
                 android:layout_alignParentBottom="true"
                 android:gravity="center">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_65sdp"
-                    android:paddingRight="@dimen/_6sdp"
-                    android:paddingLeft="@dimen/_6sdp"
+                    android:layout_height="@dimen/_62sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:paddingLeft="@dimen/_10sdp"
                     android:background="@drawable/bg_biodata"
                     tools:ignore="MissingConstraints">
 

@@ -177,17 +177,17 @@ public class ReimburseActivity extends AppCompatActivity {
             if(validasiFormReimburse()){
                 new SweetDialog(ReimburseActivity.this, SweetDialog.WARNING_TYPE)
                         .setTitleText("Are you sure?")
-                        .setContentText("Apakah anda yakin ingin mengajukan lembur")
+                        .setContentText("Apakah anda yakin ingin mengajukan reimburse ?")
                         .setConfirmText("Ya")
                         .setCancelText("Tidak")
-                        .setConfirmClickListener(new SweetDialog.KAlertClickListener() {
+                        .setConfirmClickListener(new SweetDialog.SweetClickListener() {
                             @Override
                             public void onClick(SweetDialog sDialog) {
                                 sDialog.dismiss();
                                 doAddReimburse();
                             }
                         })
-                        .setCancelClickListener(new SweetDialog.KAlertClickListener() {
+                        .setCancelClickListener(new SweetDialog.SweetClickListener() {
                             @Override
                             public void onClick(SweetDialog sDialog) {
                                 sDialog.cancel();

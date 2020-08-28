@@ -62,7 +62,7 @@ public class ReimburseAdapter extends RecyclerView.Adapter<ReimburseAdapter.View
         holder.tvInsertAt.setText(Utils.formatDate(FormatItem.formatDateTime, FormatItem.formatDateDisplay,model.getInsert_at()));
         holder.tvNama.setText(model.getNama());
         holder.tvKeterangan.setText(model.getKet());
-        holder.tvTanggal.setText(Utils.formatDate(FormatItem.formatDateTime, FormatItem.formatDateDisplay,model.getTgl_pembayaran()));
+//        holder.tvTanggal.setText(Utils.formatDate(FormatItem.formatDateTime, FormatItem.formatDateDisplay,model.getTgl_pembayaran()));
 
         Integer nominal = Integer.parseInt(model.getNominal());
         holder.tvNominal.setText(String.format("Rp %,d", nominal));
@@ -123,7 +123,7 @@ public class ReimburseAdapter extends RecyclerView.Adapter<ReimburseAdapter.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvInsertAt, tvNama, tvTanggal, tvNominal, tvKeterangan, tvNik;
+        private TextView tvInsertAt, tvNama, tvNominal, tvKeterangan, tvNik;
 //        ImageView ivDetail;
         private LinearLayout llItem;
         private RelativeLayout rlStatus;
@@ -134,7 +134,7 @@ public class ReimburseAdapter extends RecyclerView.Adapter<ReimburseAdapter.View
 //            ivDetail = itemView.findViewById(R.id.iv_detail);
             tvInsertAt = itemView.findViewById(R.id.tv_insert_at);
             tvNama = itemView.findViewById(R.id.tv_dari);
-            tvTanggal = itemView.findViewById(R.id.tv_tgl);
+//            tvTanggal = itemView.findViewById(R.id.tv_tgl);
             tvNominal = itemView.findViewById(R.id.tv_nominal);
             tvKeterangan = itemView.findViewById(R.id.tv_keterangan);
         }

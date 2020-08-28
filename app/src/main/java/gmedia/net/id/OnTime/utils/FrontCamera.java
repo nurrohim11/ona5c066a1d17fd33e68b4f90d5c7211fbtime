@@ -221,7 +221,7 @@ public class FrontCamera {
 			public void onSuccess(String response, String message) {
 				pDialog.dismiss();
 				pDialogSuccess.setContentText(message);
-				pDialogSuccess.setConfirmClickListener(new SweetDialog.KAlertClickListener() {
+				pDialogSuccess.setConfirmClickListener(new SweetDialog.SweetClickListener() {
 					@Override
 					public void onClick(SweetDialog sDialog) {
 						sDialog.dismiss();
@@ -236,7 +236,7 @@ public class FrontCamera {
 			public void onEmpty(String message) {
 				pDialog.dismiss();
 				pDialogFailed.setContentText(message);
-				pDialogFailed.setCancelClickListener(new SweetDialog.KAlertClickListener() {
+				pDialogFailed.setCancelClickListener(new SweetDialog.SweetClickListener() {
 					@Override
 					public void onClick(SweetDialog sDialog) {
 						sDialog.dismiss();

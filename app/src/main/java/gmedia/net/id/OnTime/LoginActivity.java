@@ -23,6 +23,7 @@ import org.json.JSONObject;
 
 import es.dmoral.toasty.Toasty;
 import gmedia.net.id.OnTime.utils.ServerUrl;
+import gmedia.net.id.OnTime.utils.Utils;
 import gmedia.net.id.coremodul.ApiVolley;
 import gmedia.net.id.coremodul.ItemValidation;
 import gmedia.net.id.coremodul.SessionManager;
@@ -41,11 +42,12 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         sessionManager = new SessionManager(this);
-        if (sessionManager.getIsLoggedIn()){
-            startActivity(new Intent(LoginActivity.this, MainActivity.class)
-                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
-            finish();
-        }
+//        if (sessionManager.getIsLoggedIn()){
+//            startActivity(new Intent(LoginActivity.this, MainActivity.class)
+//                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+//            finish();
+//        }
+        sessionManager.checkLogin(Utils.MainActivity(this));
 
         pDialog = new SweetDialog(LoginActivity.this, SweetDialog.PROGRESS_TYPE);
         pDialog.getProgressHelper().setBarColor(Color.parseColor("#18C3F3"));
@@ -146,7 +148,7 @@ public class LoginActivity extends AppCompatActivity {
                         );
                         pSuccess = new SweetDialog(LoginActivity.this, SweetDialog.SUCCESS_TYPE);
                         pSuccess.setTitleText(message);
-                        pSuccess.setContentText("Please wait!.......");
+                        pSuccess.setContentText("Please wait");
                         pSuccess.setCancelable(false);
                         pSuccess.show();
                         new Handler().postDelayed(new Runnable() {

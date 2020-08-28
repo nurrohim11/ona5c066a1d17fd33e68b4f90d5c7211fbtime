@@ -19,128 +19,154 @@
             android:text="2 agustus 2020"
             android:gravity="right"/>
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
             android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_4sdp"
             android:weightSum="15">
 
-            <LinearLayout
+            <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:text="NIK"
+                android:textColor="@color/colorBlackGray"
                 android:layout_weight="4"
-                android:orientation="vertical">
+                android:textSize="@dimen/_10sdp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="NIK"
-                    android:textColor="@color/colorBlackGray"
-                    android:textSize="@dimen/_10sdp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:text="Nama"
-                    android:textColor="@color/colorBlackGray"
-                    android:textSize="@dimen/_10sdp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:text="Alasan"
-                    android:textColor="@color/colorBlackGray"
-                    android:textSize="@dimen/_10sdp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:text="Tanggal"
-                    android:textColor="@color/colorBlackGray"
-                    android:textSize="@dimen/_10sdp" />
-
-            </LinearLayout>
-
-            <LinearLayout
+            <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:text=":"
                 android:layout_weight="0.5"
-                android:orientation="vertical">
+                android:textColor="@color/colorBlackGray"
+                android:textSize="@dimen/_10sdp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=":"
-                    android:textColor="@color/colorBlackGray"
-                    android:textSize="@dimen/_10sdp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=":"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:textColor="@color/colorBlackGray"
-                    android:textSize="@dimen/_10sdp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=":"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:textColor="@color/colorBlackGray"
-                    android:textSize="@dimen/_10sdp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=":"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:textColor="@color/colorBlackGray"
-                    android:textSize="@dimen/_10sdp" />
-            </LinearLayout>
-
-            <LinearLayout
+            <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:text=""
                 android:layout_weight="10.5"
-                android:orientation="vertical">
+                android:id="@+id/tv_nik"
+                android:textColor="@color/colorBlackGray"
+                android:textSize="@dimen/_10sdp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:weightSum="15">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Nama"
+                android:textColor="@color/colorBlackGray"
+                android:layout_weight="4"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:layout_weight="0.5"
+                android:textColor="@color/colorBlackGray"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_weight="10.5"
+                android:id="@+id/tv_dari"
+                android:textColor="@color/colorBlackGray"
+                android:textSize="@dimen/_10sdp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:weightSum="15">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Alasan"
+                android:textColor="@color/colorBlackGray"
+                android:layout_weight="4"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:layout_weight="0.5"
+                android:textColor="@color/colorBlackGray"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_weight="10.5"
+                android:id="@+id/tv_keterangan"
+                android:textColor="@color/colorBlackGray"
+                android:textSize="@dimen/_10sdp"/>
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:weightSum="15">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Tanggal Ijin"
+                android:textColor="@color/colorBlackGray"
+                android:layout_weight="4"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:layout_weight="0.5"
+                android:textColor="@color/colorBlackGray"
+                android:textSize="@dimen/_10sdp" />
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="10.5">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    android:textColor="@color/colorBlackGray"
-                    android:id="@+id/tv_nik"
-                    android:textSize="@dimen/_10sdp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:text=""
-                    android:id="@+id/tv_dari"
-                    android:textColor="@color/colorBlackGray"
-                    android:textSize="@dimen/_10sdp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:text=""
-                    android:id="@+id/tv_keterangan"
-                    android:textColor="@color/colorBlackGray"
-                    android:textSize="@dimen/_10sdp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:text=""
+                    android:text="10/10/2020"
                     android:id="@+id/tv_tgl"
                     android:textColor="@color/colorBlackGray"
-                    android:textSize="@dimen/_10sdp" />
+                    android:textSize="@dimen/_10sdp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10:10"
+                    android:layout_marginLeft="@dimen/_4sdp"
+                    android:id="@+id/tv_jam"
+                    android:layout_toRightOf="@+id/tv_tgl"
+                    android:textColor="@color/colorBlackGray"
+                    android:textSize="@dimen/_10sdp"/>
+            </RelativeLayout>
 
-            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

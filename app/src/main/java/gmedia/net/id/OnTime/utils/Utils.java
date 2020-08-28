@@ -27,6 +27,10 @@ public class Utils {
         return context.getApplicationContext().getPackageName()+".LoginActivity";
     }
 
+    public static String MainActivity(Context context){
+        return context.getApplicationContext().getPackageName()+".MainActivity";
+    }
+
     public static String formatTgl(String tgl){
         SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
         try {

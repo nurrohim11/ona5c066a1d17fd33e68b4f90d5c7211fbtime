@@ -25,6 +25,7 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import butterknife.BindView;
@@ -32,6 +33,7 @@ import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
 import gmedia.net.id.OnTime.MainActivity;
 import gmedia.net.id.OnTime.R;
+import gmedia.net.id.OnTime.pengajuan.cuti.CutiActivity;
 import gmedia.net.id.OnTime.utils.ServerUrl;
 import gmedia.net.id.OnTime.utils.Utils;
 import gmedia.net.id.coremodul.ApiVolley;
@@ -76,16 +78,7 @@ public class IjinActivity extends AppCompatActivity {
         pDialogProses.setTitleText("Sedang memproses..");
         pDialogProses.setCancelable(false);
 
-        Calendar date = Calendar.getInstance();
-        SimpleDateFormat sdFormat = new SimpleDateFormat("dd/MM/yyyy");
-        tvTgl.setText(sdFormat.format(date.getTime()));
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        tgl = sdf.format(date.getTime());
-
-        SimpleDateFormat fTime = new SimpleDateFormat("HH:mm");
-        tvJam.setText(fTime.format(date.getTime()));
-        jam = fTime.format(date.getTime());
-
+        initDefault();
         initAction();
     }
 
@@ -136,25 +129,27 @@ public class IjinActivity extends AppCompatActivity {
         btnProses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new SweetDialog(IjinActivity.this, SweetDialog.WARNING_TYPE)
-                        .setTitleText("Are you sure?")
-                        .setContentText("Apakah anda yakin ingin mengajukan ijin")
-                        .setConfirmText("Ya")
-                        .setCancelText("Tidak")
-                        .setConfirmClickListener(new SweetDialog.KAlertClickListener() {
-                            @Override
-                            public void onClick(SweetDialog sDialog) {
-                                sDialog.dismiss();
-                                doIjin();
-                            }
-                        })
-                        .setCancelClickListener(new SweetDialog.KAlertClickListener() {
-                            @Override
-                            public void onClick(SweetDialog sDialog) {
-                                sDialog.cancel();
-                            }
-                        })
-                        .show();
+                if(check()){
+                    new SweetDialog(IjinActivity.this, SweetDialog.WARNING_TYPE)
+                            .setTitleText("Are you sure?")
+                            .setContentText("Apakah anda yakin ingin mengajukan ijin ?")
+                            .setConfirmText("Ya")
+                            .setCancelText("Tidak")
+                            .setConfirmClickListener(new SweetDialog.SweetClickListener() {
+                                @Override
+                                public void onClick(SweetDialog sDialog) {
+                                    sDialog.dismiss();
+                                    doIjin();
+                                }
+                            })
+                            .setCancelClickListener(new SweetDialog.SweetClickListener() {
+                                @Override
+                                public void onClick(SweetDialog sDialog) {
+                                    sDialog.cancel();
+                                }
+                            })
+                            .show();
+                }
             }
         });
     }
@@ -205,8 +200,8 @@ public class IjinActivity extends AppCompatActivity {
     }
 
     private void initDefault(){
-        tvTgl.setText("Masukkan tanggal");
-        tvJam.setText("Masukkan jam");
+        tvTgl.setText("Masukkan tanggal ijin");
+        tvJam.setText("Masukkan batas jam");
         edtKeterangan.setText("");
     }
 
@@ -218,5 +213,24 @@ public class IjinActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private boolean check(){
+        if(tgl.equals("")){
+            Toasty.error(this,"Masukkan tanggal ijin",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(jam.equals("")){
+            Toasty.error(this,"Masukkan batas jam ijin",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(edtKeterangan.equals("")){
+            Toasty.error(this,"Masukkan alasan ijin",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
     }
 }

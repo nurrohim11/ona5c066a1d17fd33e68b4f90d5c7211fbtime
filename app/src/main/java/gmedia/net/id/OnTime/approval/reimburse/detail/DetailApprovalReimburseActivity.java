@@ -71,6 +71,7 @@ public class DetailApprovalReimburseActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         initUi();
     }
+
     private void initUi(){
         String reimburse_item = getIntent().getStringExtra(REIMBURSE_ITEM);
         final ReimburseModel item = gson.fromJson(reimburse_item, ReimburseModel.class);
@@ -105,7 +106,7 @@ public class DetailApprovalReimburseActivity extends AppCompatActivity {
                         pDialogApprove.setCloseDialog(true);
                         pDialogApprove.setConfirmText("Setujui"); //Do not call this if you don't want to show confirm button
                         pDialogApprove.setCancelText("Batal");//Do not call this if you don't want to show cancel button
-                        pDialogApprove.setConfirmClickListener(new SweetDialog.KAlertClickListener() {
+                        pDialogApprove.setConfirmClickListener(new SweetDialog.SweetClickListener() {
                             @Override
                             public void onClick(SweetDialog sweetDialog) {
                                 pDialog = new SweetDialog(DetailApprovalReimburseActivity.this, SweetDialog.PROGRESS_TYPE);
@@ -115,7 +116,7 @@ public class DetailApprovalReimburseActivity extends AppCompatActivity {
                                 approveReimburse(item.getId(),"1");
                             }
                         });
-                        pDialogApprove.setCancelClickListener(new SweetDialog.KAlertClickListener() {
+                        pDialogApprove.setCancelClickListener(new SweetDialog.SweetClickListener() {
                             @Override
                             public void onClick(SweetDialog sweetDialog) {
                                 pDialogApprove.dismiss();
@@ -135,7 +136,7 @@ public class DetailApprovalReimburseActivity extends AppCompatActivity {
                         pDialogApprove.setCloseDialog(true);
                         pDialogApprove.setConfirmText("Tolak"); //Do not call this if you don't want to show confirm button
                         pDialogApprove.setCancelText("Batal");//Do not call this if you don't want to show cancel button
-                        pDialogApprove.setConfirmClickListener(new SweetDialog.KAlertClickListener() {
+                        pDialogApprove.setConfirmClickListener(new SweetDialog.SweetClickListener() {
                             @Override
                             public void onClick(SweetDialog sweetDialog) {
                                 pDialog = new SweetDialog(DetailApprovalReimburseActivity.this, SweetDialog.PROGRESS_TYPE);
@@ -145,7 +146,7 @@ public class DetailApprovalReimburseActivity extends AppCompatActivity {
                                 approveReimburse(item.getId(),"2");
                             }
                         });
-                        pDialogApprove.setCancelClickListener(new SweetDialog.KAlertClickListener() {
+                        pDialogApprove.setCancelClickListener(new SweetDialog.SweetClickListener() {
                             @Override
                             public void onClick(SweetDialog sweetDialog) {
                                 pDialogApprove.dismiss();

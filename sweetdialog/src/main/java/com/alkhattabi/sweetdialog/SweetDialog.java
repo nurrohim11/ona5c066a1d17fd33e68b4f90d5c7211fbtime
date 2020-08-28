@@ -52,8 +52,8 @@ public class SweetDialog extends AlertDialog implements View.OnClickListener {
     //private SuccessTickView mSuccessTick;
 
     private final ProgressHelper mProgressHelper;
-    private SweetDialog.KAlertClickListener mCancelClickListener;
-    private SweetDialog.KAlertClickListener mConfirmClickListener;
+    private SweetDialog.SweetClickListener mCancelClickListener;
+    private SweetDialog.SweetClickListener mConfirmClickListener;
 
     private int mAlertType;
     public static final int NORMAL_TYPE = 0;
@@ -71,7 +71,7 @@ public class SweetDialog extends AlertDialog implements View.OnClickListener {
     public static boolean DARK_STYLE = false;
 
 
-    public interface KAlertClickListener {
+    public interface SweetClickListener {
         void onClick(SweetDialog sweetDialog);
     }
 
@@ -338,12 +338,12 @@ public class SweetDialog extends AlertDialog implements View.OnClickListener {
         }
     }
 
-    public SweetDialog setCancelClickListener (KAlertClickListener listener){
+    public SweetDialog setCancelClickListener (SweetClickListener listener){
         mCancelClickListener = listener;
         return this;
     }
 
-    public SweetDialog setConfirmClickListener (KAlertClickListener listener){
+    public SweetDialog setConfirmClickListener (SweetClickListener listener){
         mConfirmClickListener = listener;
         return this;
     }

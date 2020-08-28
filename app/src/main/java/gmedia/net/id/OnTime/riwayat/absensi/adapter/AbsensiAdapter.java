@@ -39,21 +39,8 @@ public class AbsensiAdapter extends RecyclerView.Adapter<AbsensiAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull AbsensiAdapter.ViewHolder holder, int position) {
         AbsensiModel item = models.get(position);
-        if(position == 0){
-            holder.tvKeterangan.setTextColor(Color.parseColor("#1093C9"));
-            holder.tvTgl.setTextColor(Color.parseColor("#1093C9"));
-            holder.tvKeterangan.setTypeface(null, Typeface.BOLD);
-            holder.tvTgl.setTypeface(null, Typeface.BOLD);
-            holder.tvKeterangan.setText(item.getKeterangan());
-            holder.tvTgl.setText(item.getTgl());
-        }else{
-            holder.tvKeterangan.setTextColor(Color.parseColor("#393939"));
-            holder.tvTgl.setTextColor(Color.parseColor("#393939"));
-            holder.tvKeterangan.setTypeface(null, Typeface.NORMAL);
-            holder.tvTgl.setTypeface(null, Typeface.NORMAL);
-            holder.tvKeterangan.setText(item.getKeterangan());
-            holder.tvTgl.setText(item.getTgl());
-        }
+        holder.tvKeterangan.setText(item.getKeterangan());
+        holder.tvTgl.setText(item.getTgl());
     }
 
     @Override

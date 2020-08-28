@@ -29,6 +29,7 @@ import org.jsoup.Jsoup;
 import java.util.Arrays;
 
 import es.dmoral.toasty.Toasty;
+import gmedia.net.id.OnTime.MainActivity;
 import gmedia.net.id.coremodul.ApiVolley;
 
 import static android.content.Context.WIFI_SERVICE;
@@ -65,14 +66,16 @@ public class Scan {
 				WifiInfo info = manager.getConnectionInfo();
 				infoSSID = info.getSSID();
 				infoBSSID = info.getBSSID();
+
 				locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 				if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 					OnGPS();
+					pDialogProcess.dismiss();
 				} else {
 					getLocation();
+					initAbsen();
 				}
-				Log.d(">>>>>","Your Location: " + "\n" + "Latitude: " + latitude + "\n" + "Longitude: " + longitude);
-				initAbsen();
+				Log.d(">>>>>","Your Location: " + "\n" + "Latitude: " + MainActivity.latitude + "\n" + "Longitude: " + MainActivity.longitude);
 
 			}
 
@@ -153,7 +156,7 @@ public class Scan {
 						pDialogSuccess.setContentText(message);
 						pDialogSuccess.setConfirmText("OK");
 						pDialogSuccess.setCancelable(false);
-						pDialogSuccess.setConfirmClickListener(new SweetDialog.KAlertClickListener() {
+						pDialogSuccess.setConfirmClickListener(new SweetDialog.SweetClickListener() {
 							@Override
 							public void onClick(SweetDialog sDialog) {
 								sDialog.dismiss();
@@ -169,7 +172,7 @@ public class Scan {
 						pDialogFailed.setContentText(message);
 						pDialogFailed.setCancelText("OK");
 						pDialogFailed.setCancelable(false);
-						pDialogFailed.setCancelClickListener(new SweetDialog.KAlertClickListener() {
+						pDialogFailed.setCancelClickListener(new SweetDialog.SweetClickListener() {
 							@Override
 							public void onClick(SweetDialog sDialog) {
 								sDialog.dismiss();

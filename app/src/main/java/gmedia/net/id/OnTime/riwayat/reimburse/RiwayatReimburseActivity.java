@@ -37,8 +37,10 @@ import gmedia.net.id.OnTime.R;
 import gmedia.net.id.OnTime.riwayat.reimburse.adapter.ReimburseAdapter;
 import gmedia.net.id.OnTime.riwayat.reimburse.model.ReimburseModel;
 import gmedia.net.id.OnTime.utils.ServerUrl;
+import gmedia.net.id.OnTime.utils.Utils;
 import gmedia.net.id.coremodul.ApiVolley;
 import gmedia.net.id.coremodul.AppRequestCallback;
+import gmedia.net.id.coremodul.FormatItem;
 
 public class RiwayatReimburseActivity extends AppCompatActivity {
 
@@ -84,14 +86,8 @@ public class RiwayatReimburseActivity extends AppCompatActivity {
     }
 
     private void initView(){
-        Date c = calendar.getTime();
-        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        String formattedDate = df.format(c);
-        tvTglAwal.setText(formattedDate);
-        tvTglAkhir.setText(formattedDate);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-        tgl_awal = sdf.format(c);
-        tgl_akhir = sdf.format(c);
+        tvTglAwal.setText("Tanggal Awal");
+        tvTglAkhir.setText("Tanggal Akhir");
 
         rlTglAwal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,10 +130,26 @@ public class RiwayatReimburseActivity extends AppCompatActivity {
         });
 
         btnProses.setOnClickListener(v -> {
-            reimburseAdapter.notifyDataSetChanged();
-            pDialogProses.show();
-            loadRiwayatReimburse("");
+            if(check()){
+                start =0;
+                count =10;
+                reimburseAdapter.notifyDataSetChanged();
+                pDialogProses.show();
+                loadRiwayatReimburse("");
+            }
         });
+    }
+
+    private boolean check(){
+        if(tgl_awal.equals("")){
+            Toasty.error(this,"Masukkan tanggal awal",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(tgl_akhir.equals("")){
+            Toasty.error(this,"Masukkan tanggal akhir",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -155,7 +167,7 @@ public class RiwayatReimburseActivity extends AppCompatActivity {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                if (! recyclerView.canScrollVertically(1)){
+                if (!recyclerView.canScrollVertically(1)){
                     pDialogProses.dismiss();
                     start += count;
                     loadRiwayatReimburse("1");
@@ -172,9 +184,19 @@ public class RiwayatReimburseActivity extends AppCompatActivity {
 
     private void loadRiwayatReimburse(String flag){
         if(start == 0){
-//            pDialogProses.dismiss();
             reimburseModelList.clear();
         }
+
+        Calendar c = Calendar.getInstance();
+//        String now = Utils.customFormatTimestamp(c.getTime(), FormatItem.formatDate);
+//        if(tgl_awal.equals("")){
+//            tgl_awal = now;
+//        }
+//
+//        if(tgl_akhir.equals("")){
+//            tgl_akhir = now;
+//        }
+
         JSONObject params = new JSONObject();
         try {
             params.put("datestart",tgl_awal);
@@ -238,9 +260,9 @@ public class RiwayatReimburseActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        reimburseModelList.clear();
-        start =0;
-        count =10;
+//        reimburseModelList.clear();
+//        start =0;
+//        count =10;
 //        loadRiwayatReimburse("");
     }
 

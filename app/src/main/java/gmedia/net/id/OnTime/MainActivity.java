@@ -73,11 +73,13 @@ public class MainActivity extends RuntimePermissionsActivity {
     SweetBottomNavbar bvNavigation;
     private TextView tvProfileName, tvProfileNik;
 
+
     private String[] appPermission =  {
             Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_FINE_LOCATION
     };
     private final int PERMIOSSION_REQUEST_CODE = 1240;
+
     SessionManager sessionManager;
     Button btnLogout;
     //    RelativeLayout rlNotif, rlSettings;
@@ -99,11 +101,11 @@ public class MainActivity extends RuntimePermissionsActivity {
         sessionManager = new SessionManager(this);
         loadFragment(new HomeFragment());
 
-
         dialogActive = false;
         if (android.os.Build.VERSION.SDK_INT > 25) {
             statusCheck();
         }
+        initPermission();
 
         // Semua aplikasi
         FirebaseMessaging.getInstance().subscribeToTopic("ontime");
@@ -121,7 +123,6 @@ public class MainActivity extends RuntimePermissionsActivity {
 
         initView();
         initEvent();
-        initPermission();
     }
 
     public boolean loadFragment(Fragment fragment) {
@@ -260,6 +261,36 @@ public class MainActivity extends RuntimePermissionsActivity {
             dialog.show();
         });
 
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new SweetDialog(MainActivity.this, SweetDialog.WARNING_TYPE)
+                        .setTitleText("Are you sure ?")
+                        .setContentText("Apakah anda yakin ingin logout ?")
+                        .setConfirmText("Ya")
+                        .setCancelText("Tidak")
+                        .setConfirmClickListener(new SweetDialog.SweetClickListener() {
+                            @Override
+                            public void onClick(SweetDialog sDialog) {
+                                sDialog.dismiss();
+                                try {
+                                    sessionManager.logoutUser(loginActivity(getApplicationContext()));
+                                } catch (ClassNotFoundException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        })
+                        .setCancelClickListener(new SweetDialog.SweetClickListener() {
+                            @Override
+                            public void onClick(SweetDialog sDialog) {
+                                sDialog.cancel();
+                            }
+                        })
+                        .show();
+
+            }
+        });
+
     }
 
     private void doChangePassword(){
@@ -323,6 +354,7 @@ public class MainActivity extends RuntimePermissionsActivity {
                     }
                     @Override
                     public void onFail(String message) {
+                        Log.d(MainActivity.class.getSimpleName(),"onfail "+message);
                         if(message.equals("Unauthorized")){
                             try {
                                 SessionManager session = new SessionManager(MainActivity.this);
@@ -412,37 +444,14 @@ public class MainActivity extends RuntimePermissionsActivity {
     protected void onResume() {
         super.onResume();
         initProfil();
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new SweetDialog(MainActivity.this, SweetDialog.WARNING_TYPE)
-                        .setTitleText("Are you sure?")
-                        .setContentText("Apakah anda yakin ingin logout")
-                        .setConfirmText("Ya")
-                        .setCancelText("Tidak")
-                        .setConfirmClickListener(new SweetDialog.KAlertClickListener() {
-                            @Override
-                            public void onClick(SweetDialog sDialog) {
-                                sDialog.dismiss();
-                                try {
-                                    sessionManager.logoutUser(loginActivity(getApplicationContext()));
-                                } catch (ClassNotFoundException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        })
-                        .setCancelClickListener(new SweetDialog.KAlertClickListener() {
-                            @Override
-                            public void onClick(SweetDialog sDialog) {
-                                sDialog.cancel();
-                            }
-                        })
-                        .show();
+        if (checkPermission()){
 
-            }
-        });
-
-        if (!checkPermission()){
+            // diijinkan
+            // updating location service, disable for some reason
+			/*if(!isServiceRunning(MainActivityBaru.this, UpdateLocationService.class)){
+				startService(new Intent(MainActivityBaru.this, UpdateLocationService.class));
+			}*/
+        }else{
 
             AlertDialog dialog = new AlertDialog.Builder(MainActivity.this)
                     .setTitle("Informasi")
@@ -548,13 +557,13 @@ public class MainActivity extends RuntimePermissionsActivity {
         pDialogWarning.setCancelable(true);
         pDialogWarning.setConfirmText("Ya"); //Do not call this if you don't want to show confirm button
         pDialogWarning.setCancelText("Tidak");//Do not call this if you don't want to show cancel button
-        pDialogWarning.setConfirmClickListener(new SweetDialog.KAlertClickListener() {
+        pDialogWarning.setConfirmClickListener(new SweetDialog.SweetClickListener() {
             @Override
             public void onClick(SweetDialog sweetDialog) {
                 finish();
             }
         });
-        pDialogWarning.setCancelClickListener(new SweetDialog.KAlertClickListener() {
+        pDialogWarning.setCancelClickListener(new SweetDialog.SweetClickListener() {
             @Override
             public void onClick(SweetDialog sweetDialog) {
                 pDialogWarning.dismiss();

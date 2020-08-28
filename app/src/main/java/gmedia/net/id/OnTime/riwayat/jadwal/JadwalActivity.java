@@ -87,14 +87,8 @@ public class JadwalActivity extends AppCompatActivity {
     }
 
     private void initView(){
-        Date c = calendar.getTime();
-        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        String formattedDate = df.format(c);
-        tvTglAwal.setText(formattedDate);
-        tvTglAkhir.setText(formattedDate);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-        tgl_awal = sdf.format(c);
-        tgl_akhir = sdf.format(c);
+        tvTglAwal.setText("Tanggal Awal");
+        tvTglAkhir.setText("Tanggal Akhir");
 
         rlTglAwal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,9 +131,13 @@ public class JadwalActivity extends AppCompatActivity {
         });
 
         btnProses.setOnClickListener(v -> {
-            adapter.notifyDataSetChanged();
-            pDialogProses.show();
-            loadJadwal("");
+            if(check()){
+                start =0;
+                count=10;
+                adapter.notifyDataSetChanged();
+                pDialogProses.show();
+                loadJadwal("");
+            }
         });
     }
 
@@ -247,5 +245,17 @@ public class JadwalActivity extends AppCompatActivity {
         jadwalModels.clear();
         start =0;
         count =10;
+    }
+
+    private boolean check(){
+        if(tgl_awal.equals("")){
+            Toasty.error(this,"Masukkan tanggal awal",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(tgl_akhir.equals("")){
+            Toasty.error(this,"Masukkan tanggal akhir",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 }

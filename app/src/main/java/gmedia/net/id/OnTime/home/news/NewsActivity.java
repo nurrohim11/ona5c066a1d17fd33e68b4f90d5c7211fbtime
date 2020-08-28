@@ -55,9 +55,7 @@ public class NewsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
         pDialogProcess = new SweetDialog(NewsActivity.this, SweetDialog.PROGRESS_TYPE);
-        pDialogProcess.getProgressHelper().setBarColor(Color.parseColor("#18C3F3"));
         pDialogProcess.setCancelable(false);
         pDialogProcess.show();
 

@@ -71,8 +71,7 @@ public class LemburActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         pDialogProses = new SweetDialog(this, SweetDialog.PROGRESS_TYPE);
-        pDialogProses.getProgressHelper().setBarColor(R.color.colorProcess);
-        pDialogProses.setTitleText("Sedang memproses..");
+        pDialogProses.setTitleText("Sedang memproses");
         pDialogProses.setCancelable(false);
         initAction();
     }
@@ -152,17 +151,17 @@ public class LemburActivity extends AppCompatActivity {
 
             new SweetDialog(LemburActivity.this, SweetDialog.WARNING_TYPE)
                     .setTitleText("Are you sure?")
-                    .setContentText("Apakah anda yakin ingin mengajukan lembur")
+                    .setContentText("Apakah anda yakin ingin mengajukan lembur ?")
                     .setConfirmText("Ya")
                     .setCancelText("Tidak")
-                    .setConfirmClickListener(new SweetDialog.KAlertClickListener() {
+                    .setConfirmClickListener(new SweetDialog.SweetClickListener() {
                         @Override
                         public void onClick(SweetDialog sDialog) {
                             sDialog.dismiss();
                             submitLembur();
                         }
                     })
-                    .setCancelClickListener(new SweetDialog.KAlertClickListener() {
+                    .setCancelClickListener(new SweetDialog.SweetClickListener() {
                         @Override
                         public void onClick(SweetDialog sDialog) {
                             sDialog.cancel();
@@ -242,4 +241,5 @@ public class LemburActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

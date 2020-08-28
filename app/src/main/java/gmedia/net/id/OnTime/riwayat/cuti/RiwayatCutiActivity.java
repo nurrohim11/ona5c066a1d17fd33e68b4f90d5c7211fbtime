@@ -56,20 +56,15 @@ public class RiwayatCutiActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        initView();
         start =0;count=20;
+
+        pDialogPrcess = new SweetDialog(this, SweetDialog.PROGRESS_TYPE);
+        pDialogPrcess.setCancelable(false);
+        pDialogPrcess.show();
 
         linearLayoutManager = new LinearLayoutManager(this);
         setupListRiwayatCuti();
         setupListScrollListenerRiwayatCuti();
-
-        pDialogPrcess = new SweetDialog(this, SweetDialog.PROGRESS_TYPE);
-        pDialogPrcess.setCancelable(false);
-        pDialogPrcess.getProgressHelper().setBarColor(R.color.colorProcess);
-        pDialogPrcess.show();
-    }
-
-    private void initView(){
     }
 
     @Override
@@ -170,7 +165,6 @@ public class RiwayatCutiActivity extends AppCompatActivity {
         start =0;
         count =20;
         cutiModels.clear();
-        pDialogPrcess.show();
         loadRiwayatCuti();
         adapter.notifyDataSetChanged();
     }

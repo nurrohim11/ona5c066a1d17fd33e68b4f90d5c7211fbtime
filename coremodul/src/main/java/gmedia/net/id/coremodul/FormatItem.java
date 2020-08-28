@@ -9,7 +9,7 @@ public class FormatItem {
     public static final String formatDate = "yyyy-MM-dd";
     public static final String formatTimestamp = "yyyy-MM-dd HH:mm:ss";
     public static final String formatTimestamp2 = "yyyyMMddHHmmss";
-    public static final String formatDateTime = "yyyy-mm-dd HH:mm:ss";
+    public static final String formatDateTime = "yyyy-MM-dd HH:mm:ss";
     public static final String formatDateTime2 = "yyyy-mm-dd HH:mm";
     public static final String formatTime = "HH:mm:ss";
     public static final String formatTime2 = "HH:mm";

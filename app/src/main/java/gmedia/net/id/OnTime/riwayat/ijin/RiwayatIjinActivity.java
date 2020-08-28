@@ -162,7 +162,6 @@ public class RiwayatIjinActivity extends AppCompatActivity {
         super.onResume();
         start =0;
         count =20;
-        pDialogPrcess.show();
         loadRiwayatIjin();
         adapter.notifyDataSetChanged();
     }

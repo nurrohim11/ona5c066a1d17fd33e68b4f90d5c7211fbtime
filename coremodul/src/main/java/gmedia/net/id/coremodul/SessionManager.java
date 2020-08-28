@@ -137,6 +137,32 @@ public class SessionManager {
         return pref.getBoolean(IS_LOGIN, false);
     }
 
+    public void checkLogin(String activity) {
+        // Check login status
+        if (this.getIsLoggedIn()) {
+            // user is not logged in redirect him to Login Activity
+            Intent i = null;
+            try {
+                i = new Intent(_context, Class.forName(activity));
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            // Closing all the Activities
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+            // Add new Flag to start new Activity
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            // Staring Login Activity
+            ((Activity) _context).startActivity(i);
+            ((Activity) _context).finish();
+        }/* else if (!isLoggedIn()){
+			Intent i = new Intent(_context, Login.class);
+			((Activity) _context).startActivity(i);
+			((Activity) _context).finish();
+		}*/
+    }
+
     public boolean getIsIDPerusahaan() {
         return pref.getBoolean(IS_ID_PERUSAHAAN, false);
     }

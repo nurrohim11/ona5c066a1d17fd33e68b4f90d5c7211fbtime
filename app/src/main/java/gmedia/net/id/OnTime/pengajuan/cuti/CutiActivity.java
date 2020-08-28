@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -75,11 +76,12 @@ public class CutiActivity extends AppCompatActivity {
         pDialogProses.setTitleText("Sedang memproses..");
         pDialogProses.setCancelable(false);
 
+
         init();
     }
 
     private void init(){
-        loadSisaCuti();
+        loadTotalCuti();
         initDefault();
         rlTglAwal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,44 +126,47 @@ public class CutiActivity extends AppCompatActivity {
         btnProses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pSweetDialogWarning = new SweetDialog(CutiActivity.this, SweetDialog.WARNING_TYPE);
-                pSweetDialogWarning.setTitleText("Are you sure?");
-                pSweetDialogWarning.setContentText("Apakah anda yakin akan mengajukan cuti");
-                pSweetDialogWarning.setConfirmText("Ya");
-                pSweetDialogWarning.setCancelText("Tidak");
-                pSweetDialogWarning.setConfirmClickListener(new SweetDialog.KAlertClickListener() {
+                if(check()){
+                    pSweetDialogWarning = new SweetDialog(CutiActivity.this, SweetDialog.WARNING_TYPE);
+                    pSweetDialogWarning.setTitleText("Are you sure?");
+                    pSweetDialogWarning.setContentText("Apakah anda yakin akan mengajukan cuti ?");
+                    pSweetDialogWarning.setConfirmText("Ya");
+                    pSweetDialogWarning.setCancelText("Tidak");
+                    pSweetDialogWarning.setConfirmClickListener(new SweetDialog.SweetClickListener() {
                         @Override
                         public void onClick(SweetDialog sDialog) {
                             pSweetDialogWarning.dismiss();
                             prosesCuti();
                         }
                     });
-                pSweetDialogWarning.setCancelClickListener(new SweetDialog.KAlertClickListener() {
+                    pSweetDialogWarning.setCancelClickListener(new SweetDialog.SweetClickListener() {
                         @Override
                         public void onClick(SweetDialog sDialog) {
                             pSweetDialogWarning.dismiss();
                         }
                     });
-                pSweetDialogWarning.show();
+                    pSweetDialogWarning.show();
+
+                }
             }
         });
     }
 
+
+
     private void initDefault(){
-        Date c = Calendar.getInstance().getTime();
-        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        String formattedDate = df.format(c);
-        tvTglAwal.setText(formattedDate);
-        tvTglAkhir.setText(formattedDate);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-        tgl_awal = sdf.format(c);
-        tgl_akhir = sdf.format(c);
+        tvTglAwal.setText("Masukkan tanggal awal cuti");
+        tvTglAkhir.setText("Masukkan tanggal akhir cuti");
+        tgl_awal = "";
+        tgl_akhir = "";
         edtKeterangan.setText("");
+
     }
 
-    private void loadSisaCuti(){
+    private void loadTotalCuti(){
         new ApiVolley(CutiActivity.this,new JSONObject(),"GET",ServerUrl.sisaCuti,
                 new AppRequestCallback(new AppRequestCallback.ResponseListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onSuccess(String response, String message) {
                         try {
@@ -182,7 +187,6 @@ public class CutiActivity extends AppCompatActivity {
                 })
         );
     }
-
 
     private void prosesCuti(){
         pDialogProses.show();
@@ -237,5 +241,40 @@ public class CutiActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private boolean check(){
+        if(tgl_awal.equals("")){
+            Toasty.error(this,"Masukkan tanggal awal cuti",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(tgl_akhir.equals("")){
+            Toasty.error(this,"Masukkan tanggal akhir cuti",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(edtKeterangan.equals("")){
+            Toasty.error(this,"Masukkan alasan cuti",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(!tgl_awal.equals("") && !tgl_akhir.equals("")){
+            Date c = Calendar.getInstance().getTime();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            String today = df.format(c);
+
+            if(today.compareTo(tgl_awal) > 0 || today.compareTo(tgl_awal) == 0){
+                Toasty.error(CutiActivity.this,"Pengajuan cuti tidak boleh hari ini atau hari kemaren",Toast.LENGTH_SHORT).show();
+                return false;
+            }
+
+            if(tgl_awal.compareTo(tgl_akhir) > 0){
+                Toasty.error(CutiActivity.this,"Tanggal cuti tidak sesuai",Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        }
+
+        return true;
     }
 }

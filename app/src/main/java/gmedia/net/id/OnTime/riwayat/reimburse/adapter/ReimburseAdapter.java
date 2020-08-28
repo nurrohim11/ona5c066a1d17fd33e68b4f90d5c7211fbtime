@@ -50,19 +50,19 @@ public class ReimburseAdapter extends RecyclerView.Adapter<ReimburseAdapter.View
         final ReimburseModel model = reimburseModels.get(position);
 
         if(model.getStatus().equals("1")){
-            holder.tvStatus.setText("Distujui");
+            holder.tvStatus.setText("Disetujui");
         }else  if(model.getStatus().equals("2")){
             holder.tvStatus.setText("Ditolak");
         }else{
             holder.tvStatus.setText("Proses");
         }
         holder.tvKeterangan.setText(model.getKet());
-        holder.tvTanggal.setText(Utils.formatDate(FormatItem.formatDateTime, FormatItem.formatDateDisplay,model.getInsert_at()));
+        holder.tvTanggal.setText(Utils.formatDate(FormatItem.formatDateTime, "dd/MM/yyyy",model.getInsert_at()));
 
         Integer nominal = Integer.parseInt(model.getNominal());
         holder.tvNominal.setText(String.format("Rp %,d", nominal));
 
-        holder.ivDetail.setOnClickListener(v->{
+        holder.itemView.setOnClickListener(v->{
             Intent intent = new Intent(holder.itemView.getContext(), DetailReimburseActivity.class);
             intent.putExtra(DetailReimburseActivity.REIMBURSE_ITEM, new Gson().toJson(model));
             context.startActivity(intent);
@@ -88,10 +88,8 @@ public class ReimburseAdapter extends RecyclerView.Adapter<ReimburseAdapter.View
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView tvStatus, tvTanggal, tvNominal, tvKeterangan;
         private RelativeLayout rlStatus;
-        private ImageView ivDetail;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            ivDetail = itemView.findViewById(R.id.iv_detail);
             tvStatus = itemView.findViewById(R.id.tv_status);
             tvTanggal = itemView.findViewById(R.id.tv_tgl);
             tvNominal = itemView.findViewById(R.id.tv_nominal);

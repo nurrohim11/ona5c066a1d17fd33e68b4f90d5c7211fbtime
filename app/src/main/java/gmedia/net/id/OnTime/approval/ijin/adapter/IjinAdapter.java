@@ -17,6 +17,7 @@ import com.alkhattabi.sweetdialog.SweetDialog;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.Format;
 import java.util.List;
 
 import es.dmoral.toasty.Toasty;
@@ -26,6 +27,7 @@ import gmedia.net.id.OnTime.utils.ServerUrl;
 import gmedia.net.id.OnTime.utils.Utils;
 import gmedia.net.id.coremodul.ApiVolley;
 import gmedia.net.id.coremodul.AppRequestCallback;
+import gmedia.net.id.coremodul.FormatItem;
 
 import static gmedia.net.id.coremodul.FormatItem.formatDate;
 import static gmedia.net.id.coremodul.FormatItem.formatDateDisplay;
@@ -58,6 +60,7 @@ public class IjinAdapter extends RecyclerView.Adapter<IjinAdapter.ViewHolder> {
         holder.tvNama.setText(item.getNama());
         holder.tvKeterangan.setText(item.getAlasan());
         holder.tvTgl.setText(Utils.formatDate(formatDate,formatDateDisplay,item.getTgl()));
+        holder.tvJam.setText(Utils.formatDate(FormatItem.formatTime, FormatItem.formatTime2, item.getJam()));
         holder.tvInsertAt.setText(Utils.formatDate(formatTimestamp,formatDateDisplay,item.getInsert_at()));
         holder.itemView.setOnClickListener(v->{
             pDialogApprove = new SweetDialog(context, SweetDialog.CUSTOM_IMAGE_TYPE);
@@ -68,7 +71,7 @@ public class IjinAdapter extends RecyclerView.Adapter<IjinAdapter.ViewHolder> {
             pDialogApprove.setCloseDialog(true);
             pDialogApprove.setConfirmText("Setujui"); //Do not call this if you don't want to show confirm button
             pDialogApprove.setCancelText("Tolak");//Do not call this if you don't want to show cancel button
-            pDialogApprove.setConfirmClickListener(new SweetDialog.KAlertClickListener() {
+            pDialogApprove.setConfirmClickListener(new SweetDialog.SweetClickListener() {
                 @Override
                 public void onClick(SweetDialog sweetDialog) {
                     pDialog = new SweetDialog(context, SweetDialog.PROGRESS_TYPE);
@@ -82,7 +85,7 @@ public class IjinAdapter extends RecyclerView.Adapter<IjinAdapter.ViewHolder> {
                     }
                 }
             });
-            pDialogApprove.setCancelClickListener(new SweetDialog.KAlertClickListener() {
+            pDialogApprove.setCancelClickListener(new SweetDialog.SweetClickListener() {
                 @Override
                 public void onClick(SweetDialog sweetDialog) {
                     pDialog = new SweetDialog(context, SweetDialog.PROGRESS_TYPE);
@@ -106,9 +109,10 @@ public class IjinAdapter extends RecyclerView.Adapter<IjinAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvInsertAt, tvTgl, tvKeterangan, tvNama, tvNik;
+        private TextView tvInsertAt, tvTgl, tvKeterangan, tvNama, tvNik, tvJam;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            tvJam = itemView.findViewById(R.id.tv_jam);
             tvNik = itemView.findViewById(R.id.tv_nik);
             tvInsertAt = itemView.findViewById(R.id.tv_insert_at);
             tvTgl = itemView.findViewById(R.id.tv_tgl);

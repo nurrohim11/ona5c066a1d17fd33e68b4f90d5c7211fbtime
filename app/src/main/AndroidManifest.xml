@@ -31,20 +31,32 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".approval.reimburse.detail.DetailApprovalReimburseActivity"/>
+        <activity android:name=".SplashScreenActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".approval.reimburse.detail.DetailApprovalReimburseActivity" />
         <activity android:name=".riwayat.reimburse.detail.DetailReimburseActivity" />
         <activity android:name=".home.news.DetailNewsActivity" />
         <activity android:name=".riwayat.ijin.RiwayatIjinActivity" />
         <activity android:name=".riwayat.lembur.RiwayatLemburActivity" />
         <activity android:name=".riwayat.gaji.GajiActivity" />
         <activity android:name=".riwayat.jadwal.JadwalActivity" />
-        <activity android:name=".pengajuan.lembur.LemburActivity"
+        <activity
+            android:name=".pengajuan.lembur.LemburActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".pengajuan.reimburse.ReimburseActivity"
+        <activity
+            android:name=".pengajuan.reimburse.ReimburseActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".pengajuan.ijin.IjinActivity"
+        <activity
+            android:name=".pengajuan.ijin.IjinActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".pengajuan.cuti.CutiActivity"
+        <activity
+            android:name=".pengajuan.cuti.CutiActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity android:name=".riwayat.cuti.RiwayatCutiActivity" />
         <activity android:name=".riwayat.reimburse.RiwayatReimburseActivity" />
@@ -69,13 +81,20 @@
         <activity
             android:name=".LoginActivity"
             android:windowSoftInputMode="stateAlwaysHidden">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
+        <activity android:name=".MainActivity" >
+
+            <intent-filter>
+                <action android:name="ACT_MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

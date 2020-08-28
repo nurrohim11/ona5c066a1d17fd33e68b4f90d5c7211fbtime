@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alkhattabi.sweetdialog.SweetDialog;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import org.json.JSONArray;
@@ -61,21 +62,16 @@ public class RiwayatAbsensiActivity extends AppCompatActivity {
     Button btnProses;
     @BindView(R.id.rv_absensi)
     RecyclerView rvAbsensi;
-    @BindView(R.id.tv_tgl_detail_awal)
-    TextView tvTglDetailAwal;
-    @BindView(R.id.tv_tgl_detail_akhir)
-    TextView tvTglDetailAkhir;
-    @BindView(R.id.bottom_sheet)
-    LinearLayout layoutBottomSheet;
-    @BindView(R.id.ll_tgl)
-    LinearLayout llTgl;
+    @BindView(R.id.ll_absensi)
+    LinearLayout llAbsensi;
+    @BindView(R.id.ll_not_found)
+    LinearLayout llNotFound;
 
     String tgl_awal ="";
     String tgl_akhir ="";
     List<AbsensiModel> absensiModels;
     AbsensiAdapter adapter;
-
-    BottomSheetBehavior behavior;
+    SweetDialog pDialogProcess;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,18 +80,14 @@ public class RiwayatAbsensiActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        pDialogProcess = new SweetDialog(RiwayatAbsensiActivity.this,SweetDialog.PROGRESS_TYPE);
+        pDialogProcess.setCancelable(false);
         init();
     }
 
     private void init(){
-        Date c = Calendar.getInstance().getTime();
-        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        String formattedDate = df.format(c);
-        tvTglAwal.setText(formattedDate);
-        tvTglAkhir.setText(formattedDate);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-        tgl_awal = sdf.format(c);
-        tgl_akhir = sdf.format(c);
+        tvTglAwal.setText("Tanggal Awal");
+        tvTglAkhir.setText("Tanggal Akhir");
 
         rlTglAwal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,48 +129,22 @@ public class RiwayatAbsensiActivity extends AppCompatActivity {
             }
         });
 
-        behavior = BottomSheetBehavior.from(layoutBottomSheet);
-        behavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-            @Override
-            public void onStateChanged(@NonNull View bottomSheet, int newState) {
-                if (newState == BottomSheetBehavior.STATE_DRAGGING) {
-                    behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-                }
-            }
-
-            @Override
-            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-            }
-        });
-
         btnProses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showSheetAbsensi();
-            }
-        });
-
-        llTgl.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                    behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                if(check()) {
+                    pDialogProcess.show();
+                    loadAbsensi();
                 }
             }
         });
+
     }
 
-    private void showSheetAbsensi(){
-        if (behavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
-            behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-        }
-
+    private void loadAbsensi(){
         absensiModels = new ArrayList<>();
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(RiwayatAbsensiActivity.this);
         rvAbsensi.setLayoutManager(layoutManager);
-
-        tvTglDetailAwal.setText(tvTglAwal.getText().toString());
-        tvTglDetailAkhir.setText(tvTglAkhir.getText().toString());
 
         JSONObject jbody = new JSONObject();
         try {
@@ -191,13 +157,11 @@ public class RiwayatAbsensiActivity extends AppCompatActivity {
                 new AppRequestCallback(new AppRequestCallback.ResponseListener() {
                     @Override
                     public void onSuccess(String response, String message) {
+                        pDialogProcess.dismiss();
+                        llAbsensi.setVisibility(View.VISIBLE);
+                        llNotFound.setVisibility(View.GONE);
                         try {
                             JSONArray arr = new JSONArray(response);
-                            absensiModels.add(new AbsensiModel(
-                                    "0","","Tanggal","",
-                                    "","","",
-                                    "","","Keterangan"
-                            ));
                             for (int i=0; i < arr.length(); i++){
                                 JSONObject isi = arr.getJSONObject(i);
                                 absensiModels.add(new AbsensiModel(
@@ -223,12 +187,16 @@ public class RiwayatAbsensiActivity extends AppCompatActivity {
 
                     @Override
                     public void onEmpty(String message) {
+                        pDialogProcess.dismiss();
+                        llAbsensi.setVisibility(View.GONE);
+                        llNotFound.setVisibility(View.VISIBLE);
                         Toasty.error(RiwayatAbsensiActivity.this,message, Toast.LENGTH_SHORT).show();
                         rvAbsensi.setAdapter(null);
                     }
 
                     @Override
                     public void onFail(String message) {
+                        pDialogProcess.dismiss();
                         if(message.equals("Unauthorized")){
                             try {
                                 SessionManager session = new SessionManager(RiwayatAbsensiActivity.this);
@@ -253,5 +221,17 @@ public class RiwayatAbsensiActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private boolean check(){
+        if(tgl_awal.equals("")){
+            Toasty.error(this,"Masukkan tanggal awal",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(tgl_akhir.equals("")){
+            Toasty.error(this,"Masukkan tanggal akhir",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 }

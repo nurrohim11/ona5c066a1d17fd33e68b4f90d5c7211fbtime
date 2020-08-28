@@ -69,7 +69,7 @@ public class CutiAdapter extends RecyclerView.Adapter<CutiAdapter.ViewHolder> {
             pDialogApprove.setCloseDialog(true);
             pDialogApprove.setConfirmText("Setujui"); //Do not call this if you don't want to show confirm button
             pDialogApprove.setCancelText("Tolak");//Do not call this if you don't want to show cancel button
-            pDialogApprove.setConfirmClickListener(new SweetDialog.KAlertClickListener() {
+            pDialogApprove.setConfirmClickListener(new SweetDialog.SweetClickListener() {
                 @Override
                 public void onClick(SweetDialog sweetDialog) {
                     pDialog = new SweetDialog(context, SweetDialog.PROGRESS_TYPE);
@@ -83,7 +83,7 @@ public class CutiAdapter extends RecyclerView.Adapter<CutiAdapter.ViewHolder> {
                     }
                 }
             });
-            pDialogApprove.setCancelClickListener(new SweetDialog.KAlertClickListener() {
+            pDialogApprove.setCancelClickListener(new SweetDialog.SweetClickListener() {
                 @Override
                 public void onClick(SweetDialog sweetDialog) {
                     pDialog = new SweetDialog(context, SweetDialog.PROGRESS_TYPE);

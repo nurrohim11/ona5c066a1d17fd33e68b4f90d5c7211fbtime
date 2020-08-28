@@ -15,124 +15,124 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
             android:orientation="horizontal"
             android:weightSum="15">
 
-            <LinearLayout
+            <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:text="Tanggal"
+                android:textColor="@color/colorBlackGray"
                 android:layout_weight="4"
-                android:orientation="vertical">
+                android:textSize="@dimen/_10sdp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Tanggal"
-                    android:textColor="@color/colorBlackGray"
-                    android:textSize="@dimen/_10sdp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:text="Keterangan"
-                    android:textColor="@color/colorBlackGray"
-                    android:textSize="@dimen/_10sdp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:text="Status"
-                    android:textColor="@color/colorBlackGray"
-                    android:textSize="@dimen/_10sdp" />
-
-            </LinearLayout>
-
-            <LinearLayout
+            <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:text=":"
                 android:layout_weight="0.5"
-                android:orientation="vertical">
+                android:textColor="@color/colorBlackGray"
+                android:textSize="@dimen/_10sdp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=":"
-                    android:textColor="@color/colorBlackGray"
-                    android:textSize="@dimen/_10sdp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=":"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:textColor="@color/colorBlackGray"
-                    android:textSize="@dimen/_10sdp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=":"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:textColor="@color/colorBlackGray"
-                    android:textSize="@dimen/_10sdp" />
-            </LinearLayout>
-
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="10.5"
-                android:orientation="vertical">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:id="@+id/tv_tgl_awal"
-                        android:textColor="@color/colorBlackGray"
-                        android:textSize="@dimen/_10sdp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="s.d"
-                        android:layout_marginLeft="@dimen/_4sdp"
-                        android:id="@+id/tv_sd"
-                        android:layout_toRightOf="@+id/tv_tgl_awal"
-                        android:textColor="@color/colorBlackGray"
-                        android:textSize="@dimen/_10sdp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:layout_marginLeft="@dimen/_4sdp"
-                        android:id="@+id/tv_tgl_akhir"
-                        android:layout_toRightOf="@+id/tv_sd"
-                        android:textColor="@color/colorBlackGray"
-                        android:textSize="@dimen/_10sdp"/>
-                </RelativeLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:text=""
-                    android:id="@+id/tv_keterangan"
-                    android:textColor="@color/colorBlackGray"
-                    android:textSize="@dimen/_10sdp" />
+                android:layout_weight="10.5">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:layout_marginTop="@dimen/_4sdp"
+                    android:id="@+id/tv_tgl_awal"
                     android:textColor="@color/colorBlackGray"
-                    android:id="@+id/tv_status"
-                    android:textSize="@dimen/_10sdp" />
-            </LinearLayout>
+                    android:textSize="@dimen/_10sdp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="s.d"
+                    android:layout_marginLeft="@dimen/_4sdp"
+                    android:id="@+id/tv_sd"
+                    android:layout_toRightOf="@+id/tv_tgl_awal"
+                    android:textColor="@color/colorBlackGray"
+                    android:textSize="@dimen/_10sdp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:layout_marginLeft="@dimen/_4sdp"
+                    android:id="@+id/tv_tgl_akhir"
+                    android:layout_toRightOf="@+id/tv_sd"
+                    android:textColor="@color/colorBlackGray"
+                    android:textSize="@dimen/_10sdp"/>
+            </RelativeLayout>
+
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:weightSum="15">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Alasan"
+                android:textColor="@color/colorBlackGray"
+                android:layout_weight="4"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:layout_weight="0.5"
+                android:textColor="@color/colorBlackGray"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_weight="10.5"
+                android:id="@+id/tv_keterangan"
+                android:textColor="@color/colorBlackGray"
+                android:textSize="@dimen/_10sdp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:weightSum="15">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Status"
+                android:textColor="@color/colorBlackGray"
+                android:layout_weight="4"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:layout_weight="0.5"
+                android:textColor="@color/colorBlackGray"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_weight="10.5"
+                android:id="@+id/tv_status"
+                android:textColor="@color/colorBlackGray"
+                android:textSize="@dimen/_10sdp"/>
+        </LinearLayout>
+
     </LinearLayout>
 </RelativeLayout>

@@ -56,13 +56,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_4sdp"
-                        android:text="Tanggal"
-                        android:textColor="@color/colorBlackGray"
-                        android:textSize="@dimen/_10sdp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_4sdp"
                         android:text="Nominal"
                         android:textColor="@color/colorBlackGray"
                         android:textSize="@dimen/_10sdp" />
@@ -89,13 +82,6 @@
                         android:textColor="@color/colorBlackGray"
                         android:textSize="@dimen/_10sdp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=":"
-                        android:layout_marginTop="@dimen/_4sdp"
-                        android:textColor="@color/colorBlackGray"
-                        android:textSize="@dimen/_10sdp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -141,15 +127,6 @@
                         android:layout_marginTop="@dimen/_4sdp"
                         android:text=""
                         android:id="@+id/tv_dari"
-                        android:textColor="@color/colorBlackGray"
-                        android:textSize="@dimen/_10sdp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_4sdp"
-                        android:text=""
-                        android:id="@+id/tv_tgl"
                         android:textColor="@color/colorBlackGray"
                         android:textSize="@dimen/_10sdp" />
 
