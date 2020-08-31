@@ -12,10 +12,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.method.HideReturnsTransformationMethod;
@@ -91,6 +93,8 @@ public class MainActivity extends RuntimePermissionsActivity {
     private Boolean klikToVisiblePassLama = true;
     private boolean klikToVisiblePassBaru = true;
     private boolean klikToVisiblePassRe = true;
+    private String version, latestVersion, link;
+    private boolean updateRequired;
 
     Dialog dialog;
 
@@ -443,6 +447,7 @@ public class MainActivity extends RuntimePermissionsActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        checkVersion();
         initProfil();
         if (checkPermission()){
 
@@ -542,6 +547,83 @@ public class MainActivity extends RuntimePermissionsActivity {
             e.printStackTrace();
         }
         return Name;
+    }
+
+
+    private void checkVersion() {
+
+        PackageInfo pInfo = null;
+        version = "";
+
+        try {
+            pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        version = pInfo.versionName;
+        latestVersion = "";
+        link = "";
+
+//        new ApiVolley(MainActivity.this, new JSONObject(),"GET",ServerUrl.upVersion,
+//                new AppRequestCallback(new AppRequestCallback.ResponseListener() {
+//                    @Override
+//                    public void onSuccess(String response, String message) {
+//                        try {
+//                            JSONObject res = new JSONObject(response);
+//                            latestVersion = res.getString("version");
+//                            link = res.getString("link");
+//                            updateRequired = ((res.getString("wajib")).equals("1")) ? true : false;
+//                            if (!version.trim().equals(latestVersion.trim()) && link.length() > 0) {
+//                                final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+//                                if (updateRequired) {
+//                                    builder.setIcon(R.mipmap.ic_launcher)
+//                                            .setTitle("Update")
+//                                            .setMessage("Versi terbaru " + latestVersion + " telah tersedia, mohon download versi terbaru.")
+//                                            .setPositiveButton("Update Sekarang", new DialogInterface.OnClickListener() {
+//                                                @Override
+//                                                public void onClick(DialogInterface dialog, int which) {
+//                                                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
+//                                                    startActivity(browserIntent);
+//                                                }
+//                                            })
+//                                            .setCancelable(false)
+//                                            .show();
+//                                } else {
+//                                    builder.setIcon(R.mipmap.ic_launcher)
+//                                            .setTitle("Update")
+//                                            .setMessage("Versi terbaru " + latestVersion + " telah tersedia, mohon download versi terbaru.")
+//                                            .setPositiveButton("Update Sekarang", new DialogInterface.OnClickListener() {
+//                                                @Override
+//                                                public void onClick(DialogInterface dialog, int which) {
+//                                                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
+//                                                    startActivity(browserIntent);
+//                                                }
+//                                            })
+//                                            .setNegativeButton("Update Nanti", new DialogInterface.OnClickListener() {
+//                                                @Override
+//                                                public void onClick(DialogInterface dialog, int which) {
+//                                                    dialog.dismiss();
+//                                                }
+//                                            }).show();
+//                                }
+//
+//                            }
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onEmpty(String message) {
+//                    }
+//
+//                    @Override
+//                    public void onFail(String message) {
+//                    }
+//                })
+//        );
+
     }
 
     @Override
