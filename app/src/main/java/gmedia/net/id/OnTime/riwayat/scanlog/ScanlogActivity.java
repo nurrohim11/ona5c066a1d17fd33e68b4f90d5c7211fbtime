@@ -12,6 +12,7 @@ import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -177,6 +178,7 @@ public class ScanlogActivity extends AppCompatActivity {
                 new AppRequestCallback(new AppRequestCallback.ResponseListener() {
             @Override
             public void onSuccess(String response, String message) {
+                Log.d(">>>>>",response);
                 try {
                     JSONArray arr = new JSONArray(response);
                     scanlogModels.add(new ScanlogModel(
@@ -189,9 +191,7 @@ public class ScanlogActivity extends AppCompatActivity {
                                 isi.getString("nama"),
                                 isi.getString("scan_date"),
                                 formatTime(isi.getString("scan_time")),
-                                isi.getString("keterangan"),
-                                isi.getDouble("latitude"),
-                                isi.getDouble("longitude")
+                                isi.getString("keterangan")
                         ));
                     }
                     adapter = new ScanlogAdapter(ScanlogActivity.this,scanlogModels);

@@ -142,10 +142,10 @@ public class HomeFragment extends Fragment {
         menuHomeModels=new MenuHomeModel("006","Selesai Lembur",Utils.package_name(getContext())+".home.menu.SelesaiLemburActivity", R.drawable.selesailembur,R.drawable.bg_purple);
         homeModelList.add(menuHomeModels);
 
-        menuHomeModels=new MenuHomeModel("007","Check In",Utils.package_name(getContext())+".home.menu.LockInActivity", R.drawable.lockin, R.drawable.bg_royalblue);
+        menuHomeModels=new MenuHomeModel("007","Absen Masuk Luar Kantor",Utils.package_name(getContext())+".home.menu.LockInActivity", R.drawable.lockin, R.drawable.bg_royalblue);
         homeModelList.add(menuHomeModels);
 
-        menuHomeModels=new MenuHomeModel("008","Check Out",Utils.package_name(getContext())+".home.menu.LockOutActivity", R.drawable.lockout, R.drawable.bg_navy);
+        menuHomeModels=new MenuHomeModel("008","Absen Pulang Luar Kantor",Utils.package_name(getContext())+".home.menu.LockOutActivity", R.drawable.lockout, R.drawable.bg_navy);
         homeModelList.add(menuHomeModels);
 
         adapter.notifyDataSetChanged();

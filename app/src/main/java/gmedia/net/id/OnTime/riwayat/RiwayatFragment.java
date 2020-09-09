@@ -89,6 +89,12 @@ public class RiwayatFragment extends Fragment {
         customModel=new CustomModel("008","Lembur",Utils.package_name(getContext())+".riwayat.lembur.RiwayatLemburActivity", String.valueOf(R.drawable.jamputih), String.valueOf(R.drawable.bg_rust));
         customModels.add(customModel);
 
+        customModel=new CustomModel("009","Kunjungan Tanggal",Utils.package_name(getContext())+".riwayat.kunjungan.tanggal.KunjunganTglActivity", String.valueOf(R.drawable.jamputih), String.valueOf(R.drawable.bg_celery));
+        customModels.add(customModel);
+
+        customModel=new CustomModel("01o","Kunjungan Hari",Utils.package_name(getContext())+".riwayat.kunjungan.hari.KunjunganHariActivity", String.valueOf(R.drawable.pengajuanjadwal), String.valueOf(R.drawable.bg_green));
+        customModels.add(customModel);
+
         adapter.notifyDataSetChanged();
     }
 }

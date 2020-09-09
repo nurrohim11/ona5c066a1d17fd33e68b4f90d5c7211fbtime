@@ -42,4 +42,6 @@ public class ServerUrl {
     public static String urlRiwayatReimburse = BaseURLLocalHost+"Rest_Reimburse/list_reimburse";
     public static String urlListApprovalReimburs = BaseURLLocalHost+"Rest_Reimburse/list_apv_reimburse";
     public static String urlPostApproval = BaseURLLocalHost+"Rest_Reimburse/approve_reimburse";
+    public static String urlViewKunjunganTgl = BaseURLLocalHost+"Rest_Jadwal/kunjungan_tgl";
+    public static String urlViewKunjunganHari = BaseURLLocalHost+"Rest_Jadwal/kunjungan_hari";
 }

@@ -14,6 +14,13 @@ public class ScanlogModel {
         this.latitude = latitude;
         this.longitude=  longitude;
     }
+    public ScanlogModel(String id, String nama, String scan_date, String scan_time, String keterangan){
+        this.id = id;
+        this.nama = nama;
+        this.scan_date = scan_date;
+        this.scan_time= scan_time;
+        this.keterangan = keterangan;
+    }
 
     public String getId() {
         return id;
