@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.alkhattabi.sweetdialog.SweetDialog;
+import com.rohimdev.sweetdialog.SweetDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;

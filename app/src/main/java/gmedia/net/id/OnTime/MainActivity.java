@@ -32,12 +32,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alkhattabi.sweetbottomnavbar.SweetBottomNavbar;
-import com.alkhattabi.sweetdialog.SweetDialog;
 import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.rohimdev.exnavbar.ExNavbar;
+import com.rohimdev.sweetdialog.SweetDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -72,7 +72,7 @@ public class MainActivity extends RuntimePermissionsActivity {
     private static final int TIME_INTERVAL = 2000;
     private long mBackPressed;
 
-    SweetBottomNavbar bvNavigation;
+    ExNavbar bvNavigation;
     private TextView tvProfileName, tvProfileNik;
 
 

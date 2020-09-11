@@ -19,7 +19,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 
-import com.alkhattabi.sweetdialog.SweetDialog;
+import com.rohimdev.sweetdialog.SweetDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;

@@ -18,7 +18,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.alkhattabi.sweetdialog.SweetDialog;
+import com.rohimdev.sweetdialog.SweetDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;

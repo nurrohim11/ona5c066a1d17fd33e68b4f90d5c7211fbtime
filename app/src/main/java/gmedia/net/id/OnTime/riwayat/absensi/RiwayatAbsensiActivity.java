@@ -16,9 +16,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.alkhattabi.sweetdialog.SweetDialog;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.rohimdev.sweetdialog.SweetDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;

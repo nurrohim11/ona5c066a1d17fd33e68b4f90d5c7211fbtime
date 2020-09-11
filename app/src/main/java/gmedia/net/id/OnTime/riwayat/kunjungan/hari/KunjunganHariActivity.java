@@ -21,8 +21,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alkhattabi.sweetdialog.SweetDialog;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.rohimdev.sweetdialog.SweetDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -94,6 +94,7 @@ public class KunjunganHariActivity extends AppCompatActivity {
         pDialogProcess = new SweetDialog(KunjunganHariActivity.this, SweetDialog.PROGRESS_TYPE);
         pDialogProcess.getProgressHelper().setBarColor(R.color.colorProcess);
         pDialogProcess.setCancelable(false);
+        Log.d("kunjunganhari",String.valueOf(today()));
         initView();
 
     }
@@ -224,19 +225,20 @@ public class KunjunganHariActivity extends AppCompatActivity {
     private int today(){
         int today =-1;
         String hari =  customFormatTimestamp(calendar.getTime(),"E");
-        if(hari.equals("Sen")){
+        Log.d("kunjunganhari",hari);
+        if(hari.equals("Sen") || hari.equals("Mon")){
             today = 0;
-        }else if(hari.equals("Sel")){
+        }else if(hari.equals("Sel") || hari.equals("Tue")){
             today = 1;
-        }else if(hari.equals("Rab")){
+        }else if(hari.equals("Rab") || hari.equals("Wed")){
             today = 2;
-        }else if(hari.equals("Kam")){
+        }else if(hari.equals("Kam") || hari.equals("Thu")){
             today = 3;
-        }else if(hari.equals("Jum")){
+        }else if(hari.equals("Jum") || hari.equals("Fri")){
             today = 4;
-        }else if(hari.equals("Sab")){
+        }else if(hari.equals("Sab") || hari.equals("Sat")){
             today = 5;
-        }else if(hari.equals("Min")){
+        }else if(hari.equals("Min") || hari.equals("Sun")){
             today = 6;
         }
         return today;

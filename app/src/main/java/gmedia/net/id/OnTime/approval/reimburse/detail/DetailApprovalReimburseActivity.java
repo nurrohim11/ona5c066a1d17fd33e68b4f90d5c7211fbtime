@@ -15,9 +15,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alkhattabi.sweetdialog.SweetDialog;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
+import com.rohimdev.sweetdialog.SweetDialog;
 
 import org.json.JSONObject;
 

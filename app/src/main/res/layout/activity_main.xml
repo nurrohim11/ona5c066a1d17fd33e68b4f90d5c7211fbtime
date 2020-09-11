@@ -160,7 +160,7 @@
             android:layout_height="match_parent"/>
     </LinearLayout>
 
-    <com.alkhattabi.sweetbottomnavbar.SweetBottomNavbar
+    <com.rohimdev.exnavbar.ExNavbar
         android:id="@+id/bv_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

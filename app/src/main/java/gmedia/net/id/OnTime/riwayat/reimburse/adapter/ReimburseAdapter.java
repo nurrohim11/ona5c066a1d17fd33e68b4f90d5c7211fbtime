@@ -13,8 +13,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.alkhattabi.sweetdialog.SweetDialog;
 import com.google.gson.Gson;
+import com.rohimdev.sweetdialog.SweetDialog;
 
 import java.util.List;
 
